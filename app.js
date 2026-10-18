@@ -33,10 +33,10 @@ grid.addEventListener('click', event => {
   if (!button) return;
   const project = projects.find(item => item.id === button.dataset.project);
   lastProjectButton = button;
-  const blocks = [['S / 상황', project.situation], ['T / 역할과 과제', project.task], ['A / 실행', project.action], ['R / 결과', project.result]];
+  const blocks = project.sections;
   content.innerHTML = `<span class="project-icon" aria-hidden="true">${project.icon}</span><h2 id="dialog-title">${escapeHTML(project.title)}</h2>
     <p class="dialog-meta">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)} · ${escapeHTML(project.role)}</p>${tagsHTML(project.tags)}
-    ${blocks.map(([title, body]) => `<section class="star-block"><h3>${title}</h3><p>${escapeHTML(body)}</p></section>`).join('')}
+    ${blocks.map(({title, body}) => `<section class="case-block"><h3>${escapeHTML(title)}</h3><p>${escapeHTML(body)}</p></section>`).join('')}
     ${project.note ? `<p class="evidence-note">${escapeHTML(project.note)}</p>` : ''}
     <div class="project-links">${project.links.map(link => `<a href="${escapeHTML(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(link.label)} ↗</a>`).join('')}</div>
     ${project.links.some(link => link.private) ? '<p class="private-note">Private 저장소는 소유자가 부여한 열람 권한이 필요합니다.</p>' : ''}`;
