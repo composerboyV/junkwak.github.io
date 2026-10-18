@@ -6,13 +6,18 @@ const toggle = document.querySelector('.menu-toggle');
 const labels = { work: 'PROFESSIONAL', personal: 'PERSONAL / HACKATHON', study: '42 / LEARNING' };
 const escapeHTML = text => String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const tagsHTML = tags => `<div class="tags">${tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div>`;
+const galleryHTML = gallery => gallery ? `<section class="project-gallery" aria-label="UX/UI 협업 화면">
+  <h3>${escapeHTML(gallery.title)}</h3><p>${escapeHTML(gallery.description)}</p>
+  <div class="gallery-grid">${gallery.images.map(item => `<figure><a href="${escapeHTML(item.src)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(item.caption)} 원본 크게 보기"><img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.alt)}" width="750" height="1624" loading="lazy"></a><figcaption>${escapeHTML(item.caption)}</figcaption></figure>`).join('')}</div>
+  <p class="gallery-credit">${escapeHTML(gallery.credit)} <a href="${escapeHTML(gallery.source)}" target="_blank" rel="noopener noreferrer">Figma 협업 원본 ↗</a></p>
+</section>` : '';
 let lastProjectButton;
 
 grid.innerHTML = projects.map(project => `<article class="project-card" data-category="${project.category}">
   <div class="card-top"><span class="project-icon" aria-hidden="true">${project.icon}</span><span class="category-label">${labels[project.category]}</span></div>
   <h3>${escapeHTML(project.title)}</h3><p class="project-period">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)}</p>
   <p class="project-desc">${escapeHTML(project.description)}</p>${tagsHTML(project.tags)}
-  <div class="card-bottom"><span>${escapeHTML(project.role)}</span><button class="detail-button" data-project="${project.id}" aria-label="${escapeHTML(project.title)} 자세히 보기">자세히 보기 <span aria-hidden="true">↗</span></button></div>
+  <div class="card-bottom"><span>${escapeHTML(project.role)}</span><button class="detail-button" data-project="${project.id}" aria-label="${escapeHTML(project.title)} 자세히 보기">${project.gallery ? '화면·개발 이야기' : '자세히 보기'} <span aria-hidden="true">↗</span></button></div>
 </article>`).join('');
 
 const cards = [...document.querySelectorAll('.project-card')];
@@ -36,6 +41,7 @@ grid.addEventListener('click', event => {
   const blocks = project.sections;
   content.innerHTML = `<span class="project-icon" aria-hidden="true">${project.icon}</span><h2 id="dialog-title">${escapeHTML(project.title)}</h2>
     <p class="dialog-meta">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)} · ${escapeHTML(project.role)}</p>${tagsHTML(project.tags)}
+    ${galleryHTML(project.gallery)}
     ${blocks.map(({title, body}) => `<section class="case-block"><h3>${escapeHTML(title)}</h3><p>${escapeHTML(body)}</p></section>`).join('')}
     ${project.note ? `<p class="evidence-note">${escapeHTML(project.note)}</p>` : ''}
     <div class="project-links">${project.links.map(link => `<a href="${escapeHTML(link.url)}" target="_blank" rel="noopener noreferrer">${escapeHTML(link.label)} ↗</a>`).join('')}</div>

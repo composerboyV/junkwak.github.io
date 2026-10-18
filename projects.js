@@ -2,6 +2,17 @@
 const projects = [
   {
     "id": "stoolcare",
+    "gallery": {
+      "title": "첫 사용을 안내하는 세 화면",
+      "description": "스캔 안내, 식사 기록, 일상 패턴 확인을 순서대로 소개하는 온보딩 시안입니다. Figma 협업 파일에서 가져온 디자인 자료로, 현재 배포 화면과는 차이가 있을 수 있습니다.",
+      "credit": "UX/UI 디자인: AICU 디자인 협업 결과물 · 본인 담당: 앱·백엔드 구현 및 요구사항 조율. 원본 파일은 열람 권한이 필요할 수 있습니다.",
+      "source": "https://www.figma.com/design/PFltfLnQjkYWauJNIVxkGk/Fecal_UXUI?node-id=55795-2536",
+      "images": [
+        {"src": "./assets/stoolcare/onboarding-scan.png", "alt": "카메라를 이용한 스캔 기능을 소개하는 스툴케어 온보딩 디자인 시안", "caption": "01 · 스캔 안내"},
+        {"src": "./assets/stoolcare/onboarding-meal.png", "alt": "식사 사진과 Meal Scan 기능을 소개하는 스툴케어 온보딩 디자인 시안", "caption": "02 · 식사 기록"},
+        {"src": "./assets/stoolcare/onboarding-trends.png", "alt": "점수와 주간 그래프로 기록 변화를 소개하는 스툴케어 온보딩 디자인 시안", "caption": "03 · 기록 변화 확인"}
+      ]
+    },
     "category": "work",
     "icon": "📱",
     "title": "스툴케어",
