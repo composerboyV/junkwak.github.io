@@ -19,7 +19,7 @@ class ActivityTest(unittest.TestCase):
   result=module.summarize(row+row,'hackathon','2026-10-19T08:00:00Z','actions')
   self.assertEqual(result['totalCommits'],1)
   self.assertEqual(result['days'][0]['categories'][0]['type'],'other')
- def test_successful_push_is_required_for_remote_checkout_export(self):
+ def test_export_excludes_uncommitted_files_and_is_idempotent(self):
   # Export only committed HEAD; local edits and untracked files never contribute.
   with tempfile.TemporaryDirectory() as root:
    repo=Path(root)/'source';repo.mkdir();out=Path(root)/'public.json'

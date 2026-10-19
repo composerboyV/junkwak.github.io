@@ -38,7 +38,7 @@ def summarize(raw, project, exported_at, trigger):
       'latestCommitAt':latest.isoformat() if latest else None,'syncedAt':exported_at,
       'syncMode':'github-actions' if trigger=='actions' else 'initial-snapshot',
       'days':days,'totalCommits':sum(x['commits'] for x in days),
-      'basis':'main 브랜치의 최근 90일 커미터 날짜(KST). 저장소 기여자 전체 기록이며 실제 작업일·개인 기여량·검증 결과를 뜻하지 않습니다.'}
+      'basis':'main 브랜치의 최근 90일 커미터 날짜(KST), 병합 커밋 제외. 저장소 기여자 전체 기록이며 실제 작업일·개인 기여량·검증 결과를 뜻하지 않습니다.'}
 
 def export(source, project, output, trigger='initial'):
     now=dt.datetime.now(dt.timezone.utc)
