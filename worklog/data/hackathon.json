@@ -1,0 +1,31 @@
+{
+  "version": 1,
+  "projectId": "hackathon",
+  "name": "42 Global 해커톤",
+  "repository": "composerboyV/42_hackathon",
+  "branch": "main",
+  "latestCommitAt": "2026-10-19T16:59:46+09:00",
+  "syncedAt": "2026-10-19T08:49:09.245374+00:00",
+  "syncMode": "initial-snapshot",
+  "days": [
+    {
+      "date": "2026-10-19",
+      "commits": 3,
+      "categories": [
+        {
+          "type": "feat",
+          "label": "기능 개발",
+          "count": 1
+        },
+        {
+          "type": "docs",
+          "label": "문서 정리",
+          "count": 2
+        }
+      ],
+      "summary": "기능 개발 1건 · 문서 정리 2건"
+    }
+  ],
+  "totalCommits": 3,
+  "basis": "main 브랜치의 최근 90일 커미터 날짜(KST). 저장소 기여자 전체 기록이며 실제 작업일·개인 기여량·검증 결과를 뜻하지 않습니다."
+}

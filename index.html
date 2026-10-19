@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="./style.css">
   <script src="./projects.js" defer></script>
   <script src="./app.js" defer></script>
+  <script src="./activity.js" defer></script>
 </head>
 <body>
   <a class="skip" href="#main">본문으로 이동</a>
@@ -51,6 +52,7 @@
       <div class="project-toolbar"><div class="filters" role="group" aria-label="프로젝트 분류"><button class="filter active" data-filter="all" aria-pressed="true">전체</button><button class="filter" data-filter="work" aria-pressed="false">실무</button><button class="filter" data-filter="personal" aria-pressed="false">개인·해커톤</button><button class="filter" data-filter="study" aria-pressed="false">42·학습</button></div><span id="project-count" aria-live="polite"></span></div>
       <div id="project-grid" class="project-grid"></div>
       <noscript><p>프로젝트 목록을 보려면 JavaScript를 활성화하거나 <a href="https://app.notion.com/p/Junki-Kwak-Portfolio-2f97746fec7081f4b1f6e11d985840b7">Notion 포트폴리오</a>를 확인해 주세요.</p></noscript>
+      <aside id="recent-activity" class="recent-activity" aria-label="최근 GitHub 업데이트"><div class="activity-heading"><h3>최근 업데이트</h3><a href="./worklog/">작업일지 전체 보기 ↗</a></div><p id="activity-status" aria-live="polite">GitHub 기록을 불러오고 있습니다.</p><div id="activity-preview"></div></aside>
       <p class="project-footnote">회사 프로젝트는 역할과 해결 경험을 중심으로 정리했습니다. Private 저장소는 열람 권한이 필요합니다.</p>
     </section>
     <section id="skills" class="section">

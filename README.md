@@ -29,17 +29,40 @@ GitHub Pages는 `main` 브랜치의 루트에서 배포합니다. `.nojekyll`을
 
 편집 참고: https://brittanychiang.com/ (간결한 프로젝트 소개), https://www.vienzent.dev/portfolio/ (기여 범위와 기술적 판단 중심 사례 설명). 문구 검토에 Claude를 활용하고 최종 사실·범위·표현을 별도로 검토했습니다.
 
-## 작업일지
+## GitHub push 자동 반영
 
-포트폴리오 메뉴의 **작업일지**는 `./worklog/`로 연결됩니다. 빌드 없는 GitHub Pages용 화면이며, 작성한 내용은 `junkwak.journal.v1` 키로 해당 브라우저의 localStorage에 저장합니다. 서버, 저장소, 방문자에게 일지를 전송하지 않습니다. 로그인 기능이나 기기 간 자동 동기화는 없습니다. 같은 브라우저 프로필을 쓰는 사람은 저장한 내용을 볼 수 있습니다.
+`42_hackathon`의 `main`에 push → 해당 저장소의 `portfolio-sync.yml` 실행 → 공개용 요약 JSON만 이 저장소에 커밋 → 기존 GitHub Pages 배포로 메인 포트폴리오와 작업일지 갱신.
 
-- 날짜별 작성·저장, 작성일 표시, 최근 일지, Markdown 다운로드
-- JSON 백업·가져오기: 내용이 있는 기존 날짜는 유지하며, 없는 날짜와 빈 날짜만 추가
-- Mac 로컬 작업일지에서 **웹으로 옮길 일지 ↓**로 받은 JSON을 가져올 수 있음
-- 이 브라우저의 사이트 데이터를 지우면 일지가 삭제되므로 백업 파일로 보관
-- 하단 음악은 사용자가 제공한 YouTube 영상/목록 링크의 공식 플레이어이며 직접 열고 재생함
-- Git 수집, 비공개 저장소 접근, iPhone·TimeTree 일정 연동은 이 정적 사이트에서 실행하지 않음
+- 메인 페이지의 해커톤 카드와 최근 업데이트, `/worklog/`의 날짜별 작업 요약을 같은 JSON으로 표시합니다.
+- 작은 달력은 날짜 선택용입니다. 커밋 수와 파일 목록으로 달력을 채우지 않습니다.
+- 화면은 60초마다 새 배포 데이터를 확인합니다. push 뒤 반영 시간은 Actions와 Pages 배포 시간에 따라 달라집니다.
+- 현재 연결 대상은 개인 `42_hackathon/main`입니다. 회사 저장소는 자동 반영에서 제외합니다.
+- 최근 90일의 커밋 제목 접두어를 고정된 작업 유형으로 분류하고 날짜별 개수를 계산합니다. 원문, 파일명, 코드, 작성자 개인정보, 비공개 SHA는 내보내지 않습니다.
+- 공동 기여를 포함한 저장소 기록입니다. 작업 시간, 개인 기여량, 테스트 통과나 배포 성공을 추정하지 않습니다.
+- 상세 프로젝트 소개와 성과 수치는 자동으로 다시 쓰지 않습니다. 최신 작업 요약과 날짜가 자동 갱신됩니다.
 
-작업일지 UI는 기존 로컬 앱의 일지 중심 구성을 재사용합니다. 참고: [Cal.com 분석](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cal/DESIGN.md)의 구획과 [Spotify 분석](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/spotify/DESIGN.md)의 고정 재생바. 이는 커뮤니티 분석이며 공식 디자인 규격이 아닙니다.
+`worklog/data/hackathon.json`의 `syncMode`가 `initial-snapshot`이면 첫 자료만 반영한 상태이며 연동 키 등록 전입니다. 실제 Actions가 생성해야 `github-actions`가 됩니다. 화면도 이를 구분해 표시합니다.
 
-검증: `node --test tests/journal.test.js`
+### 최초 연결
+
+`python3 scripts/setup_portfolio_sync.py`
+
+GitHub CLI 로그인 후 포트폴리오 저장소 한 곳에 쓸 수 있는 새 전용 deploy key를 만들고, 해커톤 저장소의 `PORTFOLIO_DEPLOY_KEY` Actions Secret에 등록합니다. 개인 SSH 키를 복사하지 않습니다. 생성한 임시 키 파일은 제거합니다. 등록 후 첫 workflow를 실행합니다. Mac이 꺼져 있어도 이후 push는 GitHub에서 처리됩니다.
+
+GitHub 계정은 두 저장소의 관리 권한이 필요합니다. 설정 스크립트는 일부만 등록된 기존 키를 자동으로 덮어쓰지 않습니다.
+
+[자동화 실행 상태](https://github.com/composerboyV/42_hackathon/actions/workflows/portfolio-sync.yml)
+
+### 공개 요약 생성 / 검증
+
+`python3 scripts/export_activity.py --source /path/to/source --project hackathon --output worklog/data/hackathon.json`
+
+`python3 -m unittest discover -s tests -p 'test_*.py' -v`
+
+`node --test tests/journal.test.js`
+
+### 개인 메모
+
+기존 수동 일지는 작업일지의 접힌 **내 메모**에 보존했습니다. `junkwak.journal.v1` localStorage를 계속 사용하며, 방문자에게 공개하거나 Git에 넣지 않습니다. 같은 브라우저 프로필을 사용하는 사람은 읽을 수 있습니다. 백업/가져오기/Markdown 다운로드를 지원합니다. 기기 간 자동 동기화와 아이폰 일정 연결은 별개이며 아직 연결 전입니다.
+
+음악은 사용자가 제공한 YouTube 공식 플레이어로 연결합니다. 디자인 참고: [Cal.com 분석](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cal/DESIGN.md), [Spotify 분석](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/spotify/DESIGN.md).

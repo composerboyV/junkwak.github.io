@@ -10,7 +10,7 @@ function read(){try{const result=store.read(localStorage);healthy=true;return re
 function render(){
  const entry=entries.find(e=>e.date===day);baseline=entry?.body||'';$('#note').value=baseline;dirty=false;
  $('#day-title').textContent=label(day);$('#day-label').textContent=day===today()?'오늘의 기록':day.slice(0,4)+'년';$('#date').value=day;$('#date').max=today();$('#next-day').disabled=day>=today();
- $('#note-status').textContent=baseline?'이 브라우저에 저장됨':'아직 작성한 일지가 없습니다.';renderCalendar();renderEntries();
+ $('#note-status').textContent=baseline?'이 브라우저에 저장됨':'아직 작성한 일지가 없습니다.';renderCalendar();renderEntries();window.renderGitActivity?.(day);
 }
 function renderEntries(){
  const saved=entries.filter(e=>e.body.trim()).sort((a,b)=>b.date.localeCompare(a.date));$('#entry-count').textContent=saved.length;$('#entry-list').replaceChildren();
@@ -19,8 +19,8 @@ function renderEntries(){
 }
 function renderCalendar(){
  const month=day.slice(0,7);$('#month-year').textContent=day.slice(0,4);$('#month-title').textContent=Number(day.slice(5,7))+'월';$('#month').value=month;$('#month').max=today().slice(0,7);$('#next-month').disabled=month>=today().slice(0,7);
- const saved=new Set(entries.filter(e=>e.body.trim()).map(e=>e.date));const count=[...saved].filter(x=>x.startsWith(month)).length;$('#month-summary').textContent=count?'이달에 작성한 일지 '+count+'일':'날짜를 선택해 일지를 남겨보세요.';
- $('#month-grid').innerHTML=WorklogCalendar.monthDays(month).map(d=>`<button class="calendar-day ${d===day?'selected':''} ${d===today()?'is-today':''} ${d.startsWith(month)?'':'outside'}" data-day="${d}" aria-label="${label(d)}${saved.has(d)?', 작성한 일지 있음':''}" aria-pressed="${d===day}" ${d>today()?'disabled':''}><span class="day-number">${Number(d.slice(-2))}</span>${saved.has(d)?'<i class="journal-marker" aria-hidden="true"></i>':''}</button>`).join('');
+ const saved=new Set((window.portfolioActivity?.days||[]).map(e=>e.date));const count=[...saved].filter(x=>x.startsWith(month)).length;$('#month-summary').textContent=count?'이달의 업데이트 '+count+'일':'이달에 반영된 GitHub 기록이 없습니다.';
+ $('#month-grid').innerHTML=WorklogCalendar.monthDays(month).map(d=>`<button class="calendar-day ${d===day?'selected':''} ${d===today()?'is-today':''} ${d.startsWith(month)?'':'outside'}" data-day="${d}" aria-label="${label(d)}${saved.has(d)?', GitHub 업데이트 있음':''}" aria-pressed="${d===day}" ${d>today()?'disabled':''}><span class="day-number">${Number(d.slice(-2))}</span>${saved.has(d)?'<i class="journal-marker" aria-hidden="true"></i>':''}</button>`).join('');
 }
 function changeDate(next){if(!store.validDay(next)||next>today())return;if(dirty&&!confirm('저장하지 않은 내용이 있습니다. 저장하지 않고 날짜를 바꿀까요?')){$('#date').value=day;$('#month').value=day.slice(0,7);return;}entries=read();day=next;render();}
 function save(){
@@ -45,3 +45,5 @@ window.addEventListener('beforeunload',e=>{if(dirty){e.preventDefault();e.return
 window.addEventListener('keydown',e=>{if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='s'){e.preventDefault();save();}});
 window.addEventListener('storage',e=>{if(e.key!==store.KEY)return;if(dirty){message('다른 탭에서 일지가 변경됐습니다. 작성 중인 글은 유지합니다.');return;}entries=read();render();});
 entries=read();render();
+
+document.addEventListener('portfolio-activity',()=>{renderCalendar();window.renderGitActivity?.(day);});

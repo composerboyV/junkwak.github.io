@@ -14,7 +14,7 @@ const galleryHTML = gallery => gallery ? `<section class="project-gallery" aria-
 </section>` : '';
 let lastProjectButton;
 
-grid.innerHTML = projects.map(project => `<article class="project-card" data-category="${project.category}">
+grid.innerHTML = projects.map(project => `<article class="project-card" data-project-id="${project.id}" data-category="${project.category}">
   <div class="card-top"><span class="project-icon" aria-hidden="true">${project.icon}</span><span class="category-label">${labels[project.category]}</span></div>
   <h3>${escapeHTML(project.title)}</h3><p class="project-period">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)}</p>
   ${statusHTML(project.status)}
