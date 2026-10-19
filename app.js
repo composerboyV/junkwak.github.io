@@ -7,6 +7,9 @@ const labels = { work: 'PROFESSIONAL', personal: 'PERSONAL / HACKATHON', study: 
 const escapeHTML = text => String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const tagsHTML = tags => `<div class="tags">${tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div>`;
 const statusHTML = status => status ? `<p class="project-status">${escapeHTML(status)}</p>` : '';
+const iconHTML = project => project.logo
+  ? `<span class="project-brand"><img src="${escapeHTML(project.logo)}" alt="${escapeHTML(project.logoAlt || project.title)}" width="164" height="39"></span>`
+  : `<span class="project-icon" aria-hidden="true">${project.icon}</span>`;
 const galleryHTML = gallery => gallery ? `<section class="project-gallery" aria-label="UX/UI 협업 화면">
   <h3>${escapeHTML(gallery.title)}</h3><p>${escapeHTML(gallery.description)}</p>
   <div class="gallery-grid">${gallery.images.map(item => `<figure><a href="${escapeHTML(item.src)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(item.caption)} 원본 크게 보기"><img src="${escapeHTML(item.src)}" alt="${escapeHTML(item.alt)}" width="750" height="1624" loading="lazy"></a><figcaption>${escapeHTML(item.caption)}</figcaption></figure>`).join('')}</div>
@@ -15,7 +18,7 @@ const galleryHTML = gallery => gallery ? `<section class="project-gallery" aria-
 let lastProjectButton;
 
 grid.innerHTML = projects.map(project => `<article class="project-card" data-project-id="${project.id}" data-category="${project.category}">
-  <div class="card-top"><span class="project-icon" aria-hidden="true">${project.icon}</span><span class="category-label">${labels[project.category]}</span></div>
+  <div class="card-top">${iconHTML(project)}<span class="category-label">${labels[project.category]}</span></div>
   <h3>${escapeHTML(project.title)}</h3><p class="project-period">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)}</p>
   ${statusHTML(project.status)}
   <p class="project-desc">${escapeHTML(project.description)}</p>${tagsHTML(project.tags)}
@@ -41,7 +44,7 @@ grid.addEventListener('click', event => {
   const project = projects.find(item => item.id === button.dataset.project);
   lastProjectButton = button;
   const blocks = project.sections;
-  content.innerHTML = `<span class="project-icon" aria-hidden="true">${project.icon}</span><h2 id="dialog-title">${escapeHTML(project.title)}</h2>
+  content.innerHTML = `${iconHTML(project)}<h2 id="dialog-title">${escapeHTML(project.title)}</h2>
     <p class="dialog-meta">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)} · ${escapeHTML(project.role)}</p>${statusHTML(project.status)}${tagsHTML(project.tags)}
     ${galleryHTML(project.gallery)}
     ${blocks.map(({title, body}) => `<section class="case-block"><h3>${escapeHTML(title)}</h3><p>${escapeHTML(body)}</p></section>`).join('')}
