@@ -1,0 +1,7 @@
+const test=require('node:test'),assert=require('node:assert/strict');
+const S=require('../worklog/journal-store.js');
+const memory=()=>{const data=new Map();return {getItem:k=>data.get(k)||null,setItem:(k,v)=>data.set(k,v)};};
+test('backup round trip preserves Korean text without rendering markup',()=>{const storage=memory(),entries=[{date:'2026-10-19',body:'QA 확인\n<script>test</script>',updated:'2026-10-19T01:00:00Z'}];S.write(storage,entries);assert.deepEqual(S.read(storage),entries);});
+test('reject malformed dates, duplicate dates and non-journal files',()=>{assert.equal(S.validDay('2026-02-30'),false);assert.equal(S.validDay('2024-02-29'),true);for(const input of [{},S.bundle([{date:'2026-02-30',body:'bad'}]),S.bundle([{date:'2026-10-19',body:'one'},{date:'2026-10-19',body:'two'}])])assert.throws(()=>S.validate(input));});
+test('import adds missing days and preserves existing nonempty notes',()=>{const existing=[{date:'2026-10-19',body:'현재 기록'},{date:'2026-10-18',body:''}];const incoming=[{date:'2026-10-19',body:'옛 기록'},{date:'2026-10-18',body:'추가'},{date:'2026-10-17',body:'이전 기록'}];const merged=S.merge(existing,incoming);assert.equal(merged.added,2);assert.equal(merged.skipped,1);assert.equal(merged.entries.find(e=>e.date==='2026-10-19').body,'현재 기록');assert.equal(existing[1].body,'');});
+test('storage failures surface instead of losing notes',()=>{assert.throws(()=>S.read({getItem:()=>'{bad'}));assert.throws(()=>S.write({setItem:()=>{throw new Error('quota');}},[{date:'2026-10-19',body:'keep',updated:''}]),/quota/);});
