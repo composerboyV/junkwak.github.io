@@ -66,3 +66,5 @@ GitHub 계정은 두 저장소의 관리 권한이 필요합니다. 설정 스�
 기존 수동 일지는 작업일지의 접힌 **내 메모**에 보존했습니다. `junkwak.journal.v1` localStorage를 계속 사용하며, 방문자에게 공개하거나 Git에 넣지 않습니다. 같은 브라우저 프로필을 사용하는 사람은 읽을 수 있습니다. 백업/가져오기/Markdown 다운로드를 지원합니다. 기기 간 자동 동기화와 아이폰 일정 연결은 별개이며 아직 연결 전입니다.
 
 음악은 사용자가 제공한 YouTube 공식 플레이어로 연결합니다. 디자인 참고: [Cal.com 분석](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/cal/DESIGN.md), [Spotify 분석](https://github.com/VoltAgent/awesome-design-md/blob/main/design-md/spotify/DESIGN.md).
+
+섹션명 `Experience`, `Projects`, `Skills`, `Education`은 [Reactive Resume의 섹션 제목 정의](https://github.com/reactive-resume/reactive-resume/blob/main/apps/web/src/libs/resume/section-title.ts)를 참고했습니다. 본문과 기존 사이트 구성은 유지합니다.
