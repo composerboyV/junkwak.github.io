@@ -26,3 +26,4 @@
 
 /* Official partner logo, displayed at its original aspect ratio. */
 .project-brand{display:inline-flex;align-items:center;width:164px;max-width:55%;height:44px;flex-shrink:0}.project-brand img{display:block;width:100%;height:auto;object-fit:contain}
+.project-app-icon{overflow:hidden;background:#fff;border:1px solid var(--line);flex-shrink:0}.project-app-icon img{display:block;width:100%;height:100%;object-fit:contain}

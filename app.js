@@ -5,9 +5,11 @@ const labels = { work: 'PROFESSIONAL', personal: 'PERSONAL / HACKATHON', study: 
 const escapeHTML = text => String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const tagsHTML = tags => `<div class="tags">${tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div>`;
 const statusHTML = status => status ? `<p class="project-status">${escapeHTML(status)}</p>` : '';
-const iconHTML = project => project.logo
-  ? `<span class="project-brand"><img src="${escapeHTML(project.logo)}" alt="${escapeHTML(project.logoAlt || project.title)}" width="164" height="39"></span>`
-  : `<span class="project-icon" aria-hidden="true">${project.icon}</span>`;
+const iconHTML = project => project.appIcon
+  ? `<span class="project-icon project-app-icon"><img src="${escapeHTML(project.appIcon)}" alt="${escapeHTML(project.appIconAlt || `${project.title} 앱 아이콘`)}" width="46" height="46" loading="lazy"></span>`
+  : project.logo
+    ? `<span class="project-brand"><img src="${escapeHTML(project.logo)}" alt="${escapeHTML(project.logoAlt || project.title)}" width="164" height="39"></span>`
+    : `<span class="project-icon" aria-hidden="true">${project.icon}</span>`;
 
 grid.innerHTML = projects.map(project => `<article class="project-card" data-project-id="${project.id}" data-category="${project.category}">
   <div class="card-top">${iconHTML(project)}<span class="category-label">${labels[project.category]}</span></div>

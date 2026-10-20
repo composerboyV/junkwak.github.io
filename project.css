@@ -32,6 +32,9 @@ p, h1, h2, h3, dl, dd, figure { margin: 0; }
 .case-kicker .case-status { padding: 3px 10px; border-radius: 20px; background: var(--soft); color: var(--purple); font-size: 10px; }
 .case-logo { display: block; width: 164px; height: auto; margin-bottom: 20px; }
 h1 { max-width: 950px; font-size: clamp(36px, 4.8vw, 64px); font-weight: 720; letter-spacing: -.05em; line-height: 1.2; text-wrap: balance; }
+.case-title { display: flex; align-items: center; gap: 20px; }
+.case-title h1 { min-width: 0; }
+.case-app-icon { display: block; width: 64px; height: 64px; flex: 0 0 64px; border: 1px solid var(--line); border-radius: 15px; object-fit: contain; }
 .case-headline { max-width: 850px; margin-top: 22px; font-size: clamp(19px, 2.3vw, 28px); font-weight: 550; letter-spacing: -.04em; line-height: 1.55; text-wrap: balance; }
 .case-summary { max-width: 730px; margin-top: 21px; color: var(--muted); font-size: 14px; line-height: 1.95; }
 .case-highlights { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 48px; border-block: 1px solid var(--line); padding: 27px 0; }
@@ -117,6 +120,8 @@ h1 { max-width: 950px; font-size: clamp(36px, 4.8vw, 64px); font-weight: 720; le
   .site-header nav { gap: 22px; }
   .case-kicker { gap: 9px 14px; font-size: 10px; }
   h1 { font-size: 36px; }
+  .case-title { gap: 15px; }
+  .case-app-icon { width: 50px; height: 50px; flex-basis: 50px; border-radius: 12px; }
   .case-headline { font-size: 20px; }
   .case-summary { font-size: 13px; }
   .case-highlights { grid-template-columns: 1fr; gap: 16px; }

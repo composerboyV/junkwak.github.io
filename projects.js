@@ -4,7 +4,6 @@ const projects = [
   {
     "id": "stoolcare",
     "category": "work",
-    "icon": "📱",
     "title": "스툴케어",
     "status": "배포 후 개선 중",
     "subtitle": "앱 개발 · 미국 배포",
@@ -17,12 +16,13 @@ const projects = [
       "PostgreSQL"
     ],
     "role": "앱·백엔드 개발 / 운영",
-    "url": "./projects/stoolcare/"
+    "url": "./projects/stoolcare/",
+    "appIcon": "./assets/app-icons/stoolcare.jpg",
+    "appIconAlt": "스툴케어 앱 아이콘"
   },
   {
     "id": "fecal-qa",
     "category": "work",
-    "icon": "🏥",
     "title": "피칼스캐너",
     "subtitle": "배포 앱 유지보수 · 병원 QA",
     "period": "2025.10 — 현재",
@@ -34,7 +34,9 @@ const projects = [
       "Firebase"
     ],
     "role": "유지보수 / QA / 의료용 앱 개발",
-    "url": "./projects/fecal-qa/"
+    "url": "./projects/fecal-qa/",
+    "appIcon": "./assets/app-icons/fecal-scanner.jpg",
+    "appIconAlt": "피칼스캐너 앱 아이콘"
   },
   {
     "id": "hackathon",
