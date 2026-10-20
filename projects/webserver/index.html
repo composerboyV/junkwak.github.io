@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="소켓과 비동기 I/O부터 CGI까지, 웹 요청을 처리하는 서버의 내부 흐름을 직접 구현했습니다.">
+  <meta property="og:title" content="C++ HTTP/1.1 서버 | 곽준기 포트폴리오">
+  <meta property="og:description" content="소켓에서 CGI까지, HTTP 요청이 응답이 되는 과정을 구현하다">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>C++ HTTP/1.1 서버 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../project.css">
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#projects"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>42 / 학습·협업</span><span>2025.05 — 2025.09</span></div>
+      
+      <h1>C++ HTTP/1.1 서버</h1>
+      <p class="case-headline">소켓에서 CGI까지, HTTP 요청이 응답이 되는 과정을 구현하다</p>
+      <p class="case-summary">소켓과 비동기 I/O부터 CGI까지, 웹 요청을 처리하는 서버의 내부 흐름을 직접 구현했습니다.</p>
+      <dl class="case-highlights"><div><dt>C++98</dt><dd>Linux 소켓 기반 서버</dd></div><div><dt>epoll</dt><dd>non-blocking I/O</dd></div><div><dt>Python · PHP</dt><dd>CGI 실행 결과 연결</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#result"><span>03</span> 결과</a>
+          <a href="#evidence"><span>04</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="C++ HTTP/1.1 서버 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>C++98과 Linux 환경에서 HTTP/1.1 서버를 직접 구현하는 팀 프로젝트였습니다. 네트워크 요청을 받고 응답하는 흐름에 외부 프로그램 실행 결과까지 연결해야 했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>서버 구조와 비동기 I/O 흐름을 구성했습니다</h3><p>부팀장으로 서버 구조 설계를 맡고 코드 리뷰에 참여했습니다. non-blocking 소켓과 epoll 기반 I/O로 네트워크 요청을 처리하는 구조를 구성했습니다.</p></div>
+          <div class="decision"><h3>CGI 실행 결과를 서버 응답에 연결했습니다</h3><p>CGI 개발을 담당해 fork·exec·pipe로 Python·PHP 프로그램을 실행하고 그 결과를 서버 응답에 연결했습니다. 프로세스 실행과 입출력 연결을 코드로 다뤘습니다.</p></div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>Linux 소켓 기반의 HTTP/1.1 서버와 Python·PHP CGI 실행 흐름을 구현했습니다. 네트워크 I/O와 프로세스 통신이 응답으로 이어지는 구조를 직접 다뤘습니다.</p>
+          <p>서버 구조 설계, CGI 개발과 코드 리뷰에 참여하며 네트워크 요청 처리와 외부 프로그램 실행을 팀의 서버 구조 안에 연결했습니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>04</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>부팀장 / 구조 설계·CGI 개발</dd></div>
+            <div><dt>집중한 영역</dt><dd>서버 구조 설계 · 네트워크 I/O · CGI · 프로세스 간 통신 · 코드 리뷰</dd></div>
+            <div><dt>기술</dt><dd>C++98 · Linux · epoll · CGI</dd></div>
+            <div><dt>기여·공개 범위</dt><dd>팀 프로젝트에서 부팀장, 구조 설계와 CGI 개발을 담당했습니다.</dd></div>
+            <div><dt>확인 자료</dt><dd>공개 GitHub 저장소에서 구현 코드를 확인할 수 있습니다. Notion에는 프로젝트 과정과 기여 내용을 연결했습니다.</dd></div>
+          </dl>
+          
+          
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://github.com/composerboyV/Web_Study" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+<a href="https://app.notion.com/p/2f97746fec708169b6ffc98c0382cf6f" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#projects">← 전체 프로젝트</a>
+      <a class="next-link" href="../raycasting/"><span>다음 프로젝트</span><strong>C 기반 3D 그래픽 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

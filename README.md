@@ -15,9 +15,11 @@ http://127.0.0.1:8765 에서 확인합니다. 빌드나 패키지 설치가 필�
 ## 수정
 
 - `index.html`: 소개, 경력, 기술, 교육, 연락처
-- `projects.js`: 프로젝트 카드와 프로젝트별 개발 이야기, 저장소 링크
+- `projects.js`: 프로젝트 카드 요약과 상세 페이지 경로
+- `projects/<id>/index.html`: 프로젝트별 독립 상세 페이지. `01 문제 / 02 결정 / 03 결과 / 04 근거` 순서로 본문과 관련 자료를 편집합니다.
+- `project.css`, `project.js`: 상세 페이지 공통 스타일과 현재 목차 표시
 - `style.css`: 반응형 화면, 인쇄, 접근성 스타일
-- `app.js`: 필터, 상세 대화상자, 모바일 메뉴, 현재 섹션 표시
+- `app.js`: 프로젝트 필터, 상세 페이지 연결, 모바일 메뉴, 현재 섹션 표시
 
 GitHub Pages는 `main` 브랜치의 루트에서 배포합니다. `.nojekyll`을 유지합니다.
 
@@ -25,7 +27,26 @@ GitHub Pages는 `main` 브랜치의 루트에서 배포합니다. `.nojekyll`을
 
 참고한 탐색 구성: https://yoohyeok.github.io/u-it/ (고정 사이드 메뉴와 한 페이지 이력서). 디자인·구현·본문은 이 포트폴리오용으로 작성했습니다.
 
-소개·경험 문구는 본인 인터뷰를 바탕으로 편집했습니다. 프로젝트별 상세 페이지는 Notion 링크로 연결하며 자동 동기화하지 않습니다.
+소개·경험 문구는 본인 인터뷰를 바탕으로 편집했습니다. 프로젝트 카드는 사이트 내 상세 페이지로 연결합니다. 각 상세 페이지의 `04 근거`에서 기존 GitHub·Notion·Figma·공개 게임 링크를 확인할 수 있으며, 외부 문서와 자동 동기화하지 않습니다.
+
+상세 페이지 구성 참고: https://portfolio-sage-nine-97.vercel.app/projects/notiiv
+프로젝트별 문제·결정·결과·근거의 읽기 흐름을 참고하고, 본문은 기존 포트폴리오의 역할·구현·검증 기록으로 작성했습니다. 수치에는 날짜와 검증 범위를 함께 표시합니다.
+
+상세 페이지는 정적 HTML로 직접 편집합니다. 별도 빌드 없이 새로고침과 직접 URL 접근이 가능하며, JavaScript를 끈 상태에서도 본문과 목차 링크를 읽을 수 있습니다.
+
+| 프로젝트 | 상세 파일 |
+| --- | --- |
+| 스툴케어 | [projects/stoolcare/index.html](projects/stoolcare/index.html) |
+| 피칼스캐너 | [projects/fecal-qa/index.html](projects/fecal-qa/index.html) |
+| 42 Global 해커톤 | [projects/hackathon/index.html](projects/hackathon/index.html) |
+| 레몬헬스케어 협업 | [projects/lemon/index.html](projects/lemon/index.html) |
+| 한국·미국 통합 관리자 웹 | [projects/admin/index.html](projects/admin/index.html) |
+| 42 BAND · Deviation | [projects/band/index.html](projects/band/index.html) |
+| Coupang Order Viewer | [projects/coupang/index.html](projects/coupang/index.html) |
+| C++ HTTP/1.1 서버 | [projects/webserver/index.html](projects/webserver/index.html) |
+| C 기반 3D 그래픽 | [projects/raycasting/index.html](projects/raycasting/index.html) |
+| Minishell | [projects/minishell/index.html](projects/minishell/index.html) |
+| 42 Gyeongsan Game Jam | [projects/gamejam/index.html](projects/gamejam/index.html) |
 
 편집 참고: https://brittanychiang.com/ (간결한 프로젝트 소개), https://www.vienzent.dev/portfolio/ (기여 범위와 기술적 판단 중심 사례 설명). 문구 검토에 Claude를 활용하고 최종 사실·범위·표현을 별도로 검토했습니다.
 

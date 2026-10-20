@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="명령어 실행, 파이프와 리다이렉션을 구현하며 Unix의 프로세스와 파일 입출력을 익혔습니다.">
+  <meta property="og:title" content="Minishell | 곽준기 포트폴리오">
+  <meta property="og:description" content="입력한 명령이 프로세스가 되고 출력으로 돌아오기까지">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>Minishell | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" href="../../project.css">
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#projects"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>42 / 학습·협업</span><span>2024.11 — 2024.12</span></div>
+      
+      <h1>Minishell</h1>
+      <p class="case-headline">입력한 명령이 프로세스가 되고 출력으로 돌아오기까지</p>
+      <p class="case-summary">명령어 실행, 파이프와 리다이렉션을 구현하며 Unix의 프로세스와 파일 입출력을 익혔습니다.</p>
+      <dl class="case-highlights"><div><dt>C · Unix</dt><dd>셸 직접 구현</dd></div><div><dt>명령 실행</dt><dd>내장 명령어 · 외부 명령</dd></div><div><dt>입출력 연결</dt><dd>파이프 · 리다이렉션</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#result"><span>03</span> 결과</a>
+          <a href="#evidence"><span>04</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="Minishell 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>매일 사용하는 Unix 셸의 동작을 C로 직접 구현하는 프로젝트였습니다. 입력을 받아 명령을 실행하고, 파이프와 리다이렉션으로 프로세스의 입출력을 연결해야 했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>입력부터 명령 실행까지의 흐름을 구현했습니다</h3><p>readline으로 입력을 받고 내장 명령어와 외부 명령 실행을 구현했습니다. 사용자가 입력한 명령이 실제 프로세스 실행으로 이어지는 과정을 다뤘습니다.</p></div>
+          <div class="decision"><h3>파이프와 리다이렉션으로 입출력을 연결했습니다</h3><p>파이프와 리다이렉션을 구현하며 명령의 입력과 출력이 다른 프로세스나 파일로 연결되는 흐름을 다뤘습니다. Unix 프로세스와 파일 입출력의 관계를 구현 과정에서 익혔습니다.</p></div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>readline 입력, 내장·외부 명령 실행, 파이프와 리다이렉션을 지원하는 셸을 구현했습니다.</p>
+          <p>명령 입력, 프로세스 실행, 입출력 연결을 하나의 프로그램에서 다뤘습니다. 구현한 기능은 공개 저장소에서 확인할 수 있습니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>04</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>셸 개발</dd></div>
+            <div><dt>집중한 영역</dt><dd>readline 입력 · 명령 실행 · Unix 프로세스 · 파이프·리다이렉션</dd></div>
+            <div><dt>기술</dt><dd>C · Unix · readline · Process</dd></div>
+            <div><dt>기여·공개 범위</dt><dd>셸 개발을 담당했습니다. 구현한 명령 실행과 입출력 기능 범위로 설명합니다.</dd></div>
+            <div><dt>확인 자료</dt><dd>공개 GitHub 저장소와 Notion 프로젝트 설명을 아래에 연결했습니다.</dd></div>
+          </dl>
+          
+          
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://github.com/composerboyV/Mini_Shell" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+<a href="https://app.notion.com/p/2f97746fec7081db8a10dba331860325" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#projects">← 전체 프로젝트</a>
+      <a class="next-link" href="../gamejam/"><span>다음 프로젝트</span><strong>42 Gyeongsan Game Jam <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>
