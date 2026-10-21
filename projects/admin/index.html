@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="국가별 사용자와 기록, 구독·쿠폰·문의 업무를 한곳에서 관리할 수 있는 운영용 웹을 개발했습니다.">
+  <meta name="description" content="한국·미국의 사용자, 기록, 구독, 쿠폰, 문의를 한 화면에서 다루는 운영용 웹.">
   <meta property="og:title" content="한국·미국 통합 관리자 웹 | 곽준기 포트폴리오">
-  <meta property="og:description" content="한국·미국의 운영 업무를 한곳에서 다루다">
+  <meta property="og:description" content="양쪽 서비스를 한 화면에서 다루다">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ko_KR">
   <title>한국·미국 통합 관리자 웹 | 곽준기 포트폴리오</title>
@@ -26,9 +26,13 @@
       <div class="case-kicker"><span>WORK / 실무</span><span>2026.10</span></div>
       
       <h1>한국·미국 통합 관리자 웹</h1>
-      <p class="case-headline">한국·미국의 운영 업무를 한곳에서 다루다</p>
-      <p class="case-summary">국가별 사용자와 기록, 구독·쿠폰·문의 업무를 한곳에서 관리할 수 있는 운영용 웹을 개발했습니다.</p>
-      <dl class="case-highlights"><div><dt>한국 · 미국</dt><dd>국가별 데이터 구분</dd></div><div><dt>통합 운영</dt><dd>사용자 · 구독 · 쿠폰 · 문의</dd></div><div><dt>17개 항목</dt><dd>상태·접근 · 2026.10.11</dd></div></dl>
+      <p class="case-headline">양쪽 서비스를 한 화면에서 다루다</p>
+      <p class="case-summary">한국·미국의 사용자, 기록, 구독, 쿠폰, 문의를 한 화면에서 다루는 운영용 웹을 만들었어요. 양쪽 API를 하나로 묶어서 봅니다.</p>
+      <dl class="case-highlights"><div><dt>한국 · 미국</dt><dd>국가별 데이터 분리</dd></div><div><dt>5개 기능</dt><dd>사용자 · 구독 · AI 비용 · 문의 · 쿠폰</dd></div><div><dt>17개 항목</dt><dd>배포 점검 · 2026.10.11</dd></div></dl>
+      <figure class="case-gallery">
+        <img src="../../assets/admin/01-user-dashboard.png" alt="통합 관리자 사용자 기록 화면 — 한국·미국 사용자 추이와 신규 가입자 그래프" loading="lazy" decoding="async">
+        <figcaption>사용자 기록 — 한국·미국을 한 그래프에 올려 추이를 봅니다.</figcaption>
+      </figure>
     </div>
     <div class="case-layout">
       <aside class="case-contents">
@@ -43,28 +47,44 @@
       <article class="case-article" aria-label="한국·미국 통합 관리자 웹 개발 이야기">
         <section id="problem" class="case-section" aria-labelledby="problem-title">
           <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
-          <p>한국·미국 서비스의 사용자와 기록을 확인하고, 구독·쿠폰·문의 업무를 처리할 운영용 웹이 필요했습니다. 한곳에서 업무를 수행하면서도 국가별 데이터는 구분해 볼 수 있어야 했습니다.</p>
+          <p>한국과 미국을 각각 다른 관리자 도구로 확인하고 있었어요. 사용자 한 명 찾으려고 창을 두 개 띄우는 상황이 자주 생겼습니다. 한 화면에서 다 보되, 국가별 데이터는 섞이지 않게 분리해 보여야 했어요.</p>
         </section>
         <section id="decision" class="case-section" aria-labelledby="decision-title">
           <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
-          <div class="decision"><h3>국가별 데이터와 운영 기능을 함께 구성했습니다</h3><p>사용자와 기록 조회, 구독·쿠폰·문의 관리를 하나의 웹에 구성했습니다. 국가별 데이터를 구분해 볼 수 있도록 하고, 데이터 내보내기와 다운로드 기능을 연결했습니다.</p></div>
-          <div class="decision"><h3>독립적인 관리자 웹으로 배포했습니다</h3><p>React·TypeScript·Vite·MUI로 운영 화면을 구현했습니다. 독립적인 관리자 웹으로 배포한 뒤 서비스 상태와 접근 확인 항목을 점검했습니다.</p></div>
+          <div class="decision"><h3>한 화면에 양쪽 API를 묶었어요</h3><p>사용자 기록, 구독·매출 현황, AI 호출·토큰·비용, 문의 관리, 쿠폰 관리를 한 웹에 모았습니다. 국가별 지표를 좌우로 나란히 보여줘서 "어느 쪽이 왜 다른지"가 바로 보이게 했어요. 데이터는 CSV로 내릴 수 있게 뽑았습니다.</p></div>
+          <div class="decision"><h3>독립 배포로 책임을 분리했어요</h3><p>React·TypeScript·Vite·MUI로 짰고, 서비스 앱과 분리된 별도 도메인에 올렸습니다. 배포 뒤에는 상태·접근 체크를 17개 항목으로 돌려 봤어요.</p></div>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/02-billing.png" alt="구독·매출 현황 — 한국·미국 요금제별 사용자 수를 좌우로 비교" loading="lazy" decoding="async">
+            <figcaption>구독·매출 현황 — 양국 요금제를 좌우로 두고 비교합니다.</figcaption>
+          </figure>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/03-ai-cost.png" alt="AI 호출·토큰·비용 — 모델별 호출·토큰·추정 비용 집계" loading="lazy" decoding="async">
+            <figcaption>AI 호출·토큰·비용 — 모델별 사용량·토큰·추정 비용. 금액은 모자이크 처리했습니다.</figcaption>
+          </figure>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/05-coupon.png" alt="쿠폰 발급 — 기간제 이용권, 스캔 횟수, Early Bird 발급 화면" loading="lazy" decoding="async">
+            <figcaption>쿠폰 발급 — 국가별로 쿠폰을 분리해서 발급·추적합니다.</figcaption>
+          </figure>
         </section>
         <section id="result" class="case-section" aria-labelledby="result-title">
           <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
-          <p>한국·미국의 사용자·기록·구독·쿠폰·문의 업무를 관리하는 웹을 구현하고 배포했습니다. 조회한 데이터를 내보내거나 다운로드할 수 있도록 운영 흐름을 연결했습니다.</p>
-          <p>2026년 10월 11일 배포 점검에서 상태·접근 확인 17개 항목이 통과했습니다. 이는 배포 확인 범위이며 전체 사용자 시나리오에 대한 종합 테스트 수는 아닙니다.</p>
+          <p>양쪽 사용자·기록·구독·쿠폰·문의를 한 웹에서 보고, 조회한 데이터를 CSV로 내릴 수 있게 묶었어요. 운영팀이 창을 두 개 띄우던 흐름이 하나로 줄었습니다.</p>
+          <p>2026.10.11 배포 점검에서 상태·접근 확인 <strong>17개 항목이 통과</strong>했어요. 이건 배포 체크 범위이고, 사용자 시나리오 전체 테스트는 별도로 다룹니다.</p>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/06-status.png" alt="서비스 운영 현황 — 각 서비스별 상태와 응답 시간 모니터링" loading="lazy" decoding="async">
+            <figcaption>관리자 웹과 함께 띄워 둔 운영 상태 보드. 지표가 하나라도 흔들리면 바로 보입니다.</figcaption>
+          </figure>
         </section>
         <section id="evidence" class="case-section" aria-labelledby="evidence-title">
           <h2 id="evidence-title"><span>04</span> 근거 <small lang="en">EVIDENCE</small></h2>
           <dl class="evidence-details">
             <div><dt>역할</dt><dd>관리자 웹 개발 / 배포</dd></div>
-            <div><dt>집중한 영역</dt><dd>다국가 데이터 조회 · 구독·쿠폰·문의 관리 · 내보내기 · 배포 점검</dd></div>
+            <div><dt>집중한 지점</dt><dd>양국 API 묶기 · 구독·쿠폰·문의 관리 · CSV 내보내기 · 배포 체크</dd></div>
             <div><dt>기술</dt><dd>React · TypeScript · Vite · MUI</dd></div>
-            <div><dt>기여·공개 범위</dt><dd>관리자 웹 개발과 배포를 담당했습니다. 회사 운영 화면과 내부 데이터는 공개하지 않고 기능 구성과 검증 범위를 설명합니다.</dd></div>
-            <div><dt>확인 자료</dt><dd>2026.10.11 배포 점검 기록을 기준으로 작성했습니다. 소스는 사내 저장소에서 관리합니다.</dd></div>
+            <div><dt>공개 범위</dt><dd>회사 실사용 데이터는 비공개입니다. 스크린샷의 ID·이메일·금액은 모자이크 처리했어요.</dd></div>
+            <div><dt>확인 자료</dt><dd>2026.10.11 배포 점검 기록 기준. 소스는 사내 저장소에서 관리합니다.</dd></div>
           </dl>
-          <p class="verification-note">배포 점검 · 2026.10.11 · 상태·접근 확인 17개 항목 통과. 전체 사용자 시나리오에 대한 종합 테스트 수는 아닙니다. 소스는 사내 저장소에서 관리합니다.</p>
+          <p class="verification-note">배포 점검 · 2026.10.11 · 상태·접근 체크 17개 항목 통과. 사용자 시나리오 전체 테스트는 별도. 소스는 사내 저장소.</p>
           
           <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://app.notion.com/p/3fd7746fec7080b5b3b4d55adc97ef03" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
           

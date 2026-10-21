@@ -26,8 +26,8 @@
       <div class="case-kicker"><span>42 / 학습·협업</span><span>2025.03 — 2025.04</span></div>
       
       <h1>C 기반 3D 그래픽</h1>
-      <p class="case-headline">2차원 맵의 좌표를 플레이어가 바라보는 3차원 화면으로</p>
-      <p class="case-summary">2차원 맵을 3차원 시점으로 렌더링하며 좌표, 충돌, 텍스처와 화면 투영을 다룬 프로젝트입니다.</p>
+      <p class="case-headline">2D 맵의 좌표를, 플레이어 시점의 3D 화면으로</p>
+      <p class="case-summary">2D 맵을 3D 시점으로 렌더링하면서 좌표, 충돌, 텍스처, 화면 투영을 손으로 하나씩 짜본 프로젝트입니다.</p>
       <dl class="case-highlights"><div><dt>2D → 3D</dt><dd>맵에서 시점으로 투영</dd></div><div><dt>DDA</dt><dd>벽 교차 지점 탐색</dd></div><div><dt>C · MiniLibX</dt><dd>입력 · 충돌 · 렌더링</dd></div></dl>
     </div>
     <div class="case-layout">
@@ -43,26 +43,25 @@
       <article class="case-article" aria-label="C 기반 3D 그래픽 개발 이야기">
         <section id="problem" class="case-section" aria-labelledby="problem-title">
           <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
-          <p>2차원 맵을 플레이어의 위치와 방향에 따라 3차원 시점으로 렌더링하는 것이 과제였습니다. 벽까지의 거리와 화면 투영, 텍스처 표시를 연결하고 이동·회전 입력에 맞춰 화면을 갱신해야 했습니다.</p>
+          <p>2D 맵을 플레이어의 위치·방향에 맞춰 3D 시점으로 그려야 했어요. 벽까지의 거리, 화면 투영, 텍스처 표시가 이동·회전 입력과 함께 1프레임 안에 돌아야 했습니다.</p>
         </section>
         <section id="decision" class="case-section" aria-labelledby="decision-title">
           <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
-          <div class="decision"><h3>DDA로 교차 지점을 찾고 화면에 투영했습니다</h3><p>C와 MiniLibX를 사용해 레이캐스팅을 구현했습니다. DDA로 벽과의 교차 지점을 찾고 거리에 따라 화면에 투영했으며, 어안 왜곡을 보정하고 벽 텍스처를 표시했습니다.</p></div>
-          <div class="decision"><h3>입력과 충돌 검사를 렌더링에 연결했습니다</h3><p>이동·회전 입력에 충돌 검사를 연결했습니다. 플레이어의 위치와 시점이 바뀌면 그에 맞춰 화면이 갱신되도록 구성했습니다.</p></div>
+          <div class="decision"><h3>DDA로 교차점을 찾고 투영</h3><p>C·MiniLibX로 레이캐스팅을 짰어요. DDA로 벽 교차점을 찾고 거리에 비례해 투영, 어안 왜곡 보정 후 텍스처를 입혔습니다.</p></div>
+          <div class="decision"><h3>입력·충돌·렌더링을 하나의 루프로</h3><p>이동·회전 입력에 충돌 검사를 걸고, 상태가 바뀌면 화면이 그 자리에서 다시 그려지도록 했습니다.</p></div>
         </section>
         <section id="result" class="case-section" aria-labelledby="result-title">
           <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
-          <p>2차원 맵에서 벽을 찾아 3차원 시점으로 표시하고, 텍스처·왜곡 보정·이동·회전·충돌 검사가 이어지는 렌더링 흐름을 구현했습니다.</p>
-          <p>좌표와 거리 계산이 실제 화면에 어떻게 반영되는지 코드로 확인할 수 있는 결과물입니다. 공개 저장소에 구현을 남겼습니다.</p>
+          <p>2D 맵에서 벽을 찾아 3D 시점으로 보여주고, 텍스처·왜곡 보정·이동·회전·충돌이 끊김 없이 이어지는 루프를 완성했어요. 좌표·거리 계산이 화면에 그대로 반영되는 걸 눈으로 확인할 수 있는 결과물입니다.</p>
         </section>
         <section id="evidence" class="case-section" aria-labelledby="evidence-title">
           <h2 id="evidence-title"><span>04</span> 근거 <small lang="en">EVIDENCE</small></h2>
           <dl class="evidence-details">
             <div><dt>역할</dt><dd>그래픽 구현</dd></div>
-            <div><dt>집중한 영역</dt><dd>DDA · 화면 투영 · 어안 왜곡 보정 · 텍스처 · 이동·충돌</dd></div>
+            <div><dt>집중한 지점</dt><dd>DDA · 투영 · 어안 보정 · 텍스처 · 이동·충돌</dd></div>
             <div><dt>기술</dt><dd>C · MiniLibX · DDA · Raycasting</dd></div>
-            <div><dt>기여·공개 범위</dt><dd>레이캐스팅 그래픽 구현과 이동·회전·충돌 처리를 담당했습니다.</dd></div>
-            <div><dt>확인 자료</dt><dd>공개 GitHub 저장소와 Notion 프로젝트 설명을 아래에 연결했습니다.</dd></div>
+            <div><dt>공개 범위</dt><dd>개인 과제. 그래픽 구현과 입력·충돌 처리를 맡았어요.</dd></div>
+            <div><dt>확인 자료</dt><dd>GitHub에 구현 코드가 올라와 있습니다.</dd></div>
           </dl>
           
           

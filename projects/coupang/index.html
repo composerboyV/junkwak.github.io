@@ -26,8 +26,8 @@
       <div class="case-kicker"><span>PERSONAL / 개인·해커톤</span><span>2026.05 — 2026.06</span></div>
       
       <h1>Coupang Order Viewer</h1>
-      <p class="case-headline">주문 메일 확인부터 엑셀 내보내기까지 하나의 흐름으로</p>
-      <p class="case-summary">개인 구매자의 주문 메일을 읽어 주문·배송지 정보를 정리하고 파일로 내보내는 Windows 도구입니다.</p>
+      <p class="case-headline">주문 메일을 CSV로, 공동구매 정리를 간단하게</p>
+      <p class="case-summary">쿠팡 주문 메일에서 배송지·수량을 뽑아 CSV로 내보내는 Windows 도구입니다. 공동구매 정리에 쓰려고 만들었어요.</p>
       <dl class="case-highlights"><div><dt>Windows</dt><dd>WPF · .NET 8</dd></div><div><dt>메일 → 엑셀</dt><dd>수집 · 조회 · 내보내기</dd></div><div><dt>DPAPI</dt><dd>로컬 저장 정보 보호</dd></div></dl>
     </div>
     <div class="case-layout">
@@ -43,25 +43,25 @@
       <article class="case-article" aria-label="Coupang Order Viewer 개발 이야기">
         <section id="problem" class="case-section" aria-labelledby="problem-title">
           <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
-          <p>개인 구매자의 주문 메일을 읽고 주문·배송지 정보를 따로 정리하는 반복 작업이 번거로웠습니다. 메일 수집과 정보 조회, 파일 내보내기를 이어서 처리하는 Windows 도구를 만들고자 했습니다.</p>
+          <p>공동구매 할 때마다 주문 메일을 하나하나 열어서 배송지·수량을 옮겨 적는 게 꽤 지쳤습니다. 메일 수집부터 CSV 내보내기까지 한 번에 되는 도구가 있으면 편하겠다 싶었어요.</p>
         </section>
         <section id="decision" class="case-section" aria-labelledby="decision-title">
           <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
-          <div class="decision"><h3>메일 수집과 주문 정보 파싱을 연결했습니다</h3><p>MailKit으로 주문 메일을 읽고 필요한 정보를 파싱했습니다. WPF·MVVM으로 주문과 배송지 정보를 확인하는 조회 화면을 구현했습니다.</p></div>
-          <div class="decision"><h3>내보내기와 로컬 정보 보호를 함께 구현했습니다</h3><p>ClosedXML로 엑셀 내보내기를 지원해 정리한 정보를 파일로 활용할 수 있도록 했습니다. Windows DPAPI를 적용해 로컬에 저장하는 정보를 보호했습니다.</p></div>
+          <div class="decision"><h3>MailKit으로 읽고, WPF로 보여줬어요</h3><p>IMAP으로 주문 메일을 받아 파싱하고, WPF·MVVM으로 조회 화면을 짰습니다. 받은 걸 눈으로 확인한 다음 내보내는 흐름입니다.</p></div>
+          <div class="decision"><h3>내보내기와 로컬 보호를 같이 챙겼어요</h3><p>ClosedXML로 엑셀 내보내기를 붙이고, 로컬에 남는 메일 비밀번호는 Windows DPAPI로 암호화했습니다.</p></div>
         </section>
         <section id="result" class="case-section" aria-labelledby="result-title">
           <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
-          <p>주문 메일 수집 → 주문·배송지 조회 → 파일 내보내기로 이어지는 Windows 데스크톱 도구를 구현했습니다. 반복적으로 따로 정리하던 과정을 하나의 도구에 구성했습니다.</p>
+          <p>주문 메일 수집 → 조회 → 엑셀 내보내기까지 한 Windows 앱으로 묶었어요. 손으로 하던 반복이 거의 사라졌습니다.</p>
         </section>
         <section id="evidence" class="case-section" aria-labelledby="evidence-title">
           <h2 id="evidence-title"><span>04</span> 근거 <small lang="en">EVIDENCE</small></h2>
           <dl class="evidence-details">
             <div><dt>역할</dt><dd>데스크톱 앱 개발</dd></div>
-            <div><dt>집중한 영역</dt><dd>메일 수집·파싱 · 주문·배송지 조회 · 엑셀 내보내기 · 로컬 정보 보호</dd></div>
+            <div><dt>집중한 지점</dt><dd>메일 수집·파싱 · 조회 UI · 엑셀 내보내기 · 로컬 정보 보호</dd></div>
             <div><dt>기술</dt><dd>C# · .NET 8 · WPF · MVVM</dd></div>
-            <div><dt>기여·공개 범위</dt><dd>개인 구매자의 주문 메일을 다루는 데스크톱 도구를 개발했습니다.</dd></div>
-            <div><dt>확인 자료</dt><dd>구현 저장소와 프로젝트 설명을 연결했습니다. 저장소는 Private이며 실제 주문·배송지 데이터는 공개하지 않습니다.</dd></div>
+            <div><dt>공개 범위</dt><dd>저장소는 비공개이고 실제 주문·배송지 데이터는 포함하지 않아요.</dd></div>
+            <div><dt>확인 자료</dt><dd>아래 Notion에 개요를 올려 뒀습니다.</dd></div>
           </dl>
           
           

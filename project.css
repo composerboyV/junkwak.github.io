@@ -71,6 +71,9 @@ h1 { max-width: 950px; font-size: clamp(36px, 4.8vw, 64px); font-weight: 720; le
 .evidence-links span { color: var(--purple); }
 .case-section .access-note { color: var(--muted); font-size: 11px; margin-top: 16px; }
 .case-gallery { margin-top: 38px; }
+figure.case-gallery { display: block; border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: white; margin: 32px 0; }
+figure.case-gallery img { display: block; width: 100%; height: auto; }
+figure.case-gallery figcaption { color: var(--muted); font-size: 11px; padding: 12px 18px; border-top: 1px solid var(--line); background: var(--soft); }
 .case-gallery > p { font-size: 12px; }
 .case-gallery-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: start; gap: 16px; margin: 22px 0 16px; }
 .case-gallery-grid figure { min-width: 0; }

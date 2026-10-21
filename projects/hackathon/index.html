@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#faf9f6">
-  <meta name="description" content="담당자 부재 시 문서에서 근거를 찾고, 확인 절차를 거쳐 위임된 업무를 처리하는 에이전트 MVP를 개발·검증하고 있습니다.">
+  <meta name="description" content="담당자가 자리를 비웠을 때, 문서에서 근거를 찾아 확인 절차를 거쳐 위임 업무를 처리하는 에이전트 MVP.">
   <meta property="og:title" content="42 Global 해커톤 | 곽준기 포트폴리오">
-  <meta property="og:description" content="담당자 부재 중에도 근거를 찾고, 확인을 거쳐 업무를 처리하다">
+  <meta property="og:description" content="자리를 비운 사람의 일을, 문서와 확인으로 이어 받다">
   <meta property="og:type" content="article">
   <meta property="og:locale" content="ko_KR">
   <title>42 Global 해커톤 | 곽준기 포트폴리오</title>
@@ -26,9 +26,9 @@
       <div class="case-kicker"><span>PERSONAL / 개인·해커톤</span><span>2026.09 — 현재</span><span class="case-status">MVP 개발·검증 중</span></div>
       
       <h1>42 Global 해커톤</h1>
-      <p class="case-headline">담당자 부재 중에도 근거를 찾고, 확인을 거쳐 업무를 처리하다</p>
-      <p class="case-summary">담당자 부재 시 문서에서 근거를 찾고, 확인 절차를 거쳐 위임된 업무를 처리하는 에이전트 MVP를 개발·검증하고 있습니다.</p>
-      <dl class="case-highlights"><div><dt>78개 문서</dt><dd>178개 청크 · 검색 자료</dd></div><div><dt>8.45 → 0.31초</dt><dd>132개 청크 · 로컬 초기화</dd></div><div><dt>MVP 검증</dt><dd>모의 데이터 기반 개발 중</dd></div></dl>
+      <p class="case-headline">자리를 비운 사람의 일을, 문서와 확인으로 이어 받다</p>
+      <p class="case-summary">담당자가 자리를 비웠을 때 문서에서 근거를 찾아 확인 절차를 거쳐 위임 업무를 처리하는 에이전트. MVP로 돌려보면서 검증하고 있습니다.</p>
+      <dl class="case-highlights"><div><dt>78개 문서</dt><dd>178개 청크 · 검색 자료</dd></div><div><dt>8.45 → 0.31초</dt><dd>132개 청크 · 로컬 초기화</dd></div><div><dt>MVP 검증 중</dt><dd>모의 데이터로 돌리는 중</dd></div></dl>
     </div>
     <div class="case-layout">
       <aside class="case-contents">
@@ -43,31 +43,31 @@
       <article class="case-article" aria-label="42 Global 해커톤 개발 이야기">
         <section id="problem" class="case-section" aria-labelledby="problem-title">
           <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
-          <p>담당자가 자리를 비운 동안에도 문서에서 업무 근거를 찾고, 빠진 정보를 확인하며, 처리한 내용을 다음 담당자에게 전달할 수 있어야 했습니다. 42 Global 해커톤에서 이 흐름을 문서 RAG와 업무 대체 에이전트 MVP로 구현하고 있습니다.</p>
-          <p>검색 결과를 찾는 것과 실제로 업무를 실행하는 것에는 서로 다른 조건이 필요했습니다. 검색 품질과 함께 위임 권한, 부재 기간, 사용자 확인, 중복 처리 방지를 다뤄야 했습니다.</p>
+          <p>담당자가 자리를 비운 동안에도 누군가는 그 업무를 이어 받아야 합니다. 근거는 보통 문서에 있고, 빠진 정보는 다른 사람에게 다시 확인해야 하죠. 처리하고 나면 다음 담당자가 알 수 있게 흔적도 남겨야 합니다. 42 Global 해커톤에서 이 흐름을 RAG와 에이전트 MVP로 짜고 있어요.</p>
+          <p>검색 품질만 좋다고 끝이 아니었어요. 위임 권한, 부재 기간, 사용자 확인, 중복 처리까지 같이 다뤄야 "실행"으로 넘어갈 수 있었습니다.</p>
         </section>
         <section id="decision" class="case-section" aria-labelledby="decision-title">
           <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
-          <div class="decision"><h3>문서 특성에 맞춰 검색 방식을 조합했습니다</h3><p>문서 78개를 178개 청크로 나누고 OCR·키워드·벡터 검색을 조합했습니다. 문서에서 근거를 찾는 과정을 업무 처리 흐름의 시작점으로 구성했습니다.</p></div>
-          <div class="decision"><h3>업무 실행 전에 권한과 누락 정보를 확인했습니다</h3><p>위임 권한과 담당자의 부재 기간을 반영하고, 빠진 정보를 묻는 단계와 사용자 확인 절차를 두었습니다. 처리 후에는 접수 번호와 인수인계 기록을 남기고, 중복 처리를 방지하도록 구성했습니다.</p></div>
-          <div class="decision"><h3>반복 초기화에 캐시를 적용했습니다</h3><p>검색기를 다시 준비할 때 동일한 데이터를 반복 처리하는 비용을 줄이기 위해 캐시를 적용했습니다. 별도의 132개 청크 조건에서 로컬 초기화 시간을 측정했습니다.</p></div>
+          <div class="decision"><h3>검색은 문서 특성에 맞춰 섞었습니다</h3><p>문서 78개를 178개 청크로 쪼개고 OCR·키워드·벡터를 섞어 썼어요. 이 "근거 찾기"가 업무 처리 흐름의 입구가 됩니다.</p></div>
+          <div class="decision"><h3>실행 전에 권한과 누락을 체크했습니다</h3><p>위임 권한과 부재 기간을 반영하고, 빠진 정보는 되묻고, 사용자 확인을 한 번 더 받아요. 처리하면 접수 번호와 인수인계 기록을 남겨서 중복 처리를 막습니다.</p></div>
+          <div class="decision"><h3>반복 초기화는 캐시로 줄였습니다</h3><p>검색기를 다시 띄울 때 같은 데이터를 또 처리하는 게 아까워서 캐시를 넣었어요. 132개 청크 조건에서 로컬 초기화 시간을 재봤습니다.</p></div>
         </section>
         <section id="result" class="case-section" aria-labelledby="result-title">
           <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
-          <p>문서 검색, 누락 정보 확인, 사용자 확인, 처리 내역 기록을 하나의 로컬 MVP로 구성했습니다. 모의 데이터 기반으로 검증하며 기능을 개선하고 있습니다.</p>
-          <p>2026년 10월 2일 132개 청크를 사용한 단일 로컬 측정에서 초기화 시간은 8.45초에서 0.31초로 줄었습니다. 질의 임베딩 시간은 제외한 측정이며, 78개 문서·178개 청크로 구성한 검색 자료와는 측정 범위가 다릅니다.</p>
-          <p>기존 검증 기록에서 RAG 테스트 51개(10월 2일), 에이전트 테스트 95개(10월 13일)가 통과했습니다. 실제 조직의 운영 성과는 아직 검증 범위에 포함하지 않습니다.</p>
+          <p>검색, 누락 되묻기, 사용자 확인, 처리 기록까지 로컬 MVP 하나로 묶었습니다. 지금은 모의 데이터로 돌리면서 다듬고 있어요.</p>
+          <p>2026.10.02 단일 로컬 측정에서 초기화 시간은 <strong>8.45초 → 0.31초</strong>로 줄었어요. 질의 임베딩 시간은 뺀 값이고, 78개 문서·178개 청크로 구성한 검색 자료와는 측정 범위가 다릅니다.</p>
+          <p>검증 기록으로는 RAG 테스트 51개(10.02)와 에이전트 테스트 95개(10.13)가 통과했어요. 실제 조직 운영 성과는 아직 평가 대상이 아닙니다.</p>
         </section>
         <section id="evidence" class="case-section" aria-labelledby="evidence-title">
           <h2 id="evidence-title"><span>04</span> 근거 <small lang="en">EVIDENCE</small></h2>
           <dl class="evidence-details">
             <div><dt>역할</dt><dd>검색·에이전트 MVP 개발</dd></div>
-            <div><dt>집중한 영역</dt><dd>문서 검색 · 위임 권한 · 사용자 확인 · 처리 기록 · 검색기 캐시</dd></div>
+            <div><dt>집중한 지점</dt><dd>문서 검색 · 위임 권한 · 되물음 · 사용자 확인 · 처리 기록 · 검색기 캐시</dd></div>
             <div><dt>기술</dt><dd>Python · RAG · Ollama · MCP</dd></div>
-            <div><dt>기여·공개 범위</dt><dd>검색·에이전트 MVP 개발을 담당했습니다. 문서 구성, 초기화 측정, 테스트 통과 기록은 각각 다른 검증 조건으로 구분했습니다.</dd></div>
-            <div><dt>확인 자료</dt><dd>로컬 RAG 검증(2026.10.02)과 에이전트 검증(2026.10.13) 기록을 기준으로 작성했습니다. 현재 개발 현황은 작업일지에서 확인할 수 있습니다.</dd></div>
+            <div><dt>공개 범위</dt><dd>MVP 코드 비공개. 문서 구성·초기화 측정·테스트 통과 기록은 각각 조건이 달라서 수치는 따로 봐주세요.</dd></div>
+            <div><dt>확인 자료</dt><dd>로컬 RAG 검증(2026.10.02), 에이전트 검증(2026.10.13) 기록 기반. 지금 진행 상황은 작업일지에 올려두고 있어요.</dd></div>
           </dl>
-          <p class="verification-note">로컬 MVP·모의 데이터 검증 · RAG 51개 테스트(2026.10.02), 에이전트 95개 테스트(10.13) 통과. 초기화 시간은 10.02 단일 측정이며 질의 임베딩 시간은 제외했습니다. 실제 조직 운영 실적과 구분합니다.</p>
+          <p class="verification-note">로컬 MVP · 모의 데이터 검증. RAG 51개 테스트(2026.10.02), 에이전트 95개 테스트(10.13) 통과. 초기화 시간은 10.02 단일 측정, 질의 임베딩 시간 제외. 실제 조직 운영 실적과는 구분합니다.</p>
           
           <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://app.notion.com/p/3fd7746fec7080a7b251d248fe9d84b7" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a>
 <a href="../../worklog/">최근 작업일지 <span aria-hidden="true">↗</span></a></div>
