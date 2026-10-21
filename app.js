@@ -55,3 +55,53 @@ window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(
 window.addEventListener('resize', updateNavigation);
 updateNavigation();
 document.querySelector('#print-resume').addEventListener('click', () => window.print());
+
+if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
+  // (selector, variant, stagger-ms) — stagger is applied to the Nth matching element inside its group.
+  const groups = [
+    ['.hero-copy > *', '', 100],
+    ['.hero-portrait', 'reveal-left', 200],
+    ['.hero-footer > *', '', 80],
+    ['.section-heading > div > *', 'reveal-down', 80],
+    ['.section-heading .section-note', '', 160],
+    ['.experience-row', 'reveal-scale', 0],
+    ['.personal-story .story-copy > *', '', 80],
+    ['.personal-story .story-photos figure', 'reveal-left', 140],
+    ['.project-toolbar > *', '', 80],
+    ['.project-card', 'reveal-scale', 90],
+    ['.recent-activity', '', 0],
+    ['.project-footnote', '', 0],
+    ['.skills-grid article', 'reveal-scale', 110],
+    ['.education-list article', '', 90],
+    ['.learning li', '', 70],
+    ['.contact-section > *', '', 120]
+  ];
+
+  const tagged = new Set();
+  groups.forEach(([selector, variant, stagger]) => {
+    const elements = document.querySelectorAll(selector);
+    elements.forEach((el, i) => {
+      if (tagged.has(el)) return;
+      tagged.add(el);
+      el.classList.add('reveal');
+      if (variant) el.classList.add(variant);
+      if (stagger) el.style.setProperty('--reveal-delay', `${i * stagger}ms`);
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add('revealed');
+      observer.unobserve(el);
+      // After the transition finishes, drop .reveal so other transitions (e.g. card hover) take over cleanly.
+      setTimeout(() => {
+        el.classList.remove('reveal', 'reveal-down', 'reveal-left', 'reveal-right', 'reveal-scale');
+        el.style.removeProperty('--reveal-delay');
+      }, 1200);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -12% 0px' });
+
+  tagged.forEach(el => observer.observe(el));
+}
