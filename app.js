@@ -13,7 +13,12 @@ const iconHTML = project => project.appIcon
       ? `<span class="project-icon project-badge" aria-label="${escapeHTML(project.badgeAlt || project.badge)}">${escapeHTML(project.badge)}</span>`
       : `<span class="project-icon" aria-hidden="true">${project.icon}</span>`;
 
-grid.innerHTML = projects.map(project => `<article class="project-card" data-project-id="${project.id}" data-category="${project.category}">
+const thumbHTML = project => project.thumbnail
+  ? `<a class="project-thumb" href="${escapeHTML(project.url)}" tabindex="-1" aria-hidden="true"><img src="${escapeHTML(project.thumbnail)}" alt="${escapeHTML(project.thumbnailAlt || '')}" loading="lazy" decoding="async"></a>`
+  : '';
+
+grid.innerHTML = projects.map(project => `<article class="project-card${project.thumbnail ? ' has-thumb' : ''}" data-project-id="${project.id}" data-category="${project.category}">
+  ${thumbHTML(project)}
   <div class="card-top">${iconHTML(project)}<span class="category-label">${labels[project.category]}</span></div>
   <h3>${escapeHTML(project.title)}</h3><p class="project-period">${escapeHTML(project.subtitle)}<br>${escapeHTML(project.period)}</p>
   ${statusHTML(project.status)}
