@@ -26,9 +26,9 @@
       <div class="case-kicker"><span>WORK / 실무</span><span>2026.10</span></div>
       
       <h1>한국·미국 통합 관리자 웹</h1>
-      <p class="case-headline">양쪽 서비스를 한 화면에서 다루다</p>
-      <p class="case-summary">한국·미국의 사용자, 기록, 구독, 쿠폰, 문의를 한 화면에서 다루는 운영용 웹을 만들었어요. 양쪽 API를 하나로 묶어서 봅니다.</p>
-      <dl class="case-highlights"><div><dt>한국 · 미국</dt><dd>국가별 데이터 분리</dd></div><div><dt>5개 기능</dt><dd>사용자 · 구독 · AI 비용 · 문의 · 쿠폰</dd></div><div><dt>17개 항목</dt><dd>배포 점검 · 2026.10.11</dd></div></dl>
+      <p class="case-headline">한국·미국 운영을 한 웹에서</p>
+      <p class="case-summary">국가별로 분리된 기록을 통합 조회·세션 검증·엑셀/사진 ZIP 내보내기·문의 관리까지 묶어 2026.10 배포한 운영 웹입니다.</p>
+      <dl class="case-highlights"><div><dt>한국 · 미국</dt><dd>국가별 데이터 분리</dd></div><div><dt>10,000건 / 100MB</dt><dd>조회·엑셀 상한, ZIP 분할</dd></div><div><dt>17개 항목</dt><dd>상태·접근 점검 · 2026.10.11</dd></div></dl>
       <figure class="case-gallery">
         <img src="../../assets/admin/01-user-dashboard.png" alt="통합 관리자 사용자 기록 화면 — 한국·미국 사용자 추이와 신규 가입자 그래프" loading="lazy" decoding="async">
         <figcaption>사용자 기록 — 한국·미국을 한 그래프에 올려 추이를 봅니다.</figcaption>
@@ -47,12 +47,12 @@
       <article class="case-article" aria-label="한국·미국 통합 관리자 웹 개발 이야기">
         <section id="problem" class="case-section" aria-labelledby="problem-title">
           <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
-          <p>한국과 미국을 각각 다른 관리자 도구로 확인하고 있었어요. 사용자 한 명 찾으려고 창을 두 개 띄우는 상황이 자주 생겼습니다. 한 화면에서 다 보되, 국가별 데이터는 섞이지 않게 분리해 보여야 했어요.</p>
+          <p>한국·미국 서비스가 각각 다른 관리자 도구로 분리되어 있어, 사용자 한 명을 찾으려고 창 두 개를 띄우는 상황이 반복됐습니다. 통합 조회를 지원하되 국가별 데이터는 분리해 표시해야 했습니다.</p>
         </section>
         <section id="decision" class="case-section" aria-labelledby="decision-title">
           <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
-          <div class="decision"><h3>한 화면에 양쪽 API를 묶었어요</h3><p>사용자 기록, 구독·매출 현황, AI 호출·토큰·비용, 문의 관리, 쿠폰 관리를 한 웹에 모았습니다. 국가별 지표를 좌우로 나란히 보여줘서 "어느 쪽이 왜 다른지"가 바로 보이게 했어요. 데이터는 CSV로 내릴 수 있게 뽑았습니다.</p></div>
-          <div class="decision"><h3>독립 배포로 책임을 분리했어요</h3><p>React·TypeScript·Vite·MUI로 짰고, 서비스 앱과 분리된 별도 도메인에 올렸습니다. 배포 뒤에는 상태·접근 체크를 17개 항목으로 돌려 봤어요.</p></div>
+          <div class="decision"><h3>한 화면에 양쪽 API를 묶음</h3><p>사용자 기록, 구독·매출 현황, AI 호출·토큰·비용, 문의 관리, 쿠폰 관리를 하나의 웹에 모았습니다. 국가별 지표를 좌우로 나란히 보여주고, 조회·내보내기는 10,000건 상한, 사진 ZIP은 100장·100MB씩 분할해 내려받도록 했습니다.</p></div>
+          <div class="decision"><h3>독립 도메인에 배포, 세션 검증 별도</h3><p>React·TypeScript·Vite·MUI로 운영 화면을 구현해 서비스 앱과 분리된 별도 도메인에 배포했습니다. 배포 뒤 상태·접근 체크 17개 항목으로 세션 검증을 돌렸습니다.</p></div>
           <figure class="case-gallery">
             <img src="../../assets/admin/02-billing.png" alt="구독·매출 현황 — 한국·미국 요금제별 사용자 수를 좌우로 비교" loading="lazy" decoding="async">
             <figcaption>구독·매출 현황 — 양국 요금제를 좌우로 두고 비교합니다.</figcaption>
@@ -68,8 +68,8 @@
         </section>
         <section id="result" class="case-section" aria-labelledby="result-title">
           <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
-          <p>양쪽 사용자·기록·구독·쿠폰·문의를 한 웹에서 보고, 조회한 데이터를 CSV로 내릴 수 있게 묶었어요. 운영팀이 창을 두 개 띄우던 흐름이 하나로 줄었습니다.</p>
-          <p>2026.10.11 배포 점검에서 상태·접근 확인 <strong>17개 항목이 통과</strong>했어요. 이건 배포 체크 범위이고, 사용자 시나리오 전체 테스트는 별도로 다룹니다.</p>
+          <p>한국·미국 사용자·기록·구독·쿠폰·문의를 한 웹에서 조회하고, CSV·사진 ZIP으로 내보낼 수 있게 묶었습니다. 창 두 개를 띄우던 운영 흐름이 하나로 줄었습니다.</p>
+          <p>2026.10.11 배포 점검에서 상태·접근 확인 <strong>17개 항목이 통과</strong>했습니다. 이는 배포 체크 범위이며 사용자 시나리오 전체 테스트는 별도입니다.</p>
           <figure class="case-gallery">
             <img src="../../assets/admin/06-status.png" alt="서비스 운영 현황 — 각 서비스별 상태와 응답 시간 모니터링" loading="lazy" decoding="async">
             <figcaption>관리자 웹과 함께 띄워 둔 운영 상태 보드. 지표가 하나라도 흔들리면 바로 보입니다.</figcaption>

@@ -8,7 +8,7 @@ const projects = [
     "status": "배포 후 개선 중",
     "subtitle": "앱 개발 · 미국 배포",
     "period": "2025.10 — 현재",
-    "description": "Apple 심사 피드백과 바뀐 기획을 앱·API에 반영해 미국에 올렸어요. 지금도 기능을 더하고 다듬고 있습니다.",
+    "description": "Apple 심사 통과 후 미국에 배포한 헬스케어 앱. 앱·백엔드 개발, 구독 결제 연동, 미국 운영까지 담당합니다.",
     "tags": [
       "Flutter",
       "Dart",
@@ -26,7 +26,7 @@ const projects = [
     "title": "피칼스캐너",
     "subtitle": "배포 앱 유지보수 · 병원 QA",
     "period": "2025.10 — 현재",
-    "description": "병원에서 올라온 QA를 재현하고 고칩니다. 의료용 앱에서는 로그인·기록·분석 흐름을 직접 짰어요.",
+    "description": "경북대병원 QA를 앱·서버 요청 흐름으로 추적해 API 설정·예외 처리를 수정합니다. 별도 임상시험용 앱(Fecal Scanner-M)도 개발·검증합니다.",
     "tags": [
       "Flutter",
       "Dart",
@@ -44,10 +44,9 @@ const projects = [
     "badge": "42",
     "badgeAlt": "42 네트워크 로고",
     "title": "42 Global 해커톤",
-    "status": "MVP 개발·검증 중",
-    "subtitle": "문서 RAG · 담당자 부재 대응 에이전트",
-    "period": "2026.09 — 현재",
-    "description": "담당자가 자리를 비울 때, 문서에서 근거를 찾고 확인 절차를 거쳐 위임 업무를 처리하는 에이전트를 MVP로 돌려봤습니다.",
+    "subtitle": "문서 RAG · 업무 대체 에이전트 MVP",
+    "period": "2026.09 — 2026.10",
+    "description": "공지·PDF를 OCR·출처 추적·임베딩 캐시로 검색하는 RAG 챗봇과, 담당자 부재 중 위임 업무를 처리하는 에이전트를 로컬 MVP로 만들었습니다.",
     "tags": [
       "Python",
       "RAG",
@@ -67,7 +66,7 @@ const projects = [
     "title": "레몬헬스케어 협업",
     "subtitle": "PM · 분석 API 연동",
     "period": "2026.09 — 현재",
-    "description": "외부 파트너와 요구사항·일정을 맞추면서 분석 API를 붙였어요. PM 역할로 중간 조율까지 같이 봤습니다.",
+    "description": "협력사 인증·입력 검증·OpenAPI 문서화까지 포함한 분석 API 연동 프로젝트. AICU 쪽 전체 PM과 API 개발을 담당했습니다.",
     "tags": [
       "Python",
       "FastAPI",
@@ -84,7 +83,7 @@ const projects = [
     "title": "한국·미국 통합 관리자 웹",
     "subtitle": "다국가 운영 도구",
     "period": "2026.10",
-    "description": "한국·미국의 사용자, 기록, 구독, 쿠폰, 문의를 한 화면에서 다루는 운영용 웹을 만들었어요. 양쪽 API를 하나로 묶어서 봅니다.",
+    "description": "국가별로 분리된 기록을 통합 조회·세션 검증·엑셀/사진 ZIP 내보내기·문의 관리까지 묶은 운영 웹. 조회·내보내기 10,000건 상한, ZIP은 100장·100MB씩 분할합니다.",
     "tags": [
       "React",
       "TypeScript",
@@ -99,10 +98,9 @@ const projects = [
     "category": "personal",
     "icon": "🎸",
     "title": "42 BAND · Deviation",
-    "status": "개발 중",
     "subtitle": "밴드 운영 웹",
-    "period": "2026.07 — 현재",
-    "description": "제가 참여 중인 두 밴드의 일정과 셋리스트를 관리하려고 만드는 웹입니다. 실제로 쓸 수 있게 다듬는 중입니다.",
+    "period": "2026.07 — 2026.08",
+    "description": "제가 참여하는 두 밴드의 일정·멤버·활동 콘텐츠를 관리하려고 만든 웹 프로젝트입니다.",
     "tags": [
       "Next.js",
       "React",
@@ -119,7 +117,7 @@ const projects = [
     "title": "Coupang Order Viewer",
     "subtitle": "주문 메일 기반 데스크톱 도구",
     "period": "2026.05 — 2026.06",
-    "description": "쿠팡 주문 메일에서 배송지·수량을 뽑아 CSV로 내보내는 Windows 도구예요. 공동구매 정리용으로 만들었습니다.",
+    "description": "개인 구매자의 주문 메일을 파싱해 주문·배송지 정보를 조회·엑셀로 내보내는 Windows 도구입니다.",
     "tags": [
       "C#",
       ".NET 8",
