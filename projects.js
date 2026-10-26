@@ -36,9 +36,7 @@ const projects = [
     "role": "유지보수 / QA / 앱 개발",
     "url": "./projects/fecal-qa/",
     "appIcon": "./assets/app-icons/fecal-scanner.jpg",
-    "appIconAlt": "피칼스캐너 앱 아이콘",
-    "thumbnail": "./assets/admin/08-fecal-admin.png",
-    "thumbnailAlt": "피칼 스캐너 관리자 도구 대시보드 미리보기"
+    "appIconAlt": "피칼스캐너 앱 아이콘"
   },
   {
     "id": "hackathon",
@@ -76,9 +74,7 @@ const projects = [
       "PM"
     ],
     "role": "PM / API 개발",
-    "url": "./projects/lemon/",
-    "thumbnail": "./assets/admin/07-lemon-api.png",
-    "thumbnailAlt": "레몬헬스케어 분석 API Swagger 문서 미리보기"
+    "url": "./projects/lemon/"
   },
   {
     "id": "admin",
