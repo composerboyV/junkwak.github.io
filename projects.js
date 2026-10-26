@@ -91,9 +91,7 @@ const projects = [
       "MUI"
     ],
     "role": "관리자 웹 / 배포",
-    "url": "./projects/admin/",
-    "thumbnail": "./assets/admin/01-user-dashboard.png",
-    "thumbnailAlt": "통합 관리자 웹 사용자 기록 대시보드 미리보기"
+    "url": "./projects/admin/"
   },
   {
     "id": "band",
