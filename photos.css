@@ -7,6 +7,16 @@
 .hero-portrait figcaption{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:15px 2px 3px;color:var(--muted);font-size:10px}
 .hero-portrait figcaption>span:first-child{font-size:8px;letter-spacing:1.2px;color:var(--purple)}
 .personal-story{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:center;gap:clamp(30px,4vw,64px);margin-top:85px;padding-top:65px;border-top:1px solid var(--line)}
+.personal-story.has-bg{position:relative;isolation:isolate;color:#f5f3ee;padding:clamp(70px,8vw,120px) clamp(32px,5vw,70px);margin:85px calc(-1 * clamp(30px,5vw,90px)) 0;border-top:0;overflow:hidden;border-radius:3px}
+.personal-story.has-bg::before{content:'';position:absolute;inset:0;background:linear-gradient(130deg,rgba(16,12,24,.84) 0%,rgba(16,12,24,.56) 55%,rgba(16,12,24,.88) 100%);z-index:-1;pointer-events:none}
+.personal-story-bg{position:absolute;inset:0;z-index:-2}
+.personal-story-bg img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 42%;filter:saturate(.78) brightness(.88)}
+.personal-story.has-bg .story-copy .eyebrow{color:#c8a9fb;letter-spacing:2.4px}
+.personal-story.has-bg .story-copy h3{color:#fff}
+.personal-story.has-bg .story-copy p{color:#e2d8ec;opacity:.92}
+.personal-story.has-bg .story-photos figcaption{color:#dfd3eb}
+.personal-story.has-bg .story-photos figcaption span{color:#c8a9fb}
+.personal-story.has-bg .story-photos img{box-shadow:0 25px 60px -22px rgba(0,0,0,.55)}
 .story-copy h3{font-size:clamp(27px,2.8vw,40px);letter-spacing:-1.5px;line-height:1.35;margin:18px 0 24px;font-weight:650}
 .story-copy p{font-size:13px;color:var(--muted);line-height:1.95}
 .story-copy p+p{margin-top:15px}
