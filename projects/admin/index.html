@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="한국·미국의 사용자, 기록, 구독, 쿠폰, 문의를 한 화면에서 다루는 운영용 웹.">
+  <meta property="og:title" content="한국·미국 통합 관리자 웹 | 곽준기 포트폴리오">
+  <meta property="og:description" content="양쪽 서비스를 한 화면에서 다루다">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>한국·미국 통합 관리자 웹 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css">
+  <link rel="stylesheet" href="../../arch.css">
+  <script src="../../arch.js" defer></script>
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#admin"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>WORK / 실무</span><span>2026.10</span></div>
+      
+      <h1>한국·미국 통합 관리자 웹</h1>
+      <p class="case-headline">한국·미국 운영을 한 웹에서</p>
+      <p class="case-summary">국가별로 분리된 기록을 통합 조회·세션 검증·엑셀/사진 ZIP 내보내기·문의 관리까지 묶어 2026.10 배포한 운영 웹입니다.</p>
+      <dl class="case-highlights"><div><dt>한국 · 미국</dt><dd>국가별 데이터 분리</dd></div><div><dt>10,000건 / 100MB</dt><dd>조회·엑셀 상한, ZIP 분할</dd></div><div><dt>17개 항목</dt><dd>상태·접근 점검 · 2026.10.11</dd></div></dl>
+      <figure class="case-gallery">
+        <img src="../../assets/admin/01-user-dashboard.png" alt="통합 관리자 사용자 기록 화면 — 한국·미국 사용자 추이와 신규 가입자 그래프" loading="lazy" decoding="async">
+        <figcaption>사용자 기록 — 한국·미국을 한 그래프에 올려 추이를 봅니다.</figcaption>
+      </figure>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#result"><span>04</span> 결과</a>
+          <a href="#evidence"><span>05</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="한국·미국 통합 관리자 웹 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>한국·미국 서비스가 각각 다른 관리자 도구로 분리되어 있어, 사용자 한 명을 찾으려고 창 두 개를 띄우는 상황이 반복됐습니다. 통합 조회를 지원하되 국가별 데이터는 분리해 표시해야 했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>한 화면에 양쪽 API를 묶음</h3><p>사용자 기록, 구독·매출 현황, AI 호출·토큰·비용, 문의 관리, 쿠폰 관리를 하나의 웹에 모았습니다. 국가별 지표를 좌우로 나란히 보여주고, 조회·내보내기는 10,000건 상한, 사진 ZIP은 100장·100MB씩 분할해 내려받도록 했습니다.</p></div>
+          <div class="decision"><h3>독립 도메인에 배포, 세션 검증 별도</h3><p>React·TypeScript·Vite·MUI로 운영 화면을 구현해 서비스 앱과 분리된 별도 도메인에 배포했습니다. 배포 뒤 상태·접근 체크 17개 항목으로 세션 검증을 돌렸습니다.</p></div>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/02-billing.png" alt="구독·매출 현황 — 한국·미국 요금제별 사용자 수를 좌우로 비교" loading="lazy" decoding="async">
+            <figcaption>구독·매출 현황 — 양국 요금제를 좌우로 두고 비교합니다.</figcaption>
+          </figure>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/03-ai-cost.png" alt="AI 호출·토큰·비용 — 모델별 호출·토큰·추정 비용 집계" loading="lazy" decoding="async">
+            <figcaption>AI 호출·토큰·비용 — 모델별 사용량·토큰·추정 비용. 금액은 모자이크 처리했습니다.</figcaption>
+          </figure>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/05-coupon.png" alt="쿠폰 발급 — 기간제 이용권, 스캔 횟수, Early Bird 발급 화면" loading="lazy" decoding="async">
+            <figcaption>쿠폰 발급 — 국가별로 쿠폰을 분리해서 발급·추적합니다.</figcaption>
+          </figure>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>상자에 마우스를 올리면 하는 일과 만든 내용이 나오고, 예시 버튼을 누르면 요청 하나가 어떤 순서로 처리되는지 단계별로 볼 수 있습니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"한국·미국 통합 관리자 웹 시스템 구성","sub":"국가별로 나뉜 API를 한 관리자 화면에서 조회하고, 서버에는 읽기 전용 조회·위임 로그인·AI 계측만 붙인 구조","solo":false,"columns":[{"label":"관리자 화면","nodes":[{"id":"console","title":"사용자 기록 콘솔","sub":"React · Vite · MUI","owner":"mine","what":"한국 관리자 계정으로 한 번 로그인한 뒤 사용자 검색, 음식·배변·증상·토탈 기록, 스캔 상세와 사진을 봄","madeLabel":"내가 만든 것","made":"국가별 세션 키 분리, 화면 전환 시 이전 요청 취소, 401이면 세션 정리, 원본 분석은 텍스트로만 표시","why":"창 두 개를 띄우지 않고 한 화면에서 두 나라 사용자를 보려고"},{"id":"scope","title":"통합 범위 목록","sub":"한국·미국 병합","owner":"mine","what":"통합관리를 고르면 두 서버의 사용자 목록을 50건씩 받아 가입 시각 순으로 합침","madeLabel":"내가 만든 것","made":"ID 앞에 국가를 붙여 같은 UID도 별개 항목으로 두고, 한쪽 실패나 조회 중 총수 변화는 오류로 처리","why":"불완전한 통합 결과를 성공한 목록처럼 보여주지 않으려고"},{"id":"exports","title":"엑셀·사진 ZIP 내보내기","sub":"ExcelJS · JSZip","owner":"mine","what":"검색 결과나 기간 기록을 .xlsx로, 사진은 ZIP 묶음으로 브라우저에서 만들어 저장","madeLabel":"내가 만든 것","made":"최대 10,000건 상한, 사진 ZIP은 100장·100MB씩 나눠 다음 묶음을 이어받고 manifest.json에 성공·실패 기록","why":"브라우저 메모리를 넘기지 않고 중복·누락 없는 파일만 내려주려고"},{"id":"pages","title":"현황 페이지","sub":"구독·매출 · AI 사용량 · 추이","owner":"mine","what":"요금제별 인원, 서버·통화별 결제 금액, 모델별 AI 호출·토큰, 일별 가입·기록 추이를 국가별로 봄","madeLabel":"내가 만든 것","made":"금액 기록이 없으면 '금액 기록 없음'으로 표시하고, 토큰 비용은 측정된 토큰만으로 USD 예상치를 계산","why":"쿠폰이나 상품 가격으로 매출을 지어내지 않으려고"},{"id":"contact","title":"문의 관리","sub":"목록 · 상태 · 메모","owner":"mine","what":"앱에서 들어온 문의를 상태별로 보고, 처리 상태와 내부 메모를 바꾸고 첨부 사진을 내려받음","madeLabel":"내가 만든 것","made":"한국·미국·통합 범위에서 같은 로그인으로 조회하고, 바뀐 내용이 있을 때만 저장 버튼을 켬","why":"문의 처리도 같은 관리자 웹 안에서 끝내려고"}]},{"label":"웹 서버 · 배포","nodes":[{"id":"nginx","title":"Nginx 정적 서버 · 프록시","sub":"독립 컨테이너","owner":"mine","what":"빌드된 화면을 서빙하고, 같은 출처의 두 경로를 한국·미국 API로 넘김","madeLabel":"내가 만든 것","made":"한국 쪽은 고정된 HTTPS 목적지와 인증서 검증으로만 연결하고, 보안 헤더와 숨김 파일 차단을 둠","why":"사용자가 목적지를 바꾸거나 토큰이 다른 나라로 새지 않게"},{"id":"ci","title":"GitLab CI · 단독 배포","sub":"웹 이미지만 교체","owner":"mine","what":"푸시하면 npm ci → 테스트 → 빌드를 돌리고, 운영 배포는 관리자 웹 이미지만 따로 바꿈","madeLabel":"내가 만든 것","made":"배포마다 복구용 이전 이미지를 남기고, 양국 health 200·무인증 401 같은 HTTP 확인을 기록","why":"앱·API 배포와 관리자 웹 배포가 서로 엮이지 않게"}]},{"label":"국가별 API (NestJS 모듈)","nodes":[{"id":"guard","title":"단일 로그인 위임 가드","sub":"위임 세션 확인","owner":"mine","what":"미국 API가 한국 관리자 세션을 받으면 매 요청 한국 인증 서버에 유효한지 확인","madeLabel":"내가 만든 것","made":"5초 제한·리다이렉트 금지로 확인하고, 401·403은 만료, 연결 장애는 503으로 막음(통과시키지 않음)","why":"비밀번호는 한국 서버에만 보내고, 로그아웃이 양쪽에 바로 적용되게"},{"id":"records","title":"읽기 전용 기록 API","sub":"조회 전용 모듈","owner":"mine","what":"사용자 검색, 기록 목록·상세·사진, 일별 추이와 AI 사용량 집계를 조회만 함","madeLabel":"내가 만든 것","made":"페이지당 최대 50건, 날짜는 YYYY-MM-DD·UTC, 응답은 no-store와 관리자·경로 감사 로그","why":"기존 수정·삭제 API 권한을 건드리지 않고 조회 기능만 더하려고"},{"id":"billing","title":"구독·쿠폰 조회","sub":"billing · coupons","owner":"mine","what":"현재 요금제 인원과 구독 경과일, 사용자별 결제 내역과 쿠폰 사용·발급 사유를 보여줌","madeLabel":"내가 만든 것","made":"완료·환불을 따로 집계하고, 쿠폰 이력은 그 사용자의 사용 기록만 원래 쿠폰에 연결(10건씩)","why":"이름이나 이메일로 발급 사유를 추정하지 않으려고"},{"id":"contactapi","title":"문의 API","sub":"contact 모듈","owner":"mine","what":"앱 문의 접수와 관리자용 목록·상세·상태 변경·첨부 다운로드","madeLabel":"내가 만든 것","made":"상태는 new·in_progress·resolved만, 메모는 5,000자까지 받고, 관리자 가드에 같은 위임 확인을 둠","why":"두 나라 문의를 같은 로그인으로 처리하려고"},{"id":"meter","title":"AI 호출 계측","sub":"API 인터셉터 · 에이전트 래퍼","owner":"mine","what":"음식·배변 분석 에이전트 호출 한 건마다 모델·토큰 수를 원장에 남김","madeLabel":"내가 만든 것","made":"에이전트 쪽은 Gemini SDK 호출을 감싸 토큰 수를 응답 헤더로, API 쪽은 그 헤더를 검증해 저장","why":"프롬프트·사진·답변은 남기지 않고 사용량 숫자만 재려고"}]},{"label":"데이터","nodes":[{"id":"db","title":"국가별 DB · 사진 저장소","sub":"PostgreSQL · Prisma","owner":"both","what":"한국·미국이 각각 가진 사용자·기록·구독·쿠폰·문의 데이터와 스캔 사진","madeLabel":"내가 붙인 것","made":"관리자 웹은 DB에 직접 붙지 않고 API로만 읽음. 문의 테이블 마이그레이션을 추가","why":"관리자 화면이 운영 데이터에 쓰기 권한을 갖지 않게"},{"id":"ledger","title":"AI 호출 원장","sub":"추가 전용 테이블","owner":"mine","what":"요청 시각, 가명 사용자 ID, 서비스, 상태, 모델별 토큰 수를 담는 테이블","madeLabel":"내가 만든 것","made":"두 나라 DB에 각각 추가만 하는 마이그레이션. 앱을 되돌려도 테이블은 남김","why":"과거 사용량을 추정하지 않고 측정한 것만 집계하려고"}]}],"edges":[{"from":"console","to":"scope","label":"통합관리 선택","dashed":false},{"from":"console","to":"nginx","label":"국가별 토큰 · HTTPS","dashed":false},{"from":"scope","to":"nginx","label":"한국·미국 병렬 조회","dashed":false},{"from":"exports","to":"nginx","label":"50건씩 · 사진","dashed":false},{"from":"pages","to":"nginx","label":"UTC 기간 조회","dashed":false},{"from":"contact","to":"nginx","label":"문의 조회·수정","dashed":false},{"from":"nginx","to":"guard","label":"Bearer 토큰","dashed":false},{"from":"guard","to":"records","label":"통과한 요청","dashed":false},{"from":"guard","to":"billing","label":"통과한 요청","dashed":false},{"from":"nginx","to":"contactapi","label":"같은 위임 확인","dashed":false},{"from":"records","to":"db","label":"읽기 전용","dashed":false},{"from":"billing","to":"db","label":"반복 읽기 트랜잭션","dashed":false},{"from":"contactapi","to":"db","label":"상태·메모 저장","dashed":false},{"from":"meter","to":"ledger","label":"시작·완료 기록","dashed":false},{"from":"records","to":"ledger","label":"AI 사용량 집계","dashed":false},{"from":"ci","to":"nginx","label":"웹 이미지 배포","dashed":true}],"scenarios":[{"name":"예시: 통합 범위에서 사용자 찾기","input":"통합관리 · 검색어 \"test\" (예시)","steps":[{"node":"console","title":"한국 관리자 로그인","in":"관리자 ID·비밀번호(예시)","out":"한국 서버가 준 세션 토큰을 sessionStorage에 저장"},{"node":"scope","title":"두 나라 목록 요청","in":"search=test, page=1, limit=20","out":"한국·미국에 각각 limit=50으로 동시에 요청"},{"node":"nginx","title":"국가별 경로로 전달","in":"한국 경로 · 미국 경로 요청","out":"한국은 고정 HTTPS 목적지로, 미국은 미국 API로"},{"node":"guard","title":"미국 쪽 세션 확인","in":"위임된 한국 세션 토큰","out":"한국 서버가 region KR 관리자로 확인하면 통과, 아니면 401"},{"node":"records","title":"사용자 검색","in":"search(최대 200자), page, limit(최대 50)","out":"{items, total, page, limit} · 가입 시각 최신순"},{"node":"scope","title":"합쳐서 한 페이지로","in":"한국 목록 + 미국 목록","out":"ID를 KR:…/US:…로 바꿔 가입 시각순 20건, total은 두 서버 합"}]},{"name":"예시: 배변 기록 사진 ZIP 받기","input":"사용자 1명 · 배변 · 2026-09-01~2026-09-30 · 230건 (예시)","steps":[{"node":"exports","title":"기록 전부 모으기","in":"kind=fecal, from=2026-09-01, to=2026-09-30","out":"50건씩 페이지를 돌며 230건 수집, 10,000건 넘으면 중단"},{"node":"records","title":"기간 기록 조회","in":"YYYY-MM-DD 날짜 · UTC · 종료일 포함","out":"페이지마다 {items, total, page, limit}"},{"node":"exports","title":"중복·변경 검사","in":"페이지별 total과 기록 ID","out":"도중에 total이 바뀌거나 ID가 겹치면 '다시 시도' 안내"},{"node":"records","title":"사진 한 장씩 받기","in":"기록 ID별 사진 요청","out":"이미지 바이너리, 없으면 404 · 형식 오류면 415"},{"node":"exports","title":"첫 묶음 만들기","in":"사진 100장 또는 100MB까지","out":"ZIP + manifest.json(success, failed, entries)"},{"node":"exports","title":"다음 묶음 이어받기","in":"'다음 묶음 준비' 클릭","out":"앞 묶음에 담지 못한 기록부터 같은 방식으로 다음 ZIP"}]},{"name":"예시: 음식 사진 분석 1건의 AI 사용량 기록","input":"앱에서 음식 사진 분석 요청 1건 (예시)","steps":[{"node":"meter","title":"호출 시작 기록","in":"API가 음식 에이전트로 보내는 POST","out":"원장에 outcome='running' 행 추가(사용자 ID 연결)"},{"node":"meter","title":"에이전트 쪽 토큰 측정","in":"Gemini SDK 응답의 usage_metadata","out":"모델·input·output·total·cached·thinking을 base64 헤더로"},{"node":"meter","title":"헤더 검증 후 완료 기록","in":"version 1, calls 64개 이하, 16KB 이하 헤더","out":"endedAt, outcome='completed', usage(jsonb) 갱신"},{"node":"ledger","title":"원장에 저장","in":"요청 1건 · 모델 호출 목록","out":"프롬프트·사진·답변 없이 숫자만 남음"},{"node":"records","title":"기간 집계","in":"UTC 기간 from·to","out":"서비스별 요청·실패·대기, 모델별 호출·토큰 합계"},{"node":"pages","title":"AI 사용량 화면","in":"모델별 토큰 합계","out":"호출·토큰 표와 측정된 토큰 기준 USD 예상 비용"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>한국·미국 사용자·기록·구독·쿠폰·문의를 한 웹에서 조회하고, CSV·사진 ZIP으로 내보낼 수 있게 묶었습니다. 창 두 개를 띄우던 운영 흐름이 하나로 줄었습니다.</p>
+          <p>2026.10.11 배포 점검에서 상태·접근 확인 <strong>17개 항목이 통과</strong>했습니다. 이는 배포 체크 범위이며 사용자 시나리오 전체 테스트는 별도입니다.</p>
+          <figure class="case-gallery">
+            <img src="../../assets/admin/06-status.png" alt="서비스 운영 현황 — 각 서비스별 상태와 응답 시간 모니터링" loading="lazy" decoding="async">
+            <figcaption>관리자 웹과 함께 띄워 둔 운영 상태 보드. 지표가 하나라도 흔들리면 바로 보입니다.</figcaption>
+          </figure>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>05</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>관리자 웹 개발 / 배포</dd></div>
+            <div><dt>집중한 지점</dt><dd>양국 API 묶기 · 구독·쿠폰·문의 관리 · CSV 내보내기 · 배포 체크</dd></div>
+            <div><dt>기술</dt><dd>React · TypeScript · Vite · MUI</dd></div>
+            <div><dt>공개 범위</dt><dd>회사 실사용 데이터는 비공개입니다. 스크린샷의 ID·이메일·금액은 모자이크 처리했어요.</dd></div>
+            <div><dt>확인 자료</dt><dd>2026.10.11 배포 점검 기록 기준. 소스는 사내 저장소에서 관리합니다.</dd></div>
+          </dl>
+          <p class="verification-note">배포 점검 · 2026.10.11 · 상태·접근 체크 17개 항목 통과. 사용자 시나리오 전체 테스트는 별도. 소스는 사내 저장소.</p>
+          
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://app.notion.com/p/3fd7746fec7080b5b3b4d55adc97ef03" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#admin">← 전체 프로젝트</a>
+      <a class="next-link" href="../band/"><span>다음 프로젝트</span><strong>42 BAND · 악사모 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

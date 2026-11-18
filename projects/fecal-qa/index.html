@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="배포 중인 피칼스캐너의 병원 QA를 재현해 고치고, 결과 조회가 멈추던 장애를 앱·서버 통신으로 추적해 해결했습니다.">
+  <meta property="og:title" content="피칼스캐너 | 곽준기 포트폴리오">
+  <meta property="og:description" content="병원에서 올라온 걸 다시 틀어보고 고치는 일">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>피칼스캐너 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css">
+  <link rel="stylesheet" href="../../arch.css">
+  <script src="../../arch.js" defer></script>
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#fecal-qa"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>WORK / 실무</span><span>2025.10 — 현재</span></div>
+      
+      <div class="case-title"><img class="case-app-icon" src="../../assets/app-icons/fecal-scanner.jpg" alt="피칼스캐너 앱 아이콘" width="64" height="64"><h1>피칼스캐너</h1></div>
+      <p class="case-headline">경북대병원 QA 재현·수정, 운영 장애 추적</p>
+      <p class="case-summary">배포 중인 피칼스캐너의 병원 QA를 앱·서버 요청 흐름으로 추적해 API 설정·예외 처리를 수정합니다. 2025년 12월에는 결과 조회가 멈추던 장애를 통신 로그로 추적해 고쳤습니다.</p>
+      <dl class="case-highlights"><div><dt>병원 QA</dt><dd>배포 앱 유지보수</dd></div><div><dt>원인 3가지</dt><dd>2025.12 결과 조회 장애</dd></div><div><dt>iOS · Android</dt><dd>1.1.6 패치 · 기기 테스트</dd></div></dl>
+      <figure class="case-gallery">
+        <img src="../../assets/admin/08-fecal-admin.png" alt="피칼 스캐너 관리자 도구 — 기관·사용자·검사 통계 대시보드" loading="lazy" decoding="async">
+        <figcaption>운영팀이 쓰는 피칼 스캐너 관리자 도구. 사이드바의 운영자 식별 정보는 모자이크 처리했습니다.</figcaption>
+      </figure>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#incident"><span>04</span> 장애 추적</a>
+          <a href="#result"><span>05</span> 결과</a>
+          <a href="#evidence"><span>06</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="피칼스캐너 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>경북대병원에서 QA가 올라오면 해당 세션의 요청 흐름을 다시 추적해야 했습니다. 분석 요청에서 결과 표시 사이 어디에서 어긋나는지 확인하고, 실제 사용 상황을 앱에서 재현한 뒤 수정하는 흐름입니다.</p>
+          <p>운영 중에는 화면에 증상만 보이고 에러가 드러나지 않는 장애도 있었습니다. 앱과 서버 중 어디서 어긋나는지부터 찾아야 했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>병원 QA는 "재현 가능한 수정"으로 분리</h3><p>QA를 앱에서 재현하고 분석 요청에서 결과 표시까지 데이터 흐름을 추적했습니다. 재현된 지점에 한해 배포 앱 코드의 해당 흐름을 수정했습니다.</p></div>
+          <div class="decision"><h3>에러가 안 보이면 통신부터 보이게</h3><p>에러가 화면에 드러나지 않을 때는 요청·응답 로그를 먼저 붙여 실제 통신을 확인했습니다. 원인을 좁힌 뒤 고치고, iOS·Android 기기에서 다시 확인했습니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>상자에 마우스를 올리면 하는 일과 만든 내용이 나오고, 예시 버튼을 누르면 요청 하나가 어떤 순서로 처리되는지 단계별로 볼 수 있습니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"피칼스캐너 시스템 구성","sub":"팀이 만든 Flutter 앱과 분석 서버 위에서, 결과 조회 장애·재촬영 점수·가입 종료·강제 업데이트를 고친 지점","solo":false,"columns":[{"label":"채널","nodes":[{"id":"app","title":"피칼스캐너 앱","sub":"Flutter · iOS / Android","owner":"both","what":"로그인, 대변 촬영, 분석 결과와 기록을 보여주는 환자용 앱","madeLabel":"내가 고친 것","made":"iOS 촬영 화질을 high로 올리고, 로그인 화면 개편과 가입 종료 팝업, 인증이 사라지면 로그인 화면으로 보내는 가드를 붙임","why":"병원 QA에서 재현된 지점만 고쳐 배포 앱을 안정적으로 유지하려고"},{"id":"gate","title":"강제 업데이트 게이트","sub":"1.1.9 (69)","owner":"mine","what":"로그인·홈 화면을 띄우기 전에 설치 버전이 최소 지원 버전 이상인지 확인","made":"플랫폼별 최소 버전·빌드를 비교하고, 조회에 실패하면 통과시키지 않고 다시 시도 화면을 유지","why":"확인하지 못한 구버전이 그대로 쓰이지 않게 하려고"}]},{"label":"앱 내부 흐름","nodes":[{"id":"exam","title":"검사 흐름","sub":"FecalExamBloc · AnalyzeFecalUsecase","owner":"both","what":"사진 업로드 → 점수 요청 → 검사 저장 → LLM 분석 요청을 차례로 잇는 흐름","madeLabel":"내가 고친 것","made":"사진 업로드 30초, 검사 저장 10초 상한을 두고, 점수 방어 정책을 넣어 보정한 점수로 저장","why":"약한 전파에서 끝나지 않는 대기가 무한 로딩으로 보여서"},{"id":"defense","title":"점수 방어 정책","sub":"ScoreDefensePolicy","owner":"mine","what":"2분 안에 다시 찍어 점수가 크게 바뀌면 직전 검사 점수를 조금만 움직여 씀","made":"직전 검사와 2분 이내·점수 차 0.1 초과면 직전 점수 ±0.02와 직전 분석 문장을 재사용. 방금 지운 검사도 메모리로 비교","why":"재촬영으로 점수를 바꾸는 우회를 막으려고"},{"id":"llmclient","title":"LLM 클라이언트","sub":"Retrofit · Dio · DTO","owner":"mine","what":"사진과 비전 점수를 LLM 분석 서버에 보내고, 응답을 결과 화면 항목으로 바꿈","made":"서버 주소·경로·필드명을 서버에 맞추고, 항목별 JSON에 맞게 DTO와 화면 매핑을 다시 짬. 빈 값은 '정보 없음'","why":"2025년 12월 결과 조회 무한 로딩의 원인이 이 세 지점이어서"},{"id":"pending","title":"대기 작업 관리","sub":"PendingOperationsManager","owner":"team","what":"LLM 분석이 끝나기 전 앱이 꺼져도 다시 이어서 처리하도록 대기 작업을 기억","madeLabel":"연결 지점","made":"검사 흐름이 LLM 요청 전에 대기 작업을 등록하고, 결과 저장 뒤 지움","why":"분석이 오래 걸려도 결과가 기록에 남게"},{"id":"session","title":"로그인·탈퇴 세션","sub":"이메일 · Google · Apple · 카카오","owner":"both","what":"로그인 방식별로 Firebase 인증을 맺고, 탈퇴 때 데이터와 계정을 지움","madeLabel":"내가 고친 것","made":"카카오는 실제 Firebase UID로 세션을 확정하고, 소셜 탈퇴는 재인증 UID가 같을 때만 데이터 삭제 후 Auth 계정까지 삭제","why":"탈퇴한 소셜 계정이 다시 로그인되는 문제를 막으려고"}]},{"label":"분석 서버","nodes":[{"id":"vision","title":"AI 점수 서버","sub":"이미지 분석 API","owner":"team","what":"저장된 사진 경로를 받아 0~1 사이 점수를 돌려줌. 점수가 없으면 유효하지 않은 사진","madeLabel":"연결 지점","made":"앱은 점수를 받아 점수 방어 정책을 거친 뒤 저장하고, 화면에는 ×100으로 표시","why":"점수와 문장 분석을 나눠 점수를 먼저 보여주려고"},{"id":"llm","title":"LLM 분석 서버","sub":"이미지 분석 API","owner":"team","what":"사진과 비전 점수로 색상·형태·임상 지표·질감·결론을 항목별 JSON으로 돌려줌","madeLabel":"연결 지점","made":"응답 구조가 태그 텍스트에서 항목별 JSON으로 바뀐 것을 실제 응답으로 확인해 문서로 정리","why":"앱이 기대한 형식과 서버 응답이 어긋나 결과 화면이 멈췄어서"}]},{"label":"Firebase","nodes":[{"id":"auth","title":"Firebase Auth","sub":"관리자 발급 계정 · App Check","owner":"both","what":"로그인 계정을 관리. 일반 사용자는 관리자 사이트가 발급한 계정으로만 로그인","madeLabel":"내가 바꾼 것","made":"서버 설정으로 신규 가입을 막고, Google·Apple의 가입 거절 코드를 같은 가입 종료 팝업으로 연결","why":"서비스를 스툴케어로 옮기며 기존 회원만 쓰게 하려고"},{"id":"kakaofn","title":"카카오 토큰 함수","sub":"createCustomToken","owner":"both","what":"카카오 로그인 사용자에게 Firebase 로그인용 커스텀 토큰을 발급하는 서버 함수","madeLabel":"내가 바꾼 것","made":"계정이 없으면 새로 만들던 분기를 HTTP 403 / SIGNUP_DISABLED 거절로 바꿔 배포","why":"앱에서 가입 버튼을 숨겨도 서버가 계정을 만들 수 있었어서"},{"id":"storage","title":"Cloud Storage","sub":"검사 사진","owner":"team","what":"촬영한 사진을 사용자별 경로에 JPG로 저장","madeLabel":"내가 고친 것","made":"업로드에 30초 상한을 두고 넘으면 취소 후 네트워크 확인 안내를 보여줌","why":"실패 시 기본 10분간 조용히 재시도해 무한 로딩처럼 보여서"},{"id":"firestore","title":"Firestore","sub":"exam 컬렉션","owner":"team","what":"검사 점수·시각·LLM 분석 문장을 사용자별 기록으로 보관","madeLabel":"내가 고친 것","made":"직전 검사 조회 10초 넘으면 로컬 캐시에서 읽고, 저장은 10초 넘으면 로컬 기록 후 진행","why":"서버 응답이 늦어도 화면이 멈추지 않고 데이터는 나중에 동기화되게"},{"id":"rc","title":"Remote Config","sub":"최소 버전 · 안내 문구","owner":"both","what":"플랫폼별 최소 지원 버전·빌드와 가입 종료 안내 문구를 앱 재배포 없이 바꿈","made":"iOS·Android 키를 따로 두고, 템플릿 검증·백업 후 ETag로 게시하고 다시 읽어 확인하는 스크립트","why":"새 빌드가 스토어에 다 풀리기 전에 기존 사용자를 막지 않으려고","madeLabel":"내가 더한 것"}]}],"edges":[{"from":"gate","to":"rc","label":"최소 버전 조회"},{"from":"gate","to":"app","label":"통과 시 화면 표시"},{"from":"app","to":"exam","label":"촬영 사진"},{"from":"app","to":"session","label":"로그인·탈퇴"},{"from":"exam","to":"storage","label":"JPG 업로드"},{"from":"exam","to":"vision","label":"HTTPS · 저장 경로"},{"from":"exam","to":"defense","label":"새 점수 · 직전 검사"},{"from":"exam","to":"firestore","label":"검사 저장 · 결과 갱신"},{"from":"exam","to":"pending","label":"대기 작업 등록","dashed":true},{"from":"exam","to":"llmclient","label":"사진 · 점수"},{"from":"llmclient","to":"llm","label":"HTTPS · multipart"},{"from":"session","to":"auth","label":"로그인"},{"from":"session","to":"kakaofn","label":"카카오 사용자 정보"},{"from":"kakaofn","to":"auth","label":"기존 계정만 토큰"},{"from":"session","to":"rc","label":"안내 문구","dashed":true}],"scenarios":[{"name":"예시: 사진 분석","input":"예시 사진(합성) 1장, 직전 검사 없음","steps":[{"node":"app","title":"촬영","in":"예시 사진(합성) 1장","out":"980×800 틀 안으로 축소한 사진 파일"},{"node":"exam","title":"JPG 변환","in":"사진 파일","out":"별도 isolate에서 인코딩한 JPG 바이트"},{"node":"storage","title":"업로드 (30초 상한)","in":"JPG 바이트","out":"사용자별 경로의 저장 경로"},{"node":"vision","title":"점수 요청","in":"저장 경로","out":"점수 0.82 (예시, 0~1)"},{"node":"defense","title":"점수 방어 판단","in":"새 점수 0.82, 직전 검사 없음","out":"새 분석 사용: 0.82"},{"node":"firestore","title":"검사 저장","in":"uid · score 0.82 · createdTime","out":"문서 ID, 화면 점수 82"},{"node":"llm","title":"LLM 분석","in":"사진 + 비전 점수 0.82","out":"{점수, 유효성, 색상·형태·임상 지표, 질감, 결론}"},{"node":"llmclient","title":"결과 매핑 · 저장","in":"항목별 JSON","out":"질감·형태·색깔·출혈·기타·결론 문장, 빈 항목은 '정보 없음' → exam 문서 갱신"}]},{"name":"예시: 2분 안에 다시 찍기","input":"직전 검사 0.40(1분 전), 새 사진(합성)","steps":[{"node":"app","title":"재촬영","in":"예시 사진(합성) 1장","out":"축소한 사진 파일"},{"node":"vision","title":"점수 요청","in":"저장 경로","out":"점수 0.65 (예시)"},{"node":"firestore","title":"직전 검사 조회","in":"현재 시각 이전 최신 1건 (10초 넘으면 캐시)","out":"직전 검사 0.40, 1분 전"},{"node":"defense","title":"점수 방어 판단","in":"1분 ≤ 2분, 점수 차 0.25 > 0.1","out":"직전 재사용: 0.40 + 0.02 = 0.42, 직전 분석 문장 유지"},{"node":"firestore","title":"검사 저장","in":"score 0.42 + 직전 분석 문장","out":"새 문서 ID, 화면 점수 42"},{"node":"llmclient","title":"LLM 요청은 계속","in":"사진 + 비전 점수 0.42","out":"새 문장으로 결과 갱신 (로딩이 멈추지 않게)"}]},{"name":"예시: 미등록 카카오 계정 로그인","input":"가입 이력이 없는 예시 카카오 계정","steps":[{"node":"app","title":"카카오 로그인","in":"카카오 로그인 버튼","out":"카카오 사용자 ID · 이메일"},{"node":"session","title":"토큰 요청","in":"카카오 사용자 ID · 이메일","out":"커스텀 토큰 요청"},{"node":"kakaofn","title":"계정 확인","in":"없는 계정 (auth/user-not-found)","out":"HTTP 403 · {status: FAILURE, code: SIGNUP_DISABLED}"},{"node":"rc","title":"안내 문구","in":"signup_disabled_message","out":"게시된 문구, 비어 있으면 앱 기본 문구"},{"node":"app","title":"가입 종료 팝업","in":"SIGNUP_DISABLED","out":"스툴케어 안내 팝업 (스토어 링크)"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="incident" class="case-section" aria-labelledby="incident-title">
+          <h2 id="incident-title"><span>04</span> 장애 추적 <small lang="en">INCIDENT · 2025.12</small></h2>
+          <p>사용자가 분석 결과를 조회하면 무한 로딩이 이어지다가 앱이 꺼졌습니다. 에러가 화면에 드러나지 않아, 앱과 분석 서버 사이의 통신을 직접 보이게 만들어 원인을 찾았습니다.</p>
+
+          <h3 class="incident-h">어디서 멈췄나</h3>
+          <ol class="incident-flow">
+            <li><figure><img src="../../assets/fecal/flow-capture.png" width="144" height="289" alt="앱의 대변 촬영 화면" loading="lazy"><figcaption><b>1</b> 촬영</figcaption></figure></li>
+            <li><figure><img src="../../assets/fecal/flow-ai.png" width="145" height="290" alt="AI 분석 버튼이 있는 촬영 화면" loading="lazy"><figcaption><b>2</b> AI 분석 요청</figcaption></figure></li>
+            <li class="is-broken"><figure><img src="../../assets/fecal/flow-result.png" width="154" height="266" alt="대변 AI 점수를 보여주는 결과 화면" loading="lazy"><figcaption><b>3</b> 결과 화면 <em>여기서 무한 로딩 → 앱 종료</em></figcaption></figure></li>
+          </ol>
+          <p class="incident-note">앱 안의 사용 안내에 들어 있는 실제 화면입니다.</p>
+
+          <h3 class="incident-h">통신 구조와 어긋난 세 지점</h3>
+          <figure class="incident-arch">
+            <ol class="incident-arch-row" aria-label="결과 화면에서 분석 서버까지의 요청 경로">
+              <li><strong>결과 화면</strong><span>Bloc · 화면 매핑</span><i class="incident-badge" aria-label="어긋난 지점 3">3</i></li>
+              <li><strong>응답 데이터 구조</strong><span>DTO · JSON 파싱</span><i class="incident-badge" aria-label="어긋난 지점 3">3</i></li>
+              <li><strong>API 클라이언트</strong><span>Retrofit · Dio</span><em>+ 로그 인터셉터</em><i class="incident-badge" aria-label="어긋난 지점 2">2</i></li>
+              <li class="is-server"><strong>LLM 분석 서버</strong><span>이미지 분석 API</span><i class="incident-badge" aria-label="어긋난 지점 1">1</i></li>
+            </ol>
+            <p class="incident-arch-legend"><span>요청 →</span><span>← 응답</span></p>
+            <figcaption>
+              <ol class="incident-points">
+                <li><b>1</b><span><strong>서버 주소</strong> 분석 서버 주소가 바뀌었는데 앱 설정에 반영되지 않았습니다.</span></li>
+                <li><b>2</b><span><strong>경로·필드명</strong> 분석 API 경로와 이미지 업로드 필드 이름이 바뀌어 있었습니다.</span></li>
+                <li><b>3</b><span><strong>응답 구조</strong> 서버가 태그 붙은 텍스트 대신 항목별로 나뉜 JSON을 보내, 앱의 파싱이 실패하고 결과 화면이 응답을 기다리기만 했습니다.</span></li>
+              </ol>
+            </figcaption>
+          </figure>
+
+          <h3 class="incident-h">화면으로 본 차이</h3>
+          <div class="incident-compare">
+            <figure><figcaption><span>이전</span> 앱이 기대한 응답</figcaption><pre><code>[질감] …
+[형태] …
+[색깔] …
+[출혈 여부] …
+[기타 의견] …
+[결론] …</code></pre></figure>
+            <figure class="is-after"><figcaption><span>실제</span> 서버가 보낸 응답</figcaption><pre><code>{
+  점수: 0.18,
+  유효성: true,
+  색상 특징: { 색, 채도, 설명 },
+  형태 특징: { 부피, 원형도, 비율, 설명 },
+  임상 지표: { 출혈, 잔류 점액, 설명 }
+}</code></pre></figure>
+          </div>
+          <figure class="incident-log"><figcaption>로그 인터셉터가 남기는 로그 <span>형식 재구성</span></figcaption><pre><code><b>[LLM Request]</b>  POST {분석 서버}/{분석 경로}
+<b>[LLM Response]</b> Status: 200
+<b>[LLM Response]</b> Data: { 점수, 유효성, 색상·형태·임상 지표 … }
+<b class="err">[LLM Error]</b>    Status · Response   <i>실패하면 상태와 본문을 그대로 남김</i></code></pre></figure>
+          <p class="incident-note">회사 API라 실제 주소와 필드 이름은 한국어로 바꿔 적었습니다.</p>
+
+          <h3 class="incident-h">시간대별 기록</h3>
+          <div class="incident-table-wrap">
+            <table class="incident-table">
+              <thead><tr><th scope="col">시각</th><th scope="col">한 일</th><th scope="col">기록</th></tr></thead>
+              <tbody>
+                <tr><td>2025.12</td><td>결과 조회 중 무한 로딩 후 앱이 종료되는 문제 확인</td><td>사례 기록</td></tr>
+                <tr><td>12.23 (화) 17:45</td><td><b class="incident-chip">1</b> 분석 서버 주소 연결 수정, 1.1.6 패치·패키지 업데이트</td><td>커밋</td></tr>
+                <tr><td>12.24 (수)</td><td>실제 응답을 확인해 응답 구조 변경을 문서로 정리하고 데이터 구조(DTO) 재설계</td><td>변경 문서</td></tr>
+                <tr><td>12.25 (목) 12:03</td><td><b class="incident-chip">2</b><b class="incident-chip">3</b> 로그 인터셉터, 경로·필드명, DTO·화면 매핑 재작성, 무응답 안내, iOS 촬영 화질 개선</td><td>커밋</td></tr>
+                <tr><td>12.25 (목)</td><td>iOS·Android 기기 1차 테스트 통과, 추가 테스트 체크리스트 정리</td><td>커밋 메시지 · 체크리스트</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h3 class="incident-h">고친 것</h3>
+          <ul class="incident-fixes">
+            <li>분석 API 경로와 이미지 필드 이름을 서버에 맞췄습니다.</li>
+            <li>응답 데이터 구조(DTO)를 실제 JSON에 맞게 다시 설계했습니다.</li>
+            <li>값이 비면 “정보 없음”, 응답이 없으면 “분석 결과를 받지 못했습니다. 다시 시도해주세요.”를 보여주게 했습니다.</li>
+            <li>요청·응답·에러를 로그로 남겨, 다음 장애 때 바로 확인할 수 있게 했습니다.</li>
+          </ul>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>05</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>배포 앱은 병원 QA를 재현한 뒤 고치는 흐름으로 유지보수하고 있습니다.</p>
+          <p>2025년 12월 결과 조회 장애는 서버 주소, API 경로·필드명, 응답 구조의 불일치를 찾아 고쳤고, <strong>iOS·Android 기기 테스트</strong>로 결과 화면이 정상 동작함을 확인했습니다 (1.1.6 패치).</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>06</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>유지보수 / 병원 QA / 장애 대응</dd></div>
+            <div><dt>집중한 지점</dt><dd>병원 QA 재현 · 분석 데이터 흐름 · 인증 전후 이동 · 회귀 검증</dd></div>
+            <div><dt>기술</dt><dd>Flutter · Dart · Go · Firebase</dd></div>
+            <div><dt>확인 자료</dt><dd>2025.12.23 · 12.25 커밋과 변경 문서. 회사 소스는 비공개입니다.</dd></div>
+          </dl>
+          <p class="verification-note">장애 사례는 커밋과 변경 문서 기준입니다. 증상을 처음 확인한 날짜와 스토어 배포 시점은 기록으로 확인되지 않아 적지 않았습니다. 의료기기 소프트웨어 피칼스캐너-M은 별도 프로젝트로 정리했습니다.</p>
+          
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://apps.apple.com/kr/app/id6737596551" target="_blank" rel="noopener noreferrer">피칼스캐너 App Store <span aria-hidden="true">↗</span></a>
+<a href="https://app.notion.com/p/3f17746fec7080c0b428f55bc43e116d" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          <p class="access-note">코드는 회사 비공개 저장소에 있어 링크하지 않았습니다. 일부 Notion·Figma 자료는 소유자가 부여한 열람 권한이 필요합니다.</p>
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#fecal-qa">← 전체 프로젝트</a>
+      <a class="next-link" href="../fecal-m/"><span>다음 프로젝트</span><strong>피칼스캐너-M <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

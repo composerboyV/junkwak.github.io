@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="명령어 실행, 파이프와 리다이렉션을 구현하며 Unix의 프로세스와 파일 입출력을 익혔습니다.">
+  <meta property="og:title" content="Minishell | 곽준기 포트폴리오">
+  <meta property="og:description" content="입력한 명령이 프로세스가 되고 출력으로 돌아오기까지">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>Minishell | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css">
+  <link rel="stylesheet" href="../../arch.css">
+  <script src="../../arch.js" defer></script>
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#minishell"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>42 / 학습·협업</span><span>2024.11 — 2024.12</span></div>
+      
+      <h1>Minishell</h1>
+      <p class="case-headline">C로 구현한 Unix 셸</p>
+      <p class="case-summary">명령 실행, 파이프, 리다이렉션을 직접 구현하며 Unix 프로세스와 파일 I/O를 익힌 42 프로젝트입니다.</p>
+      <dl class="case-highlights"><div><dt>C · Unix</dt><dd>셸 직접 구현</dd></div><div><dt>명령 실행</dt><dd>내장 명령어 · 외부 명령</dd></div><div><dt>입출력 연결</dt><dd>파이프 · 리다이렉션</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#result"><span>04</span> 결과</a>
+          <a href="#evidence"><span>05</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="Minishell 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>매일 쓰는 Unix 셸을 C로 다시 짜 봐야 하는 과제였어요. 입력을 받아 명령을 돌리고, 파이프·리다이렉션으로 프로세스 입출력을 연결하는 게 핵심이었습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>입력 → 실행 흐름을 먼저 세웠어요</h3><p>readline으로 입력을 받고 내장·외부 명령 실행을 붙였습니다. 사용자가 친 문자열이 실제 프로세스로 바뀌는 지점을 손으로 다뤄봤어요.</p></div>
+          <div class="decision"><h3>파이프와 리다이렉션으로 I/O를 꿰었어요</h3><p>파이프와 리다이렉션을 짜면서 명령의 입출력이 다른 프로세스나 파일로 넘어가는 방식을 체득했습니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>상자에 마우스를 올리면 하는 일과 실제 코드 위치가 나오고, 예시 버튼을 누르면 요청 하나가 어떤 순서로 처리되는지 단계별로 볼 수 있습니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"Minishell 시스템 구성","sub":"readline 입력 → 토큰화·변수 확장 → 명령 단위 → 파이프·리다이렉션 실행 / 내장 명령","solo":false,"columns":[{"label":"입력","nodes":[{"id":"main","title":"프롬프트 루프","sub":"main.c","owner":"both","madeLabel":"함께 만든 것","path":"minishell/src/main.c","what":"readline(\"minishell$ \")으로 한 줄씩 받아 파서로 넘기는 셸의 바깥 루프","made":"환경변수 목록·envp 복사본·종료 코드를 담은 t_envval을 준비하고, Ctrl-D(NULL)면 히스토리·환경을 정리하고 종료","why":"마지막 종료 코드를 셸의 종료 코드로 돌려주려고"},{"id":"signal","title":"시그널 · 터미널","sub":"signal_handler.c","owner":"mine","path":"minishell/src/signal_handler.c","what":"프롬프트에서는 Ctrl-C로 새 줄, Ctrl-\\는 무시하고, 자식 실행 중에는 기본 동작으로 돌림","made":"rl_replace_line·rl_redisplay로 새 프롬프트, termios ECHOCTL 켜고 끄기, 자식이 시그널로 끝나면 ^C · Quit (core dumped) 출력","why":"bash처럼 Ctrl-C가 셸 자체를 끄지 않게"},{"id":"env","title":"환경변수 목록","sub":"env_utils.c","owner":"both","madeLabel":"함께 만든 것","path":"minishell/src/utils/env_utils.c","what":"envp를 key·value 연결 리스트로 바꿔 조회·교체에 씀","made":"init_env_list로 '=' 기준 분리, ft_getenv로 이름이 정확히 같은 항목만 찾음","why":"export·unset으로 바뀐 값을 $확장과 PATH 탐색이 바로 쓰게"}]},{"label":"파싱","nodes":[{"id":"parser","title":"파서 진입","sub":"parser_handler.c","owner":"both","madeLabel":"함께 만든 것","path":"minishell/src/parser_handler.c","what":"한 줄을 토큰 → 명령 리스트로 바꾸고 실행기에 넘긴 뒤 히스토리에 추가","made":"빈 줄·토큰 없음·명령 없음이면 실행 없이 다음 프롬프트로","why":"단계마다 만든 리스트를 바로 해제하려고"},{"id":"tokenizer","title":"토크나이저","sub":"tokenizer.c","owner":"both","madeLabel":"함께 만든 것","path":"minishell/src/tokenizer/tokenizer.c","what":"공백·| · < · > 기준으로 WORD와 SYMBOL 토큰을 나눔","made":"따옴표는 닫힐 때까지 한 단어로 묶고, >>는 '+', <<는 '-' 기호 하나로 바꿈","why":"다음 단계가 기호 한 글자로 리다이렉션 종류를 구분하게"},{"id":"expand","title":"따옴표 · $ 확장","sub":"quote_parser.c · token_utils.c","owner":"team","madeLabel":"팀원이 만든 것","path":"minishell/src/tokenizer/quote_parser.c · token_utils.c","what":"토큰을 리스트에 넣기 전에 따옴표를 벗기고 $변수·$?를 값으로 바꿈","made":"작은따옴표 안은 확장하지 않고, $?는 직전 종료 코드 숫자로 치환. 닫히지 않은 따옴표면 그 줄의 토큰을 버림","why":"bash와 같은 따옴표 규칙을 따르려고"},{"id":"cmdunit","title":"명령 단위 만들기","sub":"command.c","owner":"team","madeLabel":"팀원이 만든 것","path":"minishell/src/command/command.c","what":"토큰 리스트를 | 기준으로 잘라 t_command(args 배열 + 리다이렉션 목록)로 만듦","made":"기호 다음 단어는 리다이렉션 파일로, 나머지는 인자로. 기호가 연달아 오거나 끝이 기호면 전체를 버림","why":"실행기가 명령마다 인자와 입출력 대상을 바로 꺼내게"}]},{"label":"실행","nodes":[{"id":"executor","title":"실행기","sub":"excutor.c","owner":"both","madeLabel":"함께 만든 것","path":"minishell/src/command/excutor.c","what":"명령이 하나뿐인 내장 명령은 셸 안에서, 나머지는 명령마다 fork해 파이프로 이어 실행","made":"명령마다 pipe+fork, 자식은 이전 읽기 끝을 stdin·다음 쓰기 끝을 stdout으로 dup2. 부모는 모두 waitpid 후 종료 코드 저장(시그널 종료는 128+번호)","why":"cd·export·exit처럼 셸 상태를 바꾸는 명령이 자식에서만 바뀌지 않게"},{"id":"path","title":"명령 경로 찾기","sub":"cmd_utils.c","owner":"team","madeLabel":"팀원이 만든 것","path":"minishell/src/command/cmd_utils.c","what":"명령 이름을 실행 파일 절대 경로로 바꿈","made":"/로 시작하면 그대로, .으로 시작하면 현재 폴더 기준, 아니면 PATH를 ':'로 나눠 access(X_OK)로 탐색","why":"execve는 경로가 있어야 실행하므로"},{"id":"redir","title":"리다이렉션","sub":"redirection.c","owner":"team","madeLabel":"팀원이 만든 것","path":"minishell/src/command/redirection.c","what":"<, >, >>, << 대상 파일을 열어 stdin·stdout에 dup2","made":"> 는 O_TRUNC, >> 는 O_APPEND, << 는 임시 파일을 연 뒤 unlink. 내장 명령용으로 원래 fd를 dup해 두고 끝나면 복구","why":"셸 안에서 도는 내장 명령도 출력 방향을 바꿨다가 되돌리려고"},{"id":"heredoc","title":"히어독","sub":"heredoc.c","owner":"team","madeLabel":"팀원이 만든 것","path":"minishell/src/command/heredoc.c","what":"<< 구분자를 만나면 \"> \" 프롬프트로 줄을 받아 임시 파일에 씀","made":".heredoc_<구분자> 파일을 만들고 구분자 줄이나 Ctrl-D에서 멈춘 뒤 파일 경로를 리다이렉션 대상으로 넘김","why":"입력 리다이렉션과 같은 경로로 처리하려고"}]},{"label":"내장 명령","nodes":[{"id":"builtin","title":"내장 명령 분기","sub":"builtin_handler · cd · echo · env · unset","owner":"both","madeLabel":"함께 만든 것","path":"minishell/src/builtins/builtin_handler.c · ft_cd.c · ft_echo.c · ft_env.c · ft_unset.c","what":"cd·echo·env·export·unset·pwd·exit 이름을 보고 해당 함수로 보냄","made":"실행 전에 redirect_io, 끝나면 unredirect_io. echo는 -n(여러 개·-nnn 포함) 처리","why":"내장 명령도 리다이렉션을 따르게"},{"id":"export","title":"export","sub":"ft_export.c","owner":"mine","path":"minishell/src/builtins/ft_export.c","what":"인자 없으면 declare -x 목록 출력, 있으면 환경변수 추가·갱신","made":"이름은 영문자·_로 시작해야 하고 잘못되면 에러 후 종료 코드 1. 같은 이름이면 값만 교체하고 envp 재생성 표시(is_changed)","why":"바뀐 환경이 다음 외부 명령 실행 때 envp로 전달되게"},{"id":"exitpwd","title":"exit · pwd","sub":"ft_exit.c · ft_pwd.c","owner":"team","madeLabel":"팀원이 만든 것","path":"minishell/src/builtins/ft_exit.c · ft_pwd.c","what":"셸 종료와 현재 경로 출력","made":"exit은 숫자 인자만 받고(아니면 numeric argument required, 2) 혼자 쓰이면 실행기가 EXIT_CODE로 루프를 끝냄, pwd는 getcwd 결과 출력","why":"파이프 안의 exit는 셸을 끄지 않게"}]}],"edges":[{"from":"main","to":"parser","label":"parser_handler(line)"},{"from":"main","to":"signal","label":"enroll_custom_signal","dashed":true},{"from":"main","to":"env","label":"init_env_list(envp)"},{"from":"parser","to":"tokenizer","label":"tokenize"},{"from":"tokenizer","to":"expand","label":"append_token_inlist"},{"from":"expand","to":"env","label":"ft_getenv","dashed":true},{"from":"parser","to":"cmdunit","label":"token_tocmdunit"},{"from":"cmdunit","to":"heredoc","label":"<< 만나면"},{"from":"parser","to":"executor","label":"excute_handler"},{"from":"executor","to":"builtin","label":"단일 내장 / 자식 안 내장"},{"from":"executor","to":"redir","label":"redirect_io"},{"from":"executor","to":"path","label":"get_cmd_abspath → execve"},{"from":"path","to":"env","label":"PATH","dashed":true},{"from":"builtin","to":"export","label":"export"},{"from":"builtin","to":"exitpwd","label":"exit · pwd"},{"from":"builtin","to":"redir","label":"redirect_io · unredirect_io"},{"from":"executor","to":"signal","label":"set_sigall · set_terminal","dashed":true}],"scenarios":[{"name":"예시: 파이프 + 리다이렉션","input":"cat < in.txt | grep hello > out.txt","steps":[{"node":"main","title":"한 줄 입력","in":"minishell$ 프롬프트에서 입력","out":"line 문자열 → parser_handler"},{"node":"tokenizer","title":"토큰 나누기","in":"cat < in.txt | grep hello > out.txt","out":"cat · < · in.txt · | · grep · hello · > · out.txt (기호는 SYMBOL)"},{"node":"cmdunit","title":"명령 2개로 묶기","in":"토큰 8개","out":"{args: [cat], redi: < in.txt} , {args: [grep, hello], redi: > out.txt}"},{"node":"executor","title":"명령마다 fork","in":"명령 2개 (단일 내장 아님)","out":"pipe·fork 2번, 첫 자식 stdout → 파이프, 둘째 자식 stdin ← 파이프"},{"node":"redir","title":"파일 연결","in":"< in.txt, > out.txt","out":"in.txt를 O_RDONLY로 stdin, out.txt를 O_TRUNC로 stdout에 dup2"},{"node":"path","title":"경로 찾고 실행","in":"cat, grep","out":"PATH 디렉터리마다 access(X_OK) 확인 후 execve"},{"node":"executor","title":"기다리기","in":"자식 pid 2개","out":"waitpid → 마지막 자식의 종료 코드를 $?용으로 저장, 히스토리에 줄 추가"}]},{"name":"예시: 내장 echo + 변수 확장 + 이어쓰기","input":"echo \"hi $USER\" >> log.txt (예: USER=cadet)","steps":[{"node":"tokenizer","title":"따옴표·기호 처리","in":"echo \"hi $USER\" >> log.txt","out":"echo · \"hi $USER\" · + (>>) · log.txt"},{"node":"expand","title":"따옴표 벗기고 확장","in":"\"hi $USER\"","out":"큰따옴표라 확장 → hi cadet"},{"node":"cmdunit","title":"명령 만들기","in":"토큰 4개","out":"{args: [echo, hi cadet], redi: + log.txt}"},{"node":"executor","title":"셸 안에서 실행","in":"명령 1개 + 내장 echo","out":"fork 없이 builtin_handler"},{"node":"builtin","title":"리다이렉션 후 echo","in":"redi '+' log.txt","out":"O_APPEND로 열어 stdout 교체 → ft_echo가 hi cadet 출력 → 원래 stdout 복구, 종료 코드 0"}]},{"name":"예시: 없는 명령과 $?","input":"nosuchcmd  →  echo $?","steps":[{"node":"executor","title":"자식에서 실행 시도","in":"{args: [nosuchcmd]}","out":"내장 아님 → fork"},{"node":"path","title":"경로 탐색 실패","in":"nosuchcmd","out":"PATH 어디에도 실행 파일 없음 → stderr \"nosuchcmd: command not found\", 127"},{"node":"executor","title":"종료 코드 수거","in":"자식 종료 상태","out":"get_child_exitcode → exit_code 127"},{"node":"expand","title":"다음 줄의 $?","in":"echo $?","out":"$? → ft_itoa(127) → \"127\""},{"node":"builtin","title":"출력","in":"{args: [echo, 127]}","out":"127"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>readline 입력, 내장·외부 명령, 파이프·리다이렉션을 지원하는 셸을 올렸어요. 명령·프로세스·I/O가 한 프로그램 안에서 어떻게 묶이는지 손으로 익힌 과정입니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>05</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>셸 개발</dd></div>
+            <div><dt>집중한 지점</dt><dd>readline · 내장/외부 명령 · 파이프 · 리다이렉션</dd></div>
+            <div><dt>기술</dt><dd>C · Unix · readline · Process</dd></div>
+            <div><dt>공개 범위</dt><dd>개인 과제. 명령 실행과 I/O 기능 범위로 설명합니다.</dd></div>
+            <div><dt>확인 자료</dt><dd>GitHub에 구현 코드가 올라와 있어요.</dd></div>
+          </dl>
+          
+          
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://github.com/composerboyV/Mini_Shell" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+<a href="https://app.notion.com/p/2f97746fec7081db8a10dba331860325" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#minishell">← 전체 프로젝트</a>
+      <a class="next-link" href="../gamejam/"><span>다음 프로젝트</span><strong>42 Gyeongsan Game Jam <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

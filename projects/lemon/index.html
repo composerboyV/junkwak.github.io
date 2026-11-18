@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="외부 파트너와 요구사항·일정 맞추면서 분석 API를 붙였어요. PM 역할로 중간 조율까지 봤습니다.">
+  <meta property="og:title" content="레몬헬스케어 협업 | 곽준기 포트폴리오">
+  <meta property="og:description" content="파트너의 요구를, 돌아가는 API로 바꾸는 일">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>레몬헬스케어 협업 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css">
+  <link rel="stylesheet" href="../../arch.css">
+  <script src="../../arch.js" defer></script>
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#lemon"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>WORK / 실무</span><span>2026.09 — 현재</span></div>
+      <img class="case-logo" src="../../assets/brands/lemon-healthcare.png" alt="레몬헬스케어" width="164" height="39">
+      <h1>레몬헬스케어 협업</h1>
+      <p class="case-headline">AICU 쪽 전체 PM, 분석 API 연동</p>
+      <p class="case-summary">협력사 인증·입력 검증·OpenAPI 문서화·배포 검증까지 담당한 분석 API 연동 프로젝트입니다.</p>
+      <dl class="case-highlights"><div><dt>PM + API</dt><dd>요구사항부터 검증까지</dd></div><div><dt>FastAPI</dt><dd>기존 분석 모델 연동</dd></div><div><dt>32건 동시 성공</dt><dd>p95 3.247s · 2026.10.07</dd></div></dl>
+      <figure class="case-gallery">
+        <img src="../../assets/admin/07-lemon-api.png" alt="FecalM Analysis API — 분석 API Swagger 문서" loading="lazy" decoding="async">
+        <figcaption>파트너와 공유한 분석 API 문서. 요청/인증/응답 규격을 한 페이지에 정리했어요.</figcaption>
+      </figure>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#result"><span>04</span> 결과</a>
+          <a href="#evidence"><span>05</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="레몬헬스케어 협업 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>기존 분석 기능을 외부 파트너 서비스에 연동해야 했습니다. API 구현 못지않게, 요구사항·일정·문서·검증 과정을 양측이 동일한 상태로 보고 움직이도록 조율하는 역할이 핵심이었습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>AICU 쪽 전체 PM과 API 개발 겸임</h3><p>파트너와 요구사항·일정·문서를 맞추고, 협력사 인증·입력 검증·OpenAPI 문서화 항목을 개발 티켓으로 분해해 양측이 동일한 산출물을 추적하도록 했습니다.</p></div>
+          <div class="decision"><h3>기존 모델을 FastAPI로 노출</h3><p>이미 있는 분석 모델을 FastAPI로 감싸 배포한 뒤, 요청·응답과 성능을 조건별로 검증했습니다. 결과를 파트너와 공유하며 다음 작업을 조율했습니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>상자에 마우스를 올리면 하는 일과 만든 내용이 나오고, 예시 버튼을 누르면 요청 하나가 어떤 순서로 처리되는지 단계별로 볼 수 있습니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"레몬헬스케어 협업 분석 API 시스템 구성","sub":"기존 분석 모델을 FastAPI로 감싸고, 협력사 인증·입력 방어·동시 처리·문서·배포 검증 계층을 더한 구조","solo":false,"columns":[{"label":"협력사 접점","nodes":[{"id":"docs","title":"OpenAPI 문서","sub":"Swagger · ReDoc","owner":"mine","what":"협력사 개발자가 요청·인증·사진 규격·응답별 처리를 한 페이지에서 보고 시험 호출함","madeLabel":"내가 만든 것","made":"문서는 기본으로 꺼 두고, 켜면 Basic 인증(비교는 compare_digest)이나 사내 대역에서만 열림. 스펙은 파일로도 내보냄","why":"코드가 바뀌면 문서도 같이 바뀌고, 문서 페이지가 아무에게나 열리지 않게"},{"id":"keys","title":"API 키 발급 도구","sub":"해시만 저장","owner":"mine","what":"협력사별 키를 만들고 분당 한도·허용 IP를 함께 등록","madeLabel":"내가 만든 것","made":"평문 키는 한 번만 출력하고, 서버 파일에는 SHA-256 해시만 권한 600으로 저장. disabled로 폐기","why":"서버 파일이 새어도 키 원문은 남지 않게"}]},{"label":"API 입구 (FastAPI 미들웨어)","nodes":[{"id":"ctx","title":"요청 ID · 보안 헤더","sub":"가장 바깥 계층","owner":"mine","what":"모든 응답에 X-Request-ID를 붙이고, 사진·키 없는 JSON 접근 로그를 남김","madeLabel":"내가 만든 것","made":"형식이 맞는 요청 ID는 그대로 쓰고 아니면 새로 만듦. no-store·nosniff 헤더, 마지막 500 처리기에서 request_id 반환","why":"협력사가 문의할 때 요청 하나를 정확히 찾으려고"},{"id":"auth","title":"협력사 인증 · 호출 한도","sub":"키 → IP → 토큰 버킷","owner":"mine","what":"API 키로 협력사를 찾고, 허용 IP와 협력사별 분당 호출 한도를 확인","madeLabel":"내가 만든 것","made":"키가 없거나 틀리면 401, 등록 안 된 IP는 403, 한도 초과는 429와 Retry-After","why":"협력사마다 다른 한도를 주고, 재시도 시점을 알려주려고"},{"id":"admission","title":"동시 처리 상한","sub":"기본 32건","owner":"mine","what":"처리 중인 분석 요청이 상한을 넘으면 기다리게 하지 않고 바로 돌려보냄","madeLabel":"내가 만든 것","made":"상한을 넘으면 대기열에 넣지 않고 503과 Retry-After 1초를 돌려줌","why":"끝없는 대기열로 지연과 메모리가 폭증하지 않게"},{"id":"bodylimit","title":"요청 본문 크기 제한","sub":"읽기 전에 거절","owner":"mine","what":"Content-Length로 먼저 막고, chunked 전송은 받는 도중 바이트를 세어 막음","madeLabel":"내가 만든 것","made":"한도는 이미지 상한(기본 20MiB)의 Base64 크기 + 여유 64KB, 넘으면 413","why":"큰 본문을 다 읽은 뒤에야 거절하는 낭비를 없애려고"}]},{"label":"분석 파이프라인","nodes":[{"id":"preprocess","title":"입력 검증 · 전처리","sub":"CPU 스레드풀","owner":"mine","what":"사진을 디코딩해 가운데 정사각형으로 자르고, 흐림·밝기·대비 같은 촬영 품질을 검사","madeLabel":"내가 만든 것","made":"시그니처로 JPEG/PNG만 열고, 5천만 픽셀 초과는 413. 디코딩·검사·리사이즈를 이벤트 루프 밖에서 실행","why":"작은 파일로 메모리를 터뜨리는 사진과 느린 디코딩이 서버 전체를 막지 않게"},{"id":"batcher","title":"동적 마이크로배칭","sub":"최대 16장 · 10ms","owner":"mine","what":"동시에 들어온 요청을 모아 모델 한 번의 forward로 계산","madeLabel":"내가 만든 것","made":"첫 요청 뒤 최대 10ms 동안 16장까지 모으고, 모든 모델 호출은 전용 스레드 하나에서만 실행","why":"한 장씩 잠그고 돌리던 GPU 추론을 동시 요청에 맞게 묶으려고"},{"id":"gate","title":"게이트 모델","sub":"분석 가능 여부 3분류","owner":"team","what":"사진이 분석 가능한 장면인지, 잘못된 화면이나 빈 변기인지 먼저 가름","madeLabel":"연결 지점","made":"전달받은 가중치를 배처에 연결하고, 분석 가능 클래스가 아니면 점수 모델을 부르지 않고 422","why":"분석 대상이 아닌 사진에 점수를 매기지 않으려고"},{"id":"score","title":"점수 모델","sub":"정상/비정상 분류","owner":"team","what":"정상 확률을 0~100 정수 점수로 바꾸고 점수 구간별 상태 문구를 붙임","madeLabel":"연결 지점","made":"기존 모델을 그대로 감싸 같은 전처리로 호출. 점수는 반올림(29.5 → 30)으로 고정","why":"모델 연구가 아니라 기존 모델을 서비스에 붙이는 작업이라서"},{"id":"llm","title":"특징 분류 LLM 모듈","sub":"Gemini API","owner":"team","what":"색·형태·출혈·질감·기타 소견을 분류하고 항목별 설명과 권장사항을 씀","madeLabel":"연결 지점","made":"전달받은 분류 코드를 어댑터로 연결. 1024px JPEG만 보내고, 실패·시간 초과면 점수는 두고 '판독불가'로 응답","why":"LLM이 실패해도 분석 응답 전체가 실패하지 않게"},{"id":"respond","title":"응답 조립","sub":"합의한 응답 형식","owner":"mine","what":"점수·상태 문구·권장사항과 항목별 값·코드·설명을 한 JSON으로 묶어 200으로 반환","madeLabel":"내가 만든 것","made":"품질 실패·분석 불가는 422로 나누고, 응답 스키마를 Pydantic으로 정의해 문서와 같게 유지","why":"협력사와 맞춘 형식을 코드 한 곳에서만 정의하려고"}]},{"label":"배포 · 검증","nodes":[{"id":"deploy","title":"Kubernetes 배포","sub":"Helm · GitLab CI","owner":"both","what":"GPU 1개당 파드 1개로 띄우고, 테스트 → 이미지 빌드 → 이미지 태그 갱신 순으로 배포","madeLabel":"함께 만든 것","made":"Helm 차트·CI·이미지와 모델 가중치(Git LFS)는 내가, Fleet GitOps 연결·노드 배치·GPU 분할 설정은 팀원","why":"GPU 하나에 배칭으로 동시성을 얻는 구조라 파드 수보다 배치로 늘리려고"},{"id":"loadtest","title":"동시 요청 시험","sub":"8 · 16 · 32건","owner":"mine","what":"같은 사진을 여러 동시성 단계로 보내 성공 수, 평균·p95 응답, 요청 ID 일치를 확인","madeLabel":"내가 만든 것","made":"2026.10.07 회사 서버·동일 이미지 단발 시험에서 32건 동시 성공, p95 3.247초(8/16/32 누적 56건)","why":"조건을 적어 둔 숫자로 협력사와 결과를 맞추려고 (운영 SLA 수치는 아님)"}]}],"edges":[{"from":"keys","to":"auth","label":"해시 파일 로드","dashed":true},{"from":"docs","to":"ctx","label":"시험 호출","dashed":true},{"from":"ctx","to":"auth","label":"HTTPS 요청","dashed":false},{"from":"auth","to":"admission","label":"인증된 협력사","dashed":false},{"from":"admission","to":"bodylimit","label":"상한 이내","dashed":false},{"from":"bodylimit","to":"preprocess","label":"사진 바이트","dashed":false},{"from":"preprocess","to":"batcher","label":"224×224 텐서","dashed":false},{"from":"batcher","to":"gate","label":"배치 forward","dashed":false},{"from":"batcher","to":"score","label":"배치 forward","dashed":false},{"from":"preprocess","to":"llm","label":"축소 JPEG","dashed":false},{"from":"score","to":"respond","label":"0~100 점수","dashed":false},{"from":"llm","to":"respond","label":"항목별 분류","dashed":false},{"from":"deploy","to":"ctx","label":"GPU 파드","dashed":true},{"from":"loadtest","to":"ctx","label":"동시 요청","dashed":true}],"scenarios":[{"name":"예시: 사진 한 장 분석","input":"JPEG 사진 1장 · 협력사 키 · 가명 사용자 ID user_0001 (예시)","steps":[{"node":"ctx","title":"요청 ID 부여","in":"요청 ID 없는 요청","out":"새 X-Request-ID를 만들고 응답 헤더에 붙임"},{"node":"auth","title":"협력사 확인","in":"API 키 헤더","out":"해시가 맞는 협력사, IP 허용·분당 한도 안이면 통과"},{"node":"preprocess","title":"검증 · 자르기 · 품질 검사","in":"JPEG 바이트(20MiB·5천만 픽셀 이하)","out":"가운데 정사각형, 품질 통과, 모델용 텐서와 1024px JPEG"},{"node":"gate","title":"분석 가능 여부","in":"배치로 묶인 게이트 텐서","out":"3개 클래스 중 '분석 가능'으로 판정"},{"node":"score","title":"점수 계산","in":"배치로 묶인 분석 텐서","out":"정상 확률 0.80 → 점수 80 (예시 값)"},{"node":"llm","title":"항목별 특징 분류","in":"축소 JPEG + 점수","out":"색·형태·출혈·질감·기타 소견 값과 설명"},{"node":"respond","title":"응답 반환","in":"점수 + 분류 결과","out":"HTTP 200 · 점수·상태·권장사항·항목별 값·코드"}]},{"name":"예시: 너무 어두운 사진","input":"어둡게 찍힌 PNG 1장 (예시)","steps":[{"node":"auth","title":"협력사 확인","in":"올바른 API 키","out":"통과"},{"node":"preprocess","title":"형식 확인","in":"PNG 시그니처","out":"PNG 파서로만 디코딩"},{"node":"preprocess","title":"품질 검사","in":"평균 밝기가 기준(45) 미만","out":"LOW_LIGHT 문제로 품질 실패"},{"node":"respond","title":"재촬영 안내","in":"품질 실패","out":"HTTP 422 · IMAGE_QUALITY_FAILED와 자르기·품질 정보, 모델은 호출 안 함"}]},{"name":"예시: 요청이 한꺼번에 몰릴 때","input":"같은 협력사가 동시에 요청 40건을 보냄 (예시)","steps":[{"node":"auth","title":"분당 한도 확인","in":"협력사 토큰 버킷","out":"한도 안이면 통과, 다 쓰면 429 · Retry-After"},{"node":"admission","title":"동시 처리 상한","in":"처리 중 32건 + 새 요청","out":"상한을 넘는 요청은 503 'Server is busy' · Retry-After 1"},{"node":"batcher","title":"묶어서 계산","in":"상한 안의 요청들","out":"10ms 안에 최대 16장씩 한 번에 forward"},{"node":"respond","title":"각자 응답","in":"배치 결과를 요청별로 분배","out":"요청마다 자기 X-Request-ID와 결과"},{"node":"loadtest","title":"시험으로 확인","in":"8·16·32건 동시 요청","out":"2026.10.07 32건 모두 성공, p95 3.247초(조건부 결과)"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>분석 기능이 FastAPI로 노출되어 돌기 시작했고, 배포 상태에서 파트너와 결과를 맞춰 가며 연동을 이어가고 있습니다.</p>
+          <p>2026.10.07 회사 네트워크·동일 이미지 단발 시험에서 <strong>32건 동시 요청 성공, p95 3.247초</strong>를 기록했습니다 (8/16/32건 누적 56건 성공). 조건부 결과이며 운영 성공률·SLA 수치가 아닙니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>05</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>PM / API 개발</dd></div>
+            <div><dt>집중한 지점</dt><dd>파트너 조율 · 분석 API 연동 · 문서화 · 배포 검증</dd></div>
+            <div><dt>기술</dt><dd>Python · FastAPI · API · PM</dd></div>
+            <div><dt>공개 범위</dt><dd>AICU 쪽 PM과 API 개발을 맡았습니다. 분석 모델 자체 연구는 제 몫이 아니고, 기존 모델을 서비스에 붙이는 작업이에요.</dd></div>
+            <div><dt>확인 자료</dt><dd>2026.10.07 연동 검증 기록 기반. 소스는 사내 저장소에서 관리합니다.</dd></div>
+          </dl>
+          <p class="verification-note">연동 검증 · 2026.10.07 · 회사 네트워크·동일 이미지 단발 시험 · 32건 동시 요청 성공, p95 3.247초. 조건부 결과로 운영 성공률·SLA 수치가 아닙니다.</p>
+          
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://app.notion.com/p/3f17746fec7080638b2edc99ad69cb19" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#lemon">← 전체 프로젝트</a>
+      <a class="next-link" href="../admin/"><span>다음 프로젝트</span><strong>한국·미국 통합 관리자 웹 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

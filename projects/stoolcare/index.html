@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="의료 앱으로 오해받아 Apple 심사에서 15번 반려된 앱을 웰니스 앱으로 다시 정의해 미국에 출시하고, 회사의 첫 인앱 결제를 구축했습니다.">
+  <meta property="og:title" content="스툴케어 | 곽준기 포트폴리오">
+  <meta property="og:description" content="심사 피드백을 제품 개선으로 돌려, 미국에 올리다">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>스툴케어 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css">
+  <link rel="stylesheet" href="../../arch.css">
+  <script src="../../arch.js" defer></script>
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#stoolcare"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>WORK / 실무</span><span>2025.10 — 현재</span><span class="case-status">배포 후 개선 중</span></div>
+      
+      <div class="case-title"><img class="case-app-icon" src="../../assets/app-icons/stoolcare.jpg" alt="스툴케어 앱 아이콘" width="64" height="64"><h1>스툴케어</h1></div>
+      <p class="case-headline">Apple 심사 15번 반려 끝에 미국 출시, 회사의 첫 인앱 결제 구축</p>
+      <p class="case-summary">Fecal Scanner Plus를 스툴케어로 바꿔 미국에 출시했습니다. 의료 앱으로 오해받던 앱을 웰니스·헬스케어 앱으로 다시 정의하고, 앱·백엔드 개발과 구독 결제, 운영을 맡고 있습니다.</p>
+      <dl class="case-highlights"><div><dt>15번 반려 → 통과</dt><dd>Apple 심사 · 미팅까지 진행</dd></div><div><dt>가입 계정 115개</dt><dd>미국 · 2026.11.16 기준</dd></div><div><dt>161개 테스트</dt><dd>API · 2026.10.15 검증</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#result"><span>04</span> 결과</a>
+          <a href="#evidence"><span>05</span> 근거</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="스툴케어 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>미국용 Fecal Scanner Plus가 Apple 심사에서 <strong>의료 앱으로 오해받아 15번 반려</strong>됐습니다. 결과 화면과 설명, 정책 문구가 진단 서비스처럼 읽힐 여지가 있었습니다.</p>
+          <p>회사에는 인앱 결제 경험도 없었습니다. 촬영·기록·조회부터 구독 결제까지 흐름을 다시 잇고, 배포 준비와 한국·미국 운영을 함께 해야 했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>의료 앱이 아니라 웰니스 앱으로 다시 정의</h3><p>여러 번 고쳐 제출하다 Apple과 미팅까지 해 통과 조건을 직접 확인했습니다. 진단처럼 읽히는 표현을 걷어내고, 의료 면책 안내, AI 사용 고지·동의, 개인정보 처리방침을 정비한 뒤 이름도 스툴케어로 바꿨습니다. 의료 앱과 헬스케어 앱의 경계를 이때 확실히 알게 됐습니다.</p></div>
+          <div class="decision"><h3>회사의 첫 인앱 결제를 서버 기준으로</h3><p>처음에는 결제가 제대로 동작하지 않아 심사 제출 때 결제를 꺼둬야 했습니다. iOS StoreKit 2 영수증과 Google Play 구독을 서버에서 검증하고, 스토어 콘솔에 서버 알림(웹훅)을 연결해 구독·복원·환불까지 서버가 판단하게 했습니다.</p></div>
+          <div class="decision"><h3>배포 후 운영·회귀 검증</h3><p>심사 통과·배포 이후에도 사용 중 이슈를 재현해 앱·API를 수정합니다. 변경 기능은 API 테스트로 매번 돌려 회귀를 확인합니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>상자에 마우스를 올리면 하는 일과 만든 내용이 나오고, 예시 버튼을 누르면 요청 하나가 어떤 순서로 처리되는지 단계별로 볼 수 있습니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"스툴케어 시스템 구성","sub":"Flutter 앱 → NestJS API → 사진 분석 서버 3종, 스토어 결제는 서버가 검증","solo":false,"columns":[{"label":"채널","nodes":[{"id":"app","title":"Flutter 앱","sub":"iOS · Android","owner":"both","what":"대변·식단 사진 촬영, 기록 조회, 구독 결제를 하는 사용자 앱","madeLabel":"내가 맡은 부분","made":"팀원이 만든 첫 앱 위에 업로드·분석 연결, 인앱 결제(Lite·Premium)와 구매 후 서버 검증 흐름을 붙임","why":"결제 성공 여부를 앱이 아니라 서버가 판단하게 하려고"},{"id":"admin","title":"관리자 웹","sub":"React · Vite","owner":"mine","what":"운영팀이 사용자·결제 통계·문의·서버 상태를 보는 관리자 화면","made":"관리자 로그인 뒤에서 사용자 설정, 결제 통계, 문의함, 서버 상태 화면을 API에 연결","why":"운영 확인을 DB 직접 조회 없이 하려고"},{"id":"store","title":"App Store · Google Play","sub":"결제 · 서버 알림","owner":"mine","what":"구독 결제를 처리하고 갱신·해지·환불을 서버 알림(웹훅)으로 보냄","madeLabel":"연결 지점","made":"Apple V2 서명 알림과 Google Pub/Sub 알림을 받는 웹훅을 연결","why":"앱이 꺼져 있어도 구독 변화가 서버에 반영되도록"}]},{"label":"API 서버 (NestJS)","nodes":[{"id":"core","title":"API 공통 · 인증","sub":"Firebase ID 토큰 가드","owner":"mine","what":"앱과 관리자 웹의 모든 요청이 들어오는 NestJS 서버","made":"Firebase ID 토큰 검증 가드와 관리자 가드를 두고, 비인증 요청은 401로 막음","why":"기록·분석·구독 API를 로그인한 본인만 쓰게 하려고"},{"id":"upload","title":"사진 업로드","sub":"presigned-url → ingress","owner":"mine","what":"앱이 받은 업로드 주소로 사진을 올리면 메타데이터를 지운 사본만 저장","made":"15분짜리 일회용 토큰 주소를 발급하고, 올라온 사진을 정리한 뒤 fileKey를 돌려줌","why":"사진에 붙은 위치 등 식별 정보가 저장소에 남지 않게"},{"id":"analysis","title":"분석 API","sub":"대변 · 식단 분석","owner":"mine","what":"fileKey를 받아 Vision 점수와 설명 에이전트를 차례로 부르고 결과를 기록으로 저장","made":"대변이 아니면 NOT_STOOL_IMAGE로 끝내고, 에이전트 점수가 Vision 점수와 다르면 저장하지 않음","why":"모델이 낸 점수를 바꿔 쓰는 일이 없도록"},{"id":"sub","title":"구독 · 스캔 한도","sub":"영수증 서버 검증","owner":"mine","what":"앱이 보낸 구매 증거를 스토어 기준으로 검증하고 플랜별 스캔 한도를 관리","made":"StoreKit 2 JWS 서명 검증, Google Play 구독 조회, 분석 실패 시 차감한 스캔 횟수 복구","why":"회사의 첫 인앱 결제라 결제 상태의 기준을 서버 하나로 두려고"},{"id":"webhook","title":"스토어 웹훅","sub":"갱신 · 해지 · 환불","owner":"mine","what":"Apple·Google 서버 알림을 받아 구독을 갱신·해지·환불 처리","made":"서명 없는 Apple 알림은 401로 거부, 처리 중 예상 못 한 오류는 200 대신 오류로 돌려 재전송을 받음","why":"위조 환불 요청을 막고 갱신 알림이 유실되지 않게"},{"id":"coupon","title":"쿠폰 · 관리자 API","sub":"Premium 부여 · 환불 검토","owner":"mine","what":"쿠폰 등록, 관리자 Premium 부여, 환불 요청 검토를 처리하는 API","made":"기간 고정 쿠폰 등록, 관리자 Premium 부여, 환불 요청 검토 엔드포인트를 관리자 가드 뒤에 만듦","why":"스토어 결제 기록을 덮어쓰지 않고 운영 혜택을 주려고"}]},{"label":"AI 분석 서버","nodes":[{"id":"vision","title":"Vision 서버","sub":"FastAPI · PyTorch","owner":"both","what":"사진에 대변이 있는지 먼저 탐지하고, 있을 때만 분류 모델로 점수를 냄","madeLabel":"나눈 방식","made":"모델은 알고리즘 팀원 코드, 서버화·API 연결과 업로드 사진 정리 엔드포인트는 내가 맡음","why":"대변이 아닌 사진에 점수를 매기지 않으려고"},{"id":"fecal","title":"대변 설명 에이전트","sub":"FastAPI · Gemini","owner":"team","what":"Vision 점수와 사진으로 형태·색·질감 설명 문장을 만듦","madeLabel":"연결 지점","made":"팀원 원본을 그대로 들여와 컨테이너로 띄우고, API가 file_key·vision_score를 X-API-Key와 함께 보냄","why":"점수는 Vision이, 설명 문장만 에이전트가 쓰도록"},{"id":"food","title":"식단 분석 에이전트","sub":"FastAPI · Gemini","owner":"team","what":"식단 사진에서 음식 후보를 뽑고 확정한 이름으로 상세 분석","madeLabel":"연결 지점","made":"API의 식단 사진 분석 → 확정 두 단계에 연결","why":"사용자가 음식 이름을 고친 뒤 분석이 이어지도록"}]},{"label":"데이터 · 배포","nodes":[{"id":"db","title":"PostgreSQL","sub":"Prisma","owner":"mine","what":"사용자, 대변·식단 기록, 구독, 스캔 예약, 쿠폰을 저장","made":"Subscription·ScanReservation·Coupon 등 결제·한도 테이블과 마이그레이션 작성","why":"구독과 사용량을 한 트랜잭션으로 묶으려고"},{"id":"redis","title":"Redis","sub":"큐 · 업로드 토큰","owner":"mine","what":"업로드 토큰, 재검사 잠금, 백그라운드 큐(llm2-insights)를 보관","made":"업로드 주소 토큰을 Redis에 해시로만 두고, 같은 사용자의 대변 분석이 겹치지 않게 잠금","why":"여러 서버 인스턴스에서도 같은 요청이 두 번 처리되지 않게"},{"id":"gcs","title":"Cloud Storage","sub":"사진 저장","owner":"mine","what":"정리된 대변·식단 사진을 fileKey로 저장하고 분석 서버가 읽음","made":"API와 분석 에이전트가 같은 사용자별 fileKey 규칙으로 접근","why":"사진을 서버끼리 base64로 주고받지 않으려고"},{"id":"deploy","title":"GitLab CI → 배포","sub":"Helm · Docker Compose","owner":"both","what":"main에 머지되면 서비스 이미지 5개를 빌드하고 Helm 차트로 한국 서버에 배포","madeLabel":"나눈 방식","made":"CI 자동화 첫 구성은 팀원, 차트 구조 개편·서비스 추가와 미국 서버 Compose 배포는 내가 맡음","why":"한국·미국 두 지역 서버를 같은 이미지로 맞추려고"}]}],"edges":[{"from":"app","to":"core","label":"HTTPS · Firebase ID 토큰","dashed":false},{"from":"admin","to":"core","label":"관리자 인증","dashed":false},{"from":"core","to":"upload","label":"업로드 주소 발급","dashed":false},{"from":"core","to":"analysis","label":"fileKey 분석 요청","dashed":false},{"from":"core","to":"sub","label":"구독 시작 · 상태","dashed":false},{"from":"core","to":"coupon","label":"쿠폰 · 관리자","dashed":false},{"from":"app","to":"store","label":"인앱 구매","dashed":false},{"from":"store","to":"webhook","label":"서명된 서버 알림","dashed":false},{"from":"sub","to":"store","label":"서명 검증 · 구독 조회","dashed":true},{"from":"analysis","to":"sub","label":"스캔 한도 예약","dashed":false},{"from":"analysis","to":"vision","label":"image_base64","dashed":false},{"from":"analysis","to":"fecal","label":"file_key + vision_score","dashed":false},{"from":"analysis","to":"food","label":"식단 사진 분석","dashed":false},{"from":"upload","to":"gcs","label":"정리된 사진 저장","dashed":false},{"from":"fecal","to":"gcs","label":"file_key로 사진 읽기","dashed":true},{"from":"upload","to":"redis","label":"업로드 토큰","dashed":true},{"from":"analysis","to":"db","label":"기록 저장","dashed":false},{"from":"sub","to":"db","label":"구독 upsert","dashed":false},{"from":"webhook","to":"db","label":"상태 갱신","dashed":false},{"from":"coupon","to":"db","label":"쿠폰 · 부여 기록","dashed":false},{"from":"deploy","to":"core","label":"이미지 배포","dashed":true}],"scenarios":[{"name":"예시: 대변 사진 분석","input":"예시 계정 uid_example_0001이 찍은 대변 사진 1장 (예시값)","steps":[{"node":"app","title":"업로드 주소 요청","in":"업로드 주소 요청 { fileType: 'fecal' }","out":"{ uploadUrl, fileKey: '(예시 파일 키)', expiresIn: 900 }"},{"node":"upload","title":"사진 정리 후 저장","in":"일회용 주소로 업로드 (사진 원본, 최대 20MB)","out":"메타데이터를 지운 사본을 저장 → { success: true, fileKey }"},{"node":"analysis","title":"분석 요청 · 한도 예약","in":"대변 분석 요청 { fileKey } + Firebase ID 토큰","out":"본인 fileKey인지 확인, 스캔 1회 예약(한도 초과면 403 Scan limit reached)"},{"node":"vision","title":"대변 탐지 · 점수","in":"점수 요청 { image_base64 }","out":"{ is_valid: true, score: 0.82, retest_fingerprint } (대변이 아니면 is_valid: false → 400 NOT_STOOL_IMAGE)"},{"node":"fecal","title":"설명 문장 생성","in":"설명 요청 { file_key, vision_score: 0.82, lang: 'en' }","out":"score_info.stool_score: 82 + overall_summary·form·color·texture 메시지"},{"node":"analysis","title":"점수 대조","in":"에이전트 stool_score 82, Vision 0.82","out":"round(0.82×100)=82로 일치 확인, 네 설명 칸이 모두 있으면 통과"},{"node":"db","title":"기록 저장","in":"FecalLog { imageKey, aiAnalysis, aiProcessedAt }","out":"{ success: true, fecalLogId, score: 82, analysisInMarkdown, disclaimer }"}]},{"name":"예시: iOS 구독 구매 검증","input":"Premium 월 구독 구매 (거래 ID 2000000000000000-example, 예시값)","steps":[{"node":"app","title":"스토어 결제 완료","in":"Premium 월 구독 상품 구매","out":"purchaseID와 서명된 거래 데이터(serverVerificationData)"},{"node":"sub","title":"구독 시작 요청","in":"구독 시작 요청 { platform: 'ios', subscriptionId: '2000000000000000-example', productId: '(Premium 월 구독 상품 ID)', receipt: 'eyJ…(JWS 예시)' }","out":"platform 'ios' → 'apple'로 정규화"},{"node":"store","title":"JWS 서명 검증","in":"Apple 루트 인증서로 verifyAndDecodeTransaction","out":"originalTransactionId, expiresDate (무효면 400 Invalid receipt, 검증 불가면 503)"},{"node":"db","title":"구독 저장","in":"subscriptionId = originalTransactionId","out":"Subscription upsert: status 'active', platform 'apple', 만료일은 스토어 값"},{"node":"app","title":"플랜 반영 확인","in":"구독 상태 조회 (uid_example_0001)","out":"tier 'premium' (남의 uid로 조회하면 403)"}]},{"name":"예시: Apple 환불 알림","input":"예시 구독 2000000000000000-example에 대한 REFUND 서버 알림 (예시값)","steps":[{"node":"store","title":"서버 알림 전송","in":"환불 처리 발생","out":"Apple 웹훅 호출 { signedPayload }"},{"node":"webhook","title":"서명 확인","in":"signedPayload (없으면 401)","out":"notificationType 'REFUND', originalTransactionId '2000000000000000-example'"},{"node":"db","title":"구독 찾기","in":"subscriptionId = originalTransactionId","out":"이 지역에 없으면 다른 지역 서버로 서명 원문을 전달"},{"node":"webhook","title":"권한 회수","in":"REFUND (REVOKE도 같은 처리)","out":"status 'refunded', autoRenew false, remainingDays 0, endDate = 지금"},{"node":"store","title":"수신 응답","in":"처리 완료","out":"200 { status: 'ok', message: 'Webhook processed successfully' }"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>15번의 반려 끝에 심사를 통과해 스툴케어를 미국에 출시했고, 지금도 운영하며 기능을 더하고 있습니다. 2026.11.16 어드민 기준 미국 서버 가입 계정은 <strong>115개</strong>입니다.</p>
+          <p>2026.10.15 API 검증에서 <strong>Jest 16개 스위트, 161개 테스트</strong>가 통과했습니다. API 범위 결과이며 모바일 전체·결제 흐름 종합 검증 수치가 아닙니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>05</span> 근거 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>역할</dt><dd>앱·백엔드 개발 / 운영</dd></div>
+            <div><dt>집중한 지점</dt><dd>Apple 심사 대응(의료 → 웰니스) · 첫 인앱 결제 · 앱/API 개발 · 배포 후 운영</dd></div>
+            <div><dt>기술</dt><dd>Flutter · Dart · NestJS · PostgreSQL</dd></div>
+            <div><dt>공개 범위</dt><dd>앱·백엔드 구현, 요구사항·일정 조율, 운영을 담당. AI 알고리즘과 UX/UI 디자인은 다른 팀원과 협업했습니다.</dd></div>
+            <div><dt>확인 자료</dt><dd>2026.10.15 API 테스트 기록 기반. 아래 시안은 Figma 협업 디자인이며 실제 배포 화면과 다를 수 있습니다.</dd></div>
+          </dl>
+          <p class="verification-note">API Jest 검증 · 2026.10.15 · 16개 스위트, 161개 테스트 통과. API 범위 결과이며 모바일 전체·결제 흐름 종합 검증 수치가 아닙니다.</p>
+          
+          <div class="case-gallery">
+            <h3>첫 사용 흐름을 소개하는 세 화면</h3>
+            <p>스캔, 식사 기록, 변화 확인을 차례로 보여주는 온보딩 시안이에요. Figma 협업 파일에서 가져왔고, 지금 배포 화면과는 다를 수 있어요.</p>
+            <div class="case-gallery-grid"><figure><a href="../../assets/stoolcare/onboarding-scan.png" target="_blank" rel="noopener noreferrer" aria-label="01 · 스캔 안내 원본 크게 보기"><img src="../../assets/stoolcare/onboarding-scan.png" alt="카메라를 이용한 스캔 기능을 소개하는 스툴케어 온보딩 디자인 시안" width="750" height="1624" loading="lazy"></a><figcaption>01 · 스캔 안내</figcaption></figure><figure><a href="../../assets/stoolcare/onboarding-meal.png" target="_blank" rel="noopener noreferrer" aria-label="02 · 식사 기록 원본 크게 보기"><img src="../../assets/stoolcare/onboarding-meal.png" alt="식사 사진과 Meal Scan 기능을 소개하는 스툴케어 온보딩 디자인 시안" width="750" height="1624" loading="lazy"></a><figcaption>02 · 식사 기록</figcaption></figure><figure><a href="../../assets/stoolcare/onboarding-trends.png" target="_blank" rel="noopener noreferrer" aria-label="03 · 기록 변화 확인 원본 크게 보기"><img src="../../assets/stoolcare/onboarding-trends.png" alt="점수와 주간 그래프로 기록 변화를 소개하는 스툴케어 온보딩 디자인 시안" width="750" height="1624" loading="lazy"></a><figcaption>03 · 기록 변화 확인</figcaption></figure></div>
+            <p class="gallery-credit">UX/UI 디자인: AICU 디자인 협업 결과물 · 본인 담당: 앱·백엔드 구현 및 요구사항 조율. 원본 파일은 열람 권한이 필요할 수 있습니다. <a href="https://www.figma.com/design/PFltfLnQjkYWauJNIVxkGk/Fecal_UXUI?node-id=55795-2536" target="_blank" rel="noopener noreferrer">Figma 협업 원본 ↗</a></p>
+          </div>
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://apps.apple.com/us/app/stool-care/id6770863068" target="_blank" rel="noopener noreferrer">App Store <span aria-hidden="true">↗</span></a>
+<a href="https://app.notion.com/p/3f17746fec70808f8bc9e31a7ad46660" target="_blank" rel="noopener noreferrer">Notion에서 더 보기 <span aria-hidden="true">↗</span></a></div>
+          <p class="access-note">코드는 회사 비공개 저장소에 있어 링크하지 않았습니다. 일부 Notion·Figma 자료는 소유자가 부여한 열람 권한이 필요합니다.</p>
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#stoolcare">← 전체 프로젝트</a>
+      <a class="next-link" href="../fecal-qa/"><span>다음 프로젝트</span><strong>피칼스캐너 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>
