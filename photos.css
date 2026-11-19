@@ -20,7 +20,7 @@
 .story-copy h3{font-size:clamp(27px,2.8vw,40px);letter-spacing:-1.5px;line-height:1.35;margin:18px 0 24px;font-weight:650}
 .story-copy p{font-size:15px;color:var(--muted);line-height:1.95}
 .story-copy p+p{margin-top:15px}
-.story-photos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:start}
+.story-photos{display:grid;grid-template-columns:minmax(0,340px);justify-content:center;gap:18px;align-items:start}
 .story-photos figure{margin:0;min-width:0}
 .story-photos .sea-photo{margin-top:75px}
 .story-photos img{display:block;width:100%;height:auto;aspect-ratio:3/5;object-fit:cover;background:var(--soft)}
