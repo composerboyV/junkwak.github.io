@@ -24,7 +24,6 @@ const projects = [
     "id": "stoolcare",
     "category": "work",
     "title": "스툴케어",
-    "status": "배포 후 개선 중",
     "subtitle": "미국 출시 · 첫 인앱 결제",
     "period": "2025.10 — 현재",
     "description": "의료 앱으로 오해받아 Apple 심사에서 15번 반려된 앱을 웰니스 앱으로 다시 정의해 미국에 출시했습니다. 회사의 첫 인앱 결제를 구축하고 운영까지 맡고 있습니다.",
