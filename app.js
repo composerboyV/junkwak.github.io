@@ -95,7 +95,8 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObse
       tagged.add(el);
       el.classList.add('reveal');
       if (variant) el.classList.add(variant);
-      if (stagger) el.style.setProperty('--reveal-delay', `${i * stagger}ms`);
+      // Half the listed stagger, and long lists stop adding delay after a few items so nothing waits.
+      if (stagger) el.style.setProperty('--reveal-delay', `${Math.min(i, 5) * stagger / 2}ms`);
     });
   });
 
@@ -109,9 +110,9 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObse
       setTimeout(() => {
         el.classList.remove('reveal', 'reveal-down', 'reveal-left', 'reveal-right', 'reveal-scale');
         el.style.removeProperty('--reveal-delay');
-      }, 1200);
+      }, 1100);
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -12% 0px' });
+  }, { threshold: 0.05, rootMargin: '0px 0px -2% 0px' });
 
   tagged.forEach(el => observer.observe(el));
 }

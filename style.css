@@ -120,11 +120,11 @@
 
 
 /* Scroll reveal — AOS-style fade + lift. Only runs when app.js tags elements. */
-.reveal{opacity:0;transform:translate3d(0,56px,0);transition:opacity .9s cubic-bezier(.22,.72,.15,1.02),transform .9s cubic-bezier(.22,.72,.15,1.02);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
-.reveal.reveal-down{transform:translate3d(0,-40px,0)}
-.reveal.reveal-left{transform:translate3d(48px,24px,0)}
-.reveal.reveal-right{transform:translate3d(-48px,24px,0)}
-.reveal.reveal-scale{transform:translate3d(0,24px,0) scale(.94)}
+.reveal{opacity:0;transform:translate3d(0,32px,0);transition:opacity .5s cubic-bezier(.22,.72,.15,1.02),transform .5s cubic-bezier(.22,.72,.15,1.02);transition-delay:var(--reveal-delay,0ms);will-change:opacity,transform}
+.reveal.reveal-down{transform:translate3d(0,-24px,0)}
+.reveal.reveal-left{transform:translate3d(28px,14px,0)}
+.reveal.reveal-right{transform:translate3d(-28px,14px,0)}
+.reveal.reveal-scale{transform:translate3d(0,14px,0) scale(.97)}
 .reveal.revealed{opacity:1;transform:translate3d(0,0,0) scale(1)}
 @media (prefers-reduced-motion:reduce){.reveal,.reveal.reveal-down,.reveal.reveal-left,.reveal.reveal-right,.reveal.reveal-scale{opacity:1;transform:none;transition:none}}
 @media print{.reveal,.reveal.reveal-down,.reveal.reveal-left,.reveal.reveal-right,.reveal.reveal-scale{opacity:1!important;transform:none!important;transition:none!important}}
