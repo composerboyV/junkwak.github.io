@@ -12,6 +12,7 @@ const groups = [
 const escapeHTML = text => String(text).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
 const tagsHTML = tags => `<div class="tags">${tags.map(tag => `<span>${escapeHTML(tag)}</span>`).join('')}</div>`;
 const statusHTML = status => status ? `<p class="project-status">${escapeHTML(status)}</p>` : '';
+const awardHTML = award => award ? `<p class="project-award">${escapeHTML(award)}</p>` : '';
 const iconHTML = project => project.appIcon
   ? `<span class="project-icon project-app-icon"><img src="${escapeHTML(project.appIcon)}" alt="${escapeHTML(project.appIconAlt || `${project.title} 앱 아이콘`)}" width="46" height="46" loading="lazy"></span>`
   : project.logo
@@ -29,7 +30,7 @@ const cardHTML = project => `<article class="project-card${project.thumbnail ? '
   ${thumbHTML(project)}
   <div class="card-top">${iconHTML(project)}<span class="category-label">${labels[project.category]}</span></div>
   <h3>${escapeHTML(project.title)}</h3><p class="project-sub">${escapeHTML(project.subtitle)}</p><p class="project-period">${escapeHTML(project.period)}</p>
-  ${statusHTML(project.status)}
+  ${awardHTML(project.award)}${statusHTML(project.status)}
   <p class="project-desc">${escapeHTML(project.description)}</p>${tagsHTML(project.tags)}
   <div class="card-bottom"><span>${escapeHTML(project.role)}</span><a class="detail-button" href="${escapeHTML(project.url)}" aria-label="${escapeHTML(project.title)} 자세히 보기">자세히 보기 <span aria-hidden="true">↗</span></a></div>
 </article>`;
@@ -40,7 +41,6 @@ groupsEl.innerHTML = grouped.map(group => `<section class="project-group" id="gr
   <div class="project-grid">${group.items.map(cardHTML).join('')}</div>
 </section>`).join('');
 document.querySelector('.group-jump').innerHTML = grouped.map(group => `<a href="#group-${group.id}">${escapeHTML(group.title)} <span>${group.items.length}</span></a>`).join('');
-document.querySelector('#project-count').textContent = `${projects.length} PROJECTS`;
 // The cards only exist once this script runs, so finish a #<project-id> jump the browser could not make.
 if (location.hash) document.getElementById(decodeURIComponent(location.hash.slice(1)))?.scrollIntoView();
 

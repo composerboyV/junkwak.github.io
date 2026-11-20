@@ -199,8 +199,9 @@ figure.incident-log { margin-top: 14px; }
 .case-section .letter-lead { margin-bottom: 22px; padding-left: 18px; border-left: 3px solid var(--purple); color: var(--ink); font-size: 18px; font-weight: 620; letter-spacing: -.03em; line-height: 1.7; }
 .letter-refs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 28px; }
 .letter-refs > span { margin-right: 6px; color: var(--muted); font-size: 12.5px; letter-spacing: .5px; }
-.letter-refs a { padding: 7px 13px; border: 1px solid #d8d1e1; border-radius: 20px; background: #fff; color: var(--purple); font-size: 13.5px; }
-.letter-refs a:hover { border-color: var(--purple); background: var(--soft); }
+.letter-refs a { padding: 8px 14px; border: 1px solid var(--purple); border-radius: 20px; background: var(--purple); color: #fff; font-size: 13.5px; font-weight: 600; }
+.letter-refs a:hover { border-color: #5a3d97; background: #5a3d97; }
+.nowrap { white-space: nowrap; }
 .case-next { display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; padding: 37px 0 50px; border-top: 1px solid var(--line); }
 .next-link { text-align: right; max-width: 65%; }
 .next-link > span { display: block; color: var(--muted); font-size: 12.5px; margin-bottom: 10px; }

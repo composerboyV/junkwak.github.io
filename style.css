@@ -145,3 +145,13 @@
 .project-sub+.project-period{margin-top:3px}
 @media(max-width:800px){.project-group,.project-card{scroll-margin-top:84px}.project-group-head{flex-direction:column;gap:4px}.project-group-head p{text-align:left}}
 @media print{.group-jump{display:none!important}.project-group+.project-group{margin-top:24px}.project-sub{font-size:11px}}
+
+/* Mobile header: hamburger icon, one-line name, no NOW badge (the hero already says where I work). */
+.burger{display:grid;gap:5px;width:22px}
+.burger i{display:block;height:2px;border-radius:2px;background:currentColor;transition:transform .2s,opacity .2s}
+.menu-toggle[aria-expanded="true"] .burger i:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.menu-toggle[aria-expanded="true"] .burger i:nth-child(2){opacity:0}
+.menu-toggle[aria-expanded="true"] .burger i:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:800px){.now-badge{display:none}.sidebar-intro strong{white-space:nowrap}.menu-toggle{padding:10px}}
+.project-award{margin:10px 0 0;color:#60408e;font-size:14px;font-weight:700;letter-spacing:.2px}
+#experience .learning{margin-top:50px}

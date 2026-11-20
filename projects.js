@@ -7,7 +7,7 @@ const projects = [
     "badge": "42",
     "badgeAlt": "42 네트워크 로고",
     "title": "42 Asia Hackathon 2026 in Tokyo",
-    "status": "3위 수상",
+    "award": "Tokyo · 3rd place",
     "subtitle": "팀 Mirai 未来 · AI 에이전트 4종",
     "period": "2026.11.09 — 11.11 · 42시간",
     "description": "주일 프랑스상공회의소를 위한 AI 에이전트 4종을 팀과 함께 만들었습니다. 웹 플랫폼과 Azure 인프라, 채널 연동, 인사이트 에이전트 첫 버전을 맡았습니다.",
