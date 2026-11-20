@@ -331,3 +331,6 @@ figure.incident-log { margin-top: 14px; }
 .sec-na td, .sec-na th { color: var(--muted) !important; }
 .case-section .sec-subhead { margin-top: 36px; }
 @media (max-width: 760px) { .sec-report-meta { grid-template-columns: 1fr; } .sec-table { font-size: 13.5px; } }
+.case-photo { max-width: 300px; margin: 28px 0 0; }
+.case-photo img { display: block; width: 100%; height: auto; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; }
+.case-photo figcaption { margin-top: 10px; color: var(--muted); font-size: 13px; }
