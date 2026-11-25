@@ -8,7 +8,7 @@ const projects = [
     "appIconAlt": "42 Asia Hackathon 2026 in Tokyo 로고",
     "title": "42 Asia Hackathon 2026 in Tokyo",
     "award": "Tokyo · 3rd place",
-    "subtitle": "팀 Mirai 未来 · AI 에이전트 4종",
+    "subtitle": "팀 Mirai 未来 · AI-agent 4종류",
     "period": "2026.11.09 — 11.11 · 42시간",
     "description": "주일 프랑스상공회의소(CCIFJ)의 회원 상담, 행사 추천, 기업 연결, 회원 수요 분석 등으로 직원을 돕고, 가입 기관과 회원들의 활동을 돕는 AI 에이전트입니다.",
     "tags": [
