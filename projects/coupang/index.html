@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="쿠팡 주문 메일에서 상품과 배송지 정보를 모아 보여주는 Windows 앱입니다. 주문을 주소·수취인·상품별로 확인하고 엑셀 파일로 저장할 수 있습니다.">
+  <meta property="og:title" content="Coupang Order Viewer | 곽준기 포트폴리오">
+  <meta property="og:description" content="쿠팡 주문 메일에서 상품과 배송지 정보를 모아 보여주는 Windows 앱입니다. 주문을 주소·수취인·상품별로 확인하고 엑셀 파일로 저장할 수 있습니다.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>Coupang Order Viewer | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css?v=20261124">
+  <link rel="stylesheet" href="../../arch.css?v=20261124">
+  <script src="../../arch.js?v=20261124" defer></script>
+  <script src="../../project.js" defer></script>
+  <link rel="stylesheet" href="../../architecture-viewer.css">
+  <script src="../../architecture-viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#coupang"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>PERSONAL / 개인 도구</span><span>2026.05 — 2026.06</span></div>
+      
+      <h1>Coupang Order Viewer</h1>
+      <p class="case-headline">쿠팡 주문과 배송지를 모아 보고 엑셀로 저장하는 Windows 앱</p>
+      <p class="case-summary">쿠팡 주문 메일에서 상품과 배송지 정보를 모아 보여주는 Windows 앱입니다. 주문을 주소·수취인·상품별로 확인하고 엑셀 파일로 저장할 수 있습니다.</p>
+      <dl class="case-highlights case-context"><div><dt>담당 범위</dt><dd>개인 프로젝트 · Windows 데스크톱 앱(WPF · .NET 8) 개발</dd></div><div><dt>실행 형태</dt><dd>별도 서버 없이 내 PC에서 실행합니다. 주문과 설정은 PC에 저장하고, 메일 비밀번호는 DPAPI로 암호화합니다.</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#result"><span>04</span> 결과</a>
+          <a href="#evidence"><span>05</span> 확인 자료</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="Coupang Order Viewer 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>공동구매를 할 때마다 쿠팡 주문 메일을 하나씩 열어 배송지와 수량을 옮겨 적어야 했습니다. 주문 메일을 한곳에 모아 확인하고, 필요한 정보를 엑셀로 바로 내보내는 도구를 만들기로 했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>주문 조회 API가 없어 주문 메일을 읽었습니다</h3><p>처음에는 쿠팡 판매자 API를 기준으로 주문 조회부를 설계했지만, 구매자가 자기 주문을 조회할 수 있는 API는 없었습니다. 그래서 MailKit으로 주문 메일을 IMAP으로 읽는 방식으로 바꿨습니다. 화면과 주문 병합 로직은 주문 출처 인터페이스(IOrderApiClient)만 보게 두어, 그 뒤의 수집 방식만 메일로 바꿔 끼웠습니다.</p></div>
+          <div class="decision"><h3>새 메일만 받고, 지난 주문은 PC에 쌓았습니다</h3><p>폴더마다 마지막으로 읽은 메일 위치(UID)와 처리한 Message-ID를 기억해 새 메일 헤더만 받습니다. 네이버 IMAP의 기간 검색은 최근 몇 달 치만 돌려줘서, 60일이 넘는 기간은 전체를 훑은 뒤 날짜를 코드에서 거릅니다. 이미 처리한 메일은 다시 받지 않으므로, 같은 주문번호는 최신본만 남기고 배송지가 바뀌면 이전 주소와 함께 표시해 PC에 쌓아 둡니다.</p></div>
+          <div class="decision"><h3>메일 형식이나 계정이 달라도 주문이 섞이지 않게 했습니다</h3><p>쿠팡 메일은 시기마다 HTML 구조와 마스킹 방식이 달라서, 표 구조를 줄바꿈으로 살린 뒤 상품 줄을 네 가지 형식으로 차례로 읽습니다. 상품을 찾지 못한 메일은 주문 메일이 아닌 것으로 보고 버립니다. 또 한 파일을 같이 쓰다 두 메일 계정의 주문이 섞이는 문제를 발견해, 주문 파일과 메일 캐시를 계정별로 나눴습니다.</p></div>
+          <div class="decision"><h3>엑셀은 바로 쓸 수 있게, 비밀번호는 Windows 계정에 묶었습니다</h3><p>ClosedXML로 상품 한 개당 한 행씩 엑셀을 만들고, 배송지가 바뀐 주문 행은 붉은 배경으로 표시합니다. 메일 비밀번호는 Windows DPAPI(현재 사용자 범위)로 암호화해, 설정 파일이 복사돼도 같은 Windows 계정이 아니면 풀 수 없습니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>조회를 누르면 주문 병합 단계가 주문 출처 연결부를 거쳐 IMAP 수집과 주문 메일 파서를 부르고, 합친 주문을 계정별 JSON에 저장합니다. 메인 창은 이 주문으로 주소·수취인·상품별 묶음을 계산하고, 엑셀 저장도 같은 주문 목록을 씁니다. 별도 서버 없이 PC 안에서 처리합니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"Coupang Order Viewer 시스템 구성","sub":"서버 없이 내 PC에서 쿠팡 주문 메일을 IMAP으로 읽어 주문·배송지를 정리하고 엑셀로 저장하는 WPF 앱","solo":true,"columns":[{"label":"화면","nodes":[{"id":"login","title":"로그인 창","sub":"앱 전용 계정","path":"CoupangOrderViewer/LoginWindow.xaml.cs · Services/AuthService.cs","what":"처음 실행이면 계정 만들기, 그다음부터는 로그인을 받아 메인 창을 엶","madeLabel":"내가 만든 것","made":"비밀번호를 16바이트 랜덤 솔트와 함께 SHA-256으로 해시해 users.json에 저장하고, 비밀번호 힌트를 따로 보여줌","why":"쿠팡 계정과 상관없이 이 PC의 주문 기록을 아무나 열지 못하게"},{"id":"settings","title":"메일 설정 창","sub":"IMAP 자동 감지","path":"CoupangOrderViewer/SettingsWindow.xaml.cs","what":"이메일 주소와 비밀번호(앱 비밀번호 권장)를 받아 저장","madeLabel":"내가 만든 것","made":"주소를 입력하면 도메인으로 IMAP 서버를 찾아 표시하고, 연결 테스트로 받은편지함 개수를 보여줌","why":"IMAP 서버 주소를 몰라도 설정할 수 있게"},{"id":"main","title":"메인 창 (MVVM)","sub":"5개 페이지","path":"CoupangOrderViewer/MainWindow.xaml · ViewModels/MainWindowViewModel.cs","what":"조회 기간을 정해 주문을 불러오고 주문 조회·주소별·수취인별·상품별 배송지 페이지로 나눠 보여줌","madeLabel":"내가 만든 것","made":"검색어·상태 필터·요약 카드 필터, 종료일이 시작일보다 앞서지 않게 막기, Shift+휠 가로 스크롤","why":"받아 온 주문을 눈으로 확인한 다음 내보내도록"}]},{"label":"메일 수집","nodes":[{"id":"source","title":"주문 출처 연결부","sub":"IOrderApiClient","path":"CoupangOrderViewer/Api/OrderApiClientFactory.cs · Api/EmailOrderApiClient.cs","what":"주문을 어디서 가져올지 정하는 경계. 설정 정규화로 항상 메일(IMAP) 출처를 씀","madeLabel":"내가 만든 것","made":"화면과 병합 로직은 IOrderApiClient만 보고, 메일 클라이언트가 그 뒤에서 IMAP 서비스를 부름","why":"구매자용 쿠팡 주문 조회 API가 없어 판매자 API 설계에서 메일 방식으로 바꿨기 때문"},{"id":"imap","title":"IMAP 수집","sub":"MailKit · 증분 스캔","path":"CoupangOrderViewer/Services/EmailImapService.cs","what":"받은편지함과 개인 폴더(보낸함·휴지통·임시보관함 제외)에서 발신 주소에 coupang이 든 메일만 내려받음","madeLabel":"내가 만든 것","made":"폴더별 마지막 UID 워터마크와 처리한 Message-ID 캐시로 새 메일 헤더만 받고, 60일 넘는 기간은 전체 스캔 후 날짜를 코드에서 거름","why":"네이버 IMAP의 SINCE 검색이 최근 몇 달만 돌려줘서, 그리고 매번 전체 헤더를 받지 않으려고"},{"id":"parser","title":"주문 메일 파서","sub":"정규식 4가지","path":"CoupangOrderViewer/Services/EmailImapService.cs (ParseEmail)","what":"메일 본문에서 주문번호·수취인·연락처·주소·우편번호·배송 메시지·상품을 뽑아 OrderRecord로 만듦","madeLabel":"내가 만든 것","made":"HTML의 <\/td> 등을 줄바꿈으로 바꿔 표 구조를 살리고, 상품 줄은 형식별 4가지 방법으로 차례로 시도, 상품이 없으면 주문 메일이 아닌 것으로 버림","why":"쿠팡 메일은 시기마다 HTML 구조와 마스킹 방식이 달라서"}]},{"label":"처리","nodes":[{"id":"order","title":"주문 병합","sub":"OrderService","path":"CoupangOrderViewer/Services/OrderService.cs","what":"저장된 주문과 새로 읽은 주문을 주문번호로 합쳐 저장하고, 조회 기간에 든 것만 화면에 돌려줌","madeLabel":"내가 만든 것","made":"같은 주문번호는 UpdatedAt 최신본만 남기고, 저장본과 주소가 달라지면 변경 표시와 이전 주소를 남김","why":"이미 처리한 메일은 다시 받지 않으므로 지난 주문을 로컬에 쌓아 두어야 해서"},{"id":"views","title":"묶음 보기 계산","sub":"주소·수취인·상품","path":"CoupangOrderViewer/ViewModels/MainWindowViewModel.cs (RefreshDerivedViewsAsync)","what":"불러온 주문을 배송지별, 수취인별로 묶어 건수·총 구매금액·주요 상품 3개를 만들고 상품 줄마다 배송지를 붙임","madeLabel":"내가 만든 것","made":"백그라운드 Task에서 계산한 뒤 UI 스레드에서 컬렉션만 교체","why":"같은 배송지·같은 사람에게 보낸 주문을 한눈에 보려고"}]},{"label":"로컬 저장 · 출력","nodes":[{"id":"store","title":"계정별 주문 JSON","sub":"LocalOrderStorage","path":"CoupangOrderViewer/Storage/LocalOrderStorage.cs · Services/AppPaths.cs","what":"병합한 전체 주문을 Data/orders-{메일계정}.json에 저장","madeLabel":"내가 만든 것","made":"메일 계정마다 주문 파일과 메일 캐시 파일을 따로 두도록 경로를 계정 이름으로 만듦","why":"한 파일을 같이 쓰다 두 계정의 주문이 섞이는 문제를 발견해서"},{"id":"secret","title":"설정 저장 (DPAPI)","sub":"settings.json","path":"CoupangOrderViewer/Services/SettingsService.cs","what":"메일 주소와 암호화한 메일 비밀번호를 저장하고 불러옴","madeLabel":"내가 만든 것","made":"메일 비밀번호를 Windows DPAPI(CurrentUser 범위)로 암호화해 Base64로 저장","why":"파일이 복사돼도 같은 Windows 계정이 아니면 풀 수 없게"},{"id":"excel","title":"엑셀 내보내기","sub":"ClosedXML","path":"CoupangOrderViewer/Services/ExcelExportService.cs","what":"지금 불러온 주문을 저장 위치를 골라 .xlsx로 저장","madeLabel":"내가 만든 것","made":"상품 한 개당 한 행, 30개 열, 머리글 고정·열 너비 자동, 주소가 바뀐 주문 행은 붉은 배경","why":"손으로 옮겨 적던 배송지·수량을 바로 엑셀에서 쓰려고"},{"id":"log","title":"날짜별 로그","sub":"FileAppLogger","path":"CoupangOrderViewer/Services/FileAppLogger.cs","what":"조회 시작·완료 건수, 폴더 목록, 진단 기록, 오류를 Logs/yyyy-MM/날짜-계정.txt에 남김","madeLabel":"내가 만든 것","made":"월별 폴더와 일별 파일로 나누고, 메인 창의 로그 보기 버튼으로 바로 열게 함","why":"메일이 안 잡힐 때 어느 폴더에서 몇 개를 봤는지 확인하려고"}]}],"edges":[{"from":"login","to":"main","label":"로그인 성공 시 열기","dashed":false},{"from":"main","to":"settings","label":"⚙ 버튼","dashed":false},{"from":"main","to":"secret","label":"설정 저장","dashed":false},{"from":"settings","to":"imap","label":"연결 테스트","dashed":true},{"from":"main","to":"order","label":"조회","dashed":false},{"from":"order","to":"source","label":"GetOrdersAsync","dashed":false},{"from":"source","to":"imap","label":"메일 주소·비밀번호·기간","dashed":false},{"from":"imap","to":"parser","label":"쿠팡 발신 메일","dashed":false},{"from":"order","to":"store","label":"불러오기 · 전체 저장","dashed":false},{"from":"main","to":"views","label":"조회 후 계산","dashed":false},{"from":"main","to":"excel","label":"엑셀 저장","dashed":false},{"from":"order","to":"log","label":"조회 기록","dashed":true}],"scenarios":[{"name":"예시: 처음 실행하고 메일 연결하기","input":"아이디 demo · 메일 user@example.com","steps":[{"node":"login","title":"계정 만들기","in":"아이디 demo, 비밀번호 4자 이상, 확인 일치","out":"SHA-256(솔트+비밀번호)를 users.json에 저장하고 메인 창 열기"},{"node":"main","title":"메일 미설정 안내","in":"저장된 메일 정보 없음","out":"\"⚙ 버튼을 눌러 이메일 주소와 비밀번호를 설정해주세요.\""},{"node":"settings","title":"IMAP 서버 감지·연결 테스트","in":"user@example.com + 앱 비밀번호","out":"imap.example.com:993 표시, 테스트 결과 \"연결 성공: … (받은편지함 N개)\" 또는 \"연결 실패: …\""},{"node":"secret","title":"비밀번호 암호화 저장","in":"EmailAddress, EmailPassword","out":"settings.json에 EmailPasswordEncrypted(DPAPI·Base64)로 기록"},{"node":"main","title":"바로 주문 불러오기","in":"메일 정보 있음","out":"\"메일 설정 저장 완료. 주문을 불러오는 중입니다...\" 후 조회 시작"}]},{"name":"예시: 최근 30일 주문 조회","input":"기본 기간(오늘-30일 ~ 오늘) · 쿠팡 주문 메일 1통","steps":[{"node":"main","title":"조회 버튼","in":"StartDate=오늘-30일, EndDate=오늘","out":"LoadAndMergeAsync(시작일, 종료일)"},{"node":"order","title":"저장본 불러오기","in":"orders-user_example-com.json","out":"지난번까지 쌓인 주문 목록"},{"node":"imap","title":"새 메일만 헤더 받기","in":"기간 31일(60일 이하) · 폴더별 UID 워터마크","out":"워터마크보다 큰 UID ∩ SINCE 검색 결과 중 발신 주소에 coupang이 든 메일 1통"},{"node":"parser","title":"본문에서 주문 뽑기","in":"\"예시 상품 A 12,000원 2 24,000원 주문배송조회\", 주문번호 12345678901, 받으시는 분 김예시, [123**] 예시시 예시로 1","out":"OrderRecord{OrderId=12345678901, Status=ACCEPT, ReceiverName=김예시, Items=[예시 상품 A·12,000원·2개]}"},{"node":"imap","title":"캐시 갱신","in":"처리한 Message-ID, 폴더별 최대 UID","out":"email-cache 파일에 WATERMARK:INBOX:… 줄과 Message-ID 기록"},{"node":"order","title":"병합·저장·기간 필터","in":"저장본 + 새 주문 1건","out":"주문번호별 최신본을 전체 저장, 주문일이 기간 안인 것만 반환"},{"node":"views","title":"묶음 보기 갱신","in":"표시 중인 주문","out":"주소별·수취인별 카드(건수, 총 24,000원 등)와 상품별 배송지 줄"},{"node":"main","title":"결과 표시","in":"반환된 주문","out":"\"N건 표시 중 (전체 저장: M건)\" · 상태 열은 결제완료"}]},{"name":"예시: 엑셀로 내보내기","input":"조회된 주문 1건(상품 2종)","steps":[{"node":"main","title":"엑셀 저장 버튼","in":"Orders.Count > 0","out":"저장 위치 대화상자, 기본 파일명 orders-yyyyMMdd-HHmmss.xlsx"},{"node":"excel","title":"시트 작성","in":"주문 1건 · 상품 2종","out":"'주문목록' 시트에 머리글 30열 + 상품마다 1행씩 2행, 주소 변경 주문이면 행 배경 #FEF2F2"},{"node":"log","title":"완료 기록","in":"저장 경로","out":"[INFO] 엑셀 저장 완료: … , 화면 상태줄에도 같은 문구"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>주문 메일을 받아 주소·수취인·상품별로 묶어 보고, 같은 주문이 다시 오면 최신본으로 합치며, 배송지가 바뀐 주문은 표시한 채 엑셀로 저장할 수 있게 됐습니다. 메일이 잡히지 않을 때는 날짜별 로그에서 어느 폴더의 메일을 몇 개 확인했는지 볼 수 있습니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>05</span> 확인 자료 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>기술</dt><dd>C# · .NET 8 · WPF · MVVM · MailKit · ClosedXML</dd></div>
+            <div><dt>공개 범위</dt><dd>저장소는 비공개이고, 실제 주문·배송지 데이터는 포함하지 않습니다.</dd></div>
+          </dl>
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#coupang">← 전체 프로젝트</a>
+      <a class="next-link" href="../webserver/"><span>다음 프로젝트</span><strong>C++ HTTP/1.1 서버 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

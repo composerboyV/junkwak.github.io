@@ -1,0 +1,82 @@
+/* Shared interactive architecture (arch.js). Night canvas like the Mirai page, on any project page. */
+.ax { --night: #13121a; --night-2: #1c1a26; --night-line: #2f2b40; --glow: #b69cff; --mine: #6e57c4;
+  margin-top: 28px; padding: 24px; border-radius: 20px; color: #f3f1f8; background-color: var(--night);
+  background-image: radial-gradient(#26243a 1px, transparent 1px); background-size: 22px 22px;
+  box-shadow: 0 40px 80px -50px rgba(19, 18, 26, .9); }
+.ax .ax-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 14px; padding: 4px 16px 0; }
+.ax .ax-title { font-size: 20px; font-weight: 700; letter-spacing: -.02em; }
+.ax .ax-sub { margin-top: 6px; color: #a9a4ba; font-size: 14.5px; }
+.ax .ax-legend { display: flex; gap: 8px; font-size: 13.5px; }
+.ax .ax-legend span { padding: 5px 10px; border: 1px solid #3a3647; border-radius: 999px; background: #1d1c26; color: #c9c4d6; }
+.ax .ax-legend span.mine { border-color: var(--mine); background: #251f3a; color: #f3f1f8; }
+.ax .ax-legend b { color: var(--glow); font-weight: 400; }
+
+.ax .ax-plays { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 16px 16px 0; }
+.ax .ax-plays-k { margin-right: 4px; color: var(--glow); font-size: 12.5px; font-weight: 700; letter-spacing: .6px; }
+.ax .ax-plays button, .ax .ax-ctrl button { padding: 7px 12px; border: 1px solid #3a3647; border-radius: 999px; background: #1d1c26; color: #f3f1f8; font: inherit; font-size: 13.5px; cursor: pointer; }
+.ax .ax-plays button:hover, .ax .ax-ctrl button:hover:not(:disabled) { border-color: var(--glow); }
+.ax .ax-plays button[aria-pressed="true"] { border-color: var(--glow); background: #3a2d63; }
+.ax .ax-ctrl button:disabled { opacity: .35; cursor: default; }
+.ax .ax-plays button:focus-visible, .ax .ax-ctrl button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+.ax .ax-zoom { display: flex; align-items: center; justify-content: flex-end; gap: 6px; margin: 12px 16px 0; }
+.ax .ax-zoom button { min-width: 36px; min-height: 32px; padding: 4px 10px; border: 1px solid #3a3647; border-radius: 8px; background: #1d1c26; color: #f3f1f8; font: inherit; font-size: 13.5px; cursor: pointer; }
+.ax .ax-zoom button:hover:not(:disabled) { border-color: var(--glow); }
+.ax .ax-zoom button:disabled { opacity: .35; cursor: default; }
+.ax .ax-zoom button:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.ax .ax-zoom-pct { min-width: 44px; color: #a9a4ba; font-size: 12.5px; text-align: center; font-variant-numeric: tabular-nums; }
+.ax .ax-scroll { margin-top: 8px; overflow: hidden; border-radius: 12px; scrollbar-color: #3a3647 transparent; }
+.ax .ax-scroll.zoomed { overflow: auto; overscroll-behavior: contain; }
+.ax .ax-sizer { overflow: hidden; }
+.ax .ax-graph { transform-origin: 0 0; }
+.ax .ax-scroll:focus-visible { outline: 2px solid var(--glow); outline-offset: 2px; }
+.ax .ax-graph { position: relative; display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 40px; padding: 14px; }
+.ax .ax-graph.tight .ax-edges text.on { display: none; }
+.ax .ax-col { position: relative; z-index: 1; display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.ax .ax-col-label { color: #8e88a3; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10.5px; letter-spacing: .4px; text-transform: uppercase; }
+.ax .ax-col-nodes { display: flex; flex: 1; flex-direction: column; justify-content: center; gap: 14px; }
+.ax .ax-edges { position: absolute; inset: 0; z-index: 0; overflow: visible; pointer-events: none; }
+.ax .ax-edges > path { fill: none; stroke: #8580a3; stroke-width: var(--sw, 2); stroke-linecap: round; stroke-linejoin: round; transition: stroke .15s; }
+.ax .ax-edges > path.dashed { stroke-dasharray: 6 6; }
+.ax .ax-edges > path.on { stroke: var(--glow); stroke-width: calc(var(--sw, 2) * 1.4); }
+.ax .ax-edges > path.dim { stroke: #2a2836; }
+.ax .ax-edges text { display: none; fill: #d9ccff; paint-order: stroke; stroke: #13121a; stroke-width: 4px; stroke-linejoin: round; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 10px; }
+.ax .ax-edges text.on { display: block; }
+.ax .ax-node { position: relative; display: flex; flex-direction: column; gap: 3px; min-height: 56px; padding: 9px 11px; overflow-wrap: anywhere; border: 1px solid #3a3647; border-radius: 10px; background: #1d1c26; color: #f3f1f8; font: inherit; text-align: left; cursor: pointer; transition: opacity .15s, border-color .15s, box-shadow .15s, transform .15s; }
+.ax .ax-node.mine { border-color: var(--mine); background: #251f3a; }
+.ax .ax-node b { font-size: 13.5px; font-weight: 700; line-height: 1.3; }
+.ax .ax-node b i { color: var(--glow); font-style: normal; font-size: 11px; }
+.ax .ax-node small { color: #a9a4ba; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 11px; line-height: 1.3; }
+.ax .ax-node:hover, .ax .ax-node.active { border-color: var(--glow); box-shadow: 0 0 0 4px rgba(182, 156, 255, .18), 0 14px 32px -14px rgba(0, 0, 0, .7); transform: translateY(-1px); }
+.ax .ax-node.pinned { border-width: 2px; }
+.ax .ax-node.dim { opacity: .25; }
+.ax .ax-node.done { opacity: .7; }
+.ax .ax-node:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.ax .ax-node .ax-step { position: absolute; top: -9px; right: -9px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--glow); color: #13121a; font-size: 12px; font-weight: 800; }
+
+.ax .ax-panel { margin-top: 16px; padding: 20px 24px; border: 1px solid var(--night-line); border-radius: 14px; background: var(--night-2); min-height: 172px; }
+.ax .ax-panel-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+.ax .ax-panel-head strong { font-size: 19px; letter-spacing: -.02em; }
+.ax .ax-owner { padding: 3px 9px; border-radius: 999px; font-size: 12.5px; font-weight: 600; }
+.ax .ax-owner[data-kind="mine"] { background: #3a2d63; color: #ddd1ff; }
+.ax .ax-owner[data-kind="both"] { background: #24304d; color: #cdd9ff; }
+.ax .ax-owner[data-kind="team"] { background: #2a2833; color: #c9c4d6; }
+.ax .ax-owner[data-kind="step"] { background: var(--glow); color: #13121a; }
+.ax .ax-panel-head code { color: #8e88a3; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13.5px; word-break: break-all; }
+.ax .ax-panel-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 14px; }
+.ax .ax-panel-cols[data-mode="play"] { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.ax .ax-panel-k { color: var(--glow); font-size: 12.5px; font-weight: 700; letter-spacing: .6px; }
+.ax .ax-panel-cols p + p, .ax .ax-panel-cols pre { margin-top: 6px; color: #dcd8e6; font-size: 15px; line-height: 1.7; }
+.ax .ax-panel-cols pre { margin-bottom: 0; padding: 10px 12px; overflow-x: auto; border-radius: 8px; background: #13121a; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 13px; white-space: pre-wrap; word-break: break-word; }
+.ax .ax-ctrl { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 14px; }
+.ax .ax-ctrl span { margin-left: 4px; color: #a9a4ba; font-size: 13.5px; }
+
+@media (max-width: 900px) { .ax .ax-panel-cols, .ax .ax-panel-cols[data-mode="play"] { grid-template-columns: 1fr; gap: 14px; } }
+@media (max-width: 760px) {
+  .ax { margin-inline: -8px; padding: 16px; border-radius: 16px; }
+  .ax-head, .ax .ax-plays { padding: 0 4px; margin-inline: 0; }
+  .ax-panel { padding: 16px; }
+}
+@media (prefers-reduced-motion: reduce) { .ax .ax-node, .ax .ax-edges > path { transition: none; transform: none; } }
+@media print { .ax { -webkit-print-color-adjust: exact; print-color-adjust: exact; } .ax-plays, .ax .ax-ctrl { display: none; } }
+.ax p { margin: 0; max-width: none; color: inherit; }

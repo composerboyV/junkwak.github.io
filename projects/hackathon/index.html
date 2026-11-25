@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="담당자 대신 나라장터 입찰공고를 읽고, 입찰 조건이 우리 회사와 맞는지 매칭해 주는 AI 에이전트입니다. 조건마다 공고 원문과 회사 근거를 같이 보여 줍니다.">
+  <meta property="og:title" content="BidScope · 나라장터 입찰 검토 에이전트 | 곽준기 포트폴리오">
+  <meta property="og:description" content="담당자 대신 나라장터 입찰공고를 읽고, 입찰 조건이 우리 회사와 맞는지 매칭해 주는 AI 에이전트입니다. 조건마다 공고 원문과 회사 근거를 같이 보여 줍니다.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>BidScope · 나라장터 입찰 검토 에이전트 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css?v=20261124">
+  <link rel="stylesheet" href="../../arch.css?v=20261124">
+  <script src="../../arch.js?v=20261124" defer></script>
+  <script src="../../project.js" defer></script>
+  <link rel="stylesheet" href="../../architecture-viewer.css">
+  <script src="../../architecture-viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#hackathon"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>PERSONAL / AI 에이전트</span><span>2026.09 — 2026.10</span></div>
+      <h1>BidScope · 나라장터 입찰 검토 에이전트</h1>
+      <p class="case-headline">입찰 조건과 우리 회사를 매칭하는 AI 에이전트</p>
+      <p class="case-summary">담당자 대신 나라장터 입찰공고를 읽고, 입찰 조건이 우리 회사와 맞는지 매칭해 주는 AI 에이전트입니다. 조건마다 공고 원문과 회사 근거를 같이 보여 줍니다.</p>
+      <dl class="case-highlights case-context"><div><dt>담당 범위</dt><dd>팀의 나라장터 입찰 에이전트(개요 분석 → 심층 분석) 중 심층 분석 에이전트를 맡았습니다. 기획·설계·백엔드·프런트엔드·시험을 개인 저장소에서 진행했습니다.</dd></div></dl>
+      <figure class="case-gallery">
+        <a href="../../assets/bidscope/dashboard.jpg" target="_blank" rel="noopener noreferrer" aria-label="BidScope 대시보드 크게 보기"><img src="../../assets/bidscope/dashboard.jpg" width="2540" height="1061" alt="BidScope 대시보드 — 저장된 검토 기록, 최근 검토, 자격·기술·인력/일정·사업조건 네 가지 검토 관점" fetchpriority="high"></a>
+        <figcaption>대시보드 — 실제 프로그램 화면입니다. 합성 예제와 실제 모델 분석을 구분해 집계합니다.</figcaption>
+      </figure>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 왜 만들었나</a>
+          <a href="#decision"><span>02</span> 결정</a>
+          <a href="#architecture"><span>03</span> 구조</a>
+          <a href="#result"><span>04</span> 결과</a>
+          <a href="#details"><span>05</span> 확인 자료</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="BidScope 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 왜 만들었나 <small lang="en">WHY</small></h2>
+          <p>나라장터 입찰에 참여하려면 먼저 맞는 공고를 찾고, 공고문과 제안요청서(RFP)를 내려받아 읽고, 참가 자격·유사 사업 실적·세부 기능·보안 조건·일정과 계약 책임을 확인해야 합니다. 그다음에야 제안서를 쓰기 시작할 수 있습니다. 제안요청서는 수십 쪽에서 100쪽이 넘고, 조건은 문서 곳곳에 흩어져 있습니다.</p>
+          <p>담당자는 문서를 읽고 조건을 옮겨 적은 뒤, 회사의 실적·인력·기술 자료를 다시 찾아 대조합니다. 관심 공고가 늘수록 이 준비 작업이 그대로 반복되어, 제안서를 쓰기도 전에 시간이 많이 듭니다.</p>
+          <p>이 불편을 줄이려고 만들었습니다. AI 에이전트가 회사에 맞는 공고를 고르고 제안서 초안까지 미리 준비해 준다면 담당자의 시간이 크게 줄어듭니다. 그 첫 단계로 <strong>제안서를 쓰기 전, 참여를 검토하는 단계</strong>부터 만들었습니다.</p>
+          <p class="verification-note"><strong>예상 효과(추정)</strong> 50~100쪽 제안요청서 한 건을 읽고 조건을 정리해 회사 자료와 대조하는 데 5~7시간이 걸린다고 가정했습니다. 에이전트가 요구사항과 근거를 먼저 정리하고 담당자는 인용 원문과 증빙만 확인하면 1~2시간으로 줄어, 한 건당 4~5시간(약 70%)을 아낄 수 있다고 봅니다. 실제로 측정한 값이 아니라 제가 가정한 수치입니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 결정 <small lang="en">DECISION</small></h2>
+          <div class="decision"><h3>문서를 통째로 모델에 넣지 않았습니다</h3><p>공고 PDF를 페이지 단위로 나누고, 뽑아낸 요구사항마다 원문 인용과 물리 페이지를 붙였습니다. 인용이 원문 문자 범위와 정확히 맞는지는 코드가 검사합니다. 글자나 숫자가 바뀐 인용은 통과시키지 않습니다.</p></div>
+          <figure class="case-gallery">
+            <a href="../../assets/bidscope/review.jpg" target="_blank" rel="noopener noreferrer" aria-label="요구사항 검토 화면 크게 보기"><img src="../../assets/bidscope/review.jpg" width="2540" height="1061" alt="실제 RFP 검토 결과 — 요구사항 목록, 인용 원문, PDF 물리 페이지, 회사 근거" loading="lazy"></a>
+            <figcaption>요구사항 검토 — 요구사항마다 인용 원문과 PDF 물리 페이지, 회사 근거를 함께 봅니다. 실제 프로그램 화면입니다.</figcaption>
+          </figure>
+          <div class="decision"><h3>분야별 에이전트 넷으로 나눴습니다</h3><p>자격, 기술, 인력·일정, 사업조건 에이전트가 각자 회사 근거를 찾아 비교합니다. 최대 4개가 병렬로 돌고, 모델 호출 횟수와 입력 분량 예산을 함께 씁니다.</p></div>
+          <div class="decision"><h3>근거가 없으면 판단하지 않습니다</h3><p>회사 자료로 뒷받침되지 않는 항목은 ‘알 수 없음’과 확인할 질문으로 남깁니다. 참여 여부는 담당자가 원문과 증빙을 보고 결정합니다.</p></div>
+          <div class="decision"><h3>비용 없이도 재현되게 했습니다</h3><p>규칙 기반 시험 대역으로 수집부터 검증·저장까지 파이프라인을 재현하고, 실제 분석은 Mistral AI(JSON Schema 출력)나 로컬 Ollama 모델로 실행합니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>나라장터에서 공고와 첨부 PDF를 받아 오거나 PDF를 올리면, 페이지 청크 → 요구사항 추출 → 분야별 에이전트 4종 → 인용·근거 검증 → 보고서 저장이 FastAPI 서버의 검토 작업 큐에서 차례로 처리됩니다. 결론은 모델 요약이 아니라 결과 검사 규칙이 정하고, 같은 요청은 SQLite 검토대장에 저장된 결과를 다시 씁니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"BidScope 시스템 구성","sub":"공고 PDF를 페이지 단위로 읽어 요구사항을 뽑고, 분야별 에이전트 넷이 회사 근거와 대조하는 로컬 웹앱","solo":true,"columns":[{"label":"화면","nodes":[{"id":"ui","title":"React 워크스페이스","sub":"대시보드 · 공고 · 검토 · 결과","path":"frontend/src/ · bid_review/workspace/","what":"공고를 찾고 PDF와 회사 근거를 넣어 검토를 시작하고, 요구사항별 원문 인용과 판정을 보는 화면","made":"React 19·TypeScript를 Vite로 빌드해 FastAPI의 /workspace/에서 제공하고, 진행 중인 작업은 1.2초마다 상태를 확인","why":"실행할 때 Node 서버 없이 Python 하나로 화면과 API를 함께 띄우려고"}]},{"label":"로컬 서버","nodes":[{"id":"api","title":"FastAPI · 업로드","sub":"127.0.0.1 전용","path":"bid_review/api.py · bid_review/web.py","what":"PDF 업로드, 입력 검증, 결과·보완 작업 조회와 JSON·Markdown 다운로드를 맡는 API","made":"PDF는 30MB(413)·%PDF- 시그니처(422)를 확인한 뒤 SHA-256 이름으로 저장하고, 검증 오류 응답에서는 제출 본문을 빼고 돌려줌","why":"입력한 API 키 같은 값이 오류 응답에 다시 나오지 않게"},{"id":"jobs","title":"검토 작업 큐","sub":"실행 1개 · 활성 최대 3개","path":"bid_review/web.py (Jobs)","what":"검토 요청을 202와 job_id로 받고 queued → running → completed·failed·cancelled 상태를 관리","made":"스레드 1개 큐에 대기 포함 3건까지 받고, 중지 요청이 오면 다음 모델 호출을 막으며, API 키는 Worker 메모리에만 두고 끝나면 비움","why":"긴 검토를 기다리는 동안 화면이 멈추지 않고 중간에 멈출 수도 있게"},{"id":"procurement","title":"나라장터 어댑터","sub":"공고 검색 · 첨부 PDF 가져오기","path":"bid_review/procurement.py","what":"공공데이터 API로 공고 목록과 번호·차수별 첨부를 조회하고 첨부 PDF를 내려받음","made":"조회 기간은 최대 7일, 차수가 정확히 하나일 때만 첨부를 돌려주고, 다운로드는 g2b.go.kr HTTPS 주소만 허용(리디렉션 3회까지)","why":"API 응답 속 URL을 그대로 믿지 않고 나라장터 공개 파일만 받으려고"}]},{"label":"검토 엔진","nodes":[{"id":"chunker","title":"페이지 보존 · 청크","sub":"2400자 · 240자 겹침","path":"bid_review/documents.py · bid_review/schema.py","what":"PDF의 모든 물리 페이지를 남기고, 페이지 안에서만 글을 나눠 청크마다 원문 위치를 붙임","made":"글이 없는 페이지는 needs_ocr로 표시하고, 1~500쪽 범위와 페이지 번호가 빠짐없이 한 번씩 있는지 검사","why":"문서를 통째로 모델에 넣지 않고, 어떤 페이지를 못 읽었는지도 결과에 남기려고"},{"id":"extract","title":"요구사항 추출 · 인용 검사","sub":"청크마다 JSON Schema 출력","path":"bid_review/workflow.py · bid_review/documents.py (ground)","what":"청크에서 자격·기술·인력일정·사업조건 요구사항을 뽑고, 인용이 원문 어디에 있는지 문자 위치를 계산","made":"인용은 원문과 정확히 같거나 줄바꿈만 다를 때만 통과시키고, 실패하면 한 번 다시 묻고 그래도 안 되면 처리 문제로 기록","why":"글자나 숫자가 바뀐 인용이 근거처럼 보이지 않게"},{"id":"agents","title":"분야별 에이전트 4종","sub":"자격 · 기술 · 인력일정 · 사업조건","path":"bid_review/workflow.py (review_batch) · bid_review/retrieval.py · bid_review/prompts.py","what":"분야별로 요구사항을 8개씩 묶어 회사 근거와 비교하고 supported·gap·unknown·risk로 판정","made":"최대 4개 병렬, 묶음마다 최대 4라운드 동안 search_company(BM25)·read_page(인용 앞뒤 700자)·finish 중 하나를 고르는 도구 루프","why":"분야마다 컨텍스트를 따로 두고, 모델이 필요한 근거만 더 찾게 하려고"},{"id":"validate","title":"결과 검사 · 결론 규칙","sub":"코드가 결론을 정함","path":"bid_review/workflow.py (validate_findings · run_review)","what":"판정이 회사 근거를 제대로 인용했는지 검사하고 PARTIAL·NO_GO_CANDIDATE·NEEDS_INFO·PROCEED_TO_HUMAN_REVIEW 중 하나로 정함","made":"근거가 미확인·만료·서로 충돌하거나 항목이 누락·중복되면 unknown으로 바꾸고, 결론은 모델 요약이 아닌 고정 규칙으로 계산","why":"근거가 없으면 판단하지 않고 확인 질문으로 남기려고"},{"id":"budget","title":"모델 호출 예산","sub":"기본 120회 · 입력 60만 자","path":"bid_review/providers.py (BudgetedModel)","what":"모든 모델 호출이 거치는 관문으로 호출 수·입력 분량·토큰을 세고 중지 요청을 확인","made":"한도를 넘으면 BudgetExceeded로 멈추고, 자동 HTTP 재시도 없이 응답을 다시 스키마로 검증","why":"병렬 에이전트가 같은 예산을 나눠 쓰고 비용이 한 실행에서 끝나게"}]},{"label":"모델","nodes":[{"id":"mistral","title":"Mistral","sub":"JSON Schema strict 출력","path":"bid_review/providers.py (JsonBackend)","what":"실제 공고 분석에 쓰는 클라우드 모델 (기본 mistral-small-latest)","made":"temperature 0, 출력 5000토큰, 출력이 잘리면 실패로 처리하고 오류 메시지에 URL·키·응답 본문을 넣지 않음","why":"41쪽 실제 제안요청서에서 요구사항 298개를 원문 위치와 함께 뽑은 연결"},{"id":"ollama","title":"로컬 Ollama","sub":"선택 사항","path":"bid_review/providers.py (JsonBackend)","what":"같은 스키마를 format으로 넘겨 내 컴퓨터의 모델로 분석","made":"Mistral과 같은 인터페이스로 바꿔 끼울 수 있게 하고 사용량은 prompt_eval_count·eval_count로 기록","why":"외부 API 키 없이도 같은 스키마로 실제 분석을 돌려 보려고"},{"id":"fixture","title":"규칙 기반 시험 대역","sub":"LLM 아님 · 합성 자료 전용","path":"bid_review/demo.py","what":"합성 RFP 5쪽과 가상 회사 근거로 ready·missing·gap·unreadable 네 상황을 재현","made":"read_page → search_company → finish 도구 호출을 실제로 거치고, SYNTHETIC- 공고가 아니면 실행을 거부","why":"비용 없이 수집부터 검증·저장까지 파이프라인을 재현하려고"}]},{"label":"저장 · 외부","nodes":[{"id":"sqlite","title":"SQLite 검토대장","sub":"reviews · review_tasks","path":"bid_review/repository.py","what":"입력 스냅샷·보고서·보완 작업(OPEN/DONE)을 저장하고 이력을 보여줌","made":"입력·모델·파이프라인 버전·날짜·예산의 해시로 같은 요청은 저장된 결과를 재사용하고, 재분석은 기존 결과를 덮지 않고 새로 저장","why":"같은 공고를 다시 돌려도 비용이 들지 않고 예전 근거가 사라지지 않게"},{"id":"uploads","title":"PDF 원본 보관","sub":"data/uploads/<sha256>.pdf","path":"bid_review/web.py · bid_review/procurement.py","what":"업로드하거나 가져온 PDF를 해시 이름으로 보관하고 결과 화면에서 원본 페이지를 열어 줌","made":"임시 파일로 먼저 읽어 본 뒤에만 해시 이름으로 옮겨, 읽기 실패한 파일이 기존 원본을 덮지 않게 함","why":"인용을 원본 PDF 페이지와 바로 대조하려고"},{"id":"g2b","title":"나라장터 OpenAPI","sub":"표준서비스 · 입찰공고정보서비스","path":"bid_review/procurement.py","what":"공고 목록(공공데이터개방표준서비스)과 번호·차수별 첨부(입찰공고정보서비스), 공개 첨부 PDF","madeLabel":"연결 지점","made":"두 서비스 응답을 같은 공고 형식으로 정리하고, 오류 응답은 원문 대신 결과 코드만 보여줌","why":"API 오류 메시지에 인증키나 요청 URL이 섞여 나오지 않게"}]}],"edges":[{"from":"ui","to":"api","label":"POST /api/documents · /api/jobs"},{"from":"ui","to":"procurement","label":"POST /api/procurement/*"},{"from":"procurement","to":"g2b","label":"HTTPS 조회 · PDF 다운로드"},{"from":"procurement","to":"uploads","label":"<sha256>.pdf"},{"from":"api","to":"uploads","label":"<sha256>.pdf"},{"from":"api","to":"jobs","label":"StartReview 등록 (202)"},{"from":"jobs","to":"sqlite","label":"같은 입력 해시면 재사용","dashed":true},{"from":"jobs","to":"chunker","label":"run_review"},{"from":"chunker","to":"extract","label":"페이지 청크"},{"from":"extract","to":"agents","label":"분야별 요구사항 8개씩"},{"from":"agents","to":"validate","label":"finish findings"},{"from":"extract","to":"budget","label":"model.ask"},{"from":"agents","to":"budget","label":"model.ask"},{"from":"budget","to":"mistral","label":"chat/completions"},{"from":"budget","to":"ollama","label":"/api/chat","dashed":true},{"from":"budget","to":"fixture","label":"합성 자료만","dashed":true},{"from":"validate","to":"sqlite","label":"보고서 · 보완 작업 저장"},{"from":"sqlite","to":"ui","label":"GET /api/reviews/{run_id}"}],"scenarios":[{"name":"예시: 합성 데모 '필수 자격 불일치(gap)'","input":"합성 RFP 5쪽 + 가상 회사 근거 5개 (소프트웨어사업자 등록 값만 '미등록')","steps":[{"node":"ui","title":"예제 불러오기","in":"GET /api/examples/gap","out":"notice_id 'SYNTHETIC-gap', 5쪽, company_facts 5개"},{"node":"jobs","title":"검토 등록","in":"POST /api/jobs {provider: 'fixture'}","out":"202 · status 'queued' → 'running'"},{"node":"chunker","title":"페이지 청크","in":"합성 페이지 5개 (각 한 문장)","out":"청크 5개 (페이지마다 1개)"},{"node":"extract","title":"요구사항 추출","in":"청크 5개","out":"요구사항 5개 · 자격 1, 기술 2, 인력일정 1, 사업조건 1 · 인용 위치 일치"},{"node":"agents","title":"자격 에이전트 비교","in":"'소프트웨어사업자로 등록되어 있어야 한다' + 근거 software_registration='미등록'","out":"read_page → finish · status 'gap'"},{"node":"validate","title":"결론 계산","in":"필수 요구 gap 1건, 처리 문제 0건","out":"decision 'NO_GO_CANDIDATE' (불참 검토 후보)"},{"node":"sqlite","title":"저장","in":"보고서 + 질문 'software_registration 증빙을 확인해 주세요.'","out":"reviews 1행 · review_tasks 1행 (OPEN)"},{"node":"ui","title":"결과 확인","in":"GET /api/jobs/{id} → completed · run_id","out":"결과 화면으로 이동, 담당자가 원문과 근거 확인"}]},{"name":"예시: 실제 RFP PDF를 Mistral로 검토 (부분 결과)","input":"예시_제안요청서.pdf (41쪽) + 회사 근거 몇 개","steps":[{"node":"api","title":"PDF 업로드","in":"POST /api/documents?filename=예시_제안요청서.pdf&kind=rfp","out":"Document · id=SHA-256 앞 16자, total_pages 41"},{"node":"uploads","title":"원본 보관","in":"PDF 바이트","out":"data/uploads/<sha256>.pdf"},{"node":"jobs","title":"검토 등록","in":"POST /api/jobs {provider: 'mistral', max_calls: 120}","out":"202 · job_id (API 키는 응답·저장에서 제외)"},{"node":"extract","title":"인용 불일치","in":"모델이 낸 인용이 청크 원문과 다름","out":"repair_hint로 1회 재요청 → 또 실패하면 '<문서> p.N' 처리 문제"},{"node":"budget","title":"호출 한도 도달","in":"호출 120회를 다 쓴 뒤의 model.ask","out":"BudgetExceeded · 남은 묶음은 unknown '검토 미완료'"},{"node":"validate","title":"결론 계산","in":"처리 문제가 있음","out":"decision 'PARTIAL' (검토 미완료)"},{"node":"sqlite","title":"부분 결과 저장","in":"보고서 · 입력 스냅샷","out":"작업 status 'completed', 결론은 PARTIAL로 이력에 남음"}]},{"name":"예시: 나라장터 공고 검색 → 첨부 PDF 가져오기","input":"기간 2026-10-01 ~ 2026-10-07, 검색어 '홈페이지'","steps":[{"node":"ui","title":"공고 검색","in":"POST /api/procurement/search {source: 'standard', keyword: '홈페이지'}","out":"기간이 7일을 넘으면 422"},{"node":"procurement","title":"목록 정리","in":"표준서비스 응답 (bidNtceNo, bidNtceNm, ntceSpecDocUrl1~10 …)","out":"items[] · 현재 페이지에서 제목 필터 (filter_scope 'current_page')"},{"node":"g2b","title":"차수별 첨부 조회","in":"notice_id 'R26XX00000000'(예시), revision '000', business 'service'","out":"같은 차수가 정확히 1건일 때만 첨부 목록, latest_revision_confirmed=false"},{"node":"procurement","title":"첨부 PDF 가져오기","in":"POST /api/procurement/import-pdf {url: g2b.go.kr 첨부}","out":"다른 호스트·PDF 아님·30MB 초과면 422"},{"node":"uploads","title":"원본 보관","in":"PDF 바이트","out":"<sha256>.pdf · Document에 source_url, retrieved_at"},{"node":"ui","title":"검토 입력 채우기","in":"Document","out":"공고번호·차수·제목과 문서가 검토 폼에 채워짐 (회사 근거는 이전 입력 유지)"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>2026.10.19 기록 기준으로 실제 나라장터 공고들로 시험했습니다. 104쪽 제안요청서는 104쪽 모두 원문 문자 범위와 정확히 맞는 청크로 나눴습니다. 41쪽 제안요청서에는 Mistral AI를 사용해 <strong>요구사항 298개</strong>를 원문 위치와 함께 뽑았습니다(위치 일치 298/298).</p>
+        </section>
+        <section id="details" class="case-section" aria-labelledby="details-title">
+          <h2 id="details-title"><span>05</span> 확인 자료 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>기술</dt><dd>Python 3.12 · FastAPI · React 19 · TypeScript · Mistral AI · Ollama · SQLite</dd></div>
+            <div><dt>자료</dt><dd>개인 저장소의 2026.10.19 실제 공고 시험 기록과 테스트 결과</dd></div>
+          </dl>
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#hackathon">← 전체 프로젝트</a>
+      <a class="next-link" href="../admin/"><span>다음 프로젝트</span><strong>한국·미국 통합 관리자 웹 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

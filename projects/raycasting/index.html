@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="2D 맵을 1인칭 3D 화면으로 보여주는 레이캐스팅 프로그램입니다. 맵 안에서 이동하고 시점을 회전할 수 있습니다.">
+  <meta property="og:title" content="C 기반 3D 그래픽 | 곽준기 포트폴리오">
+  <meta property="og:description" content="2D 맵을 1인칭 3D 화면으로 보여주는 레이캐스팅 프로그램입니다. 맵 안에서 이동하고 시점을 회전할 수 있습니다.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>C 기반 3D 그래픽 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css?v=20261124">
+  <link rel="stylesheet" href="../../arch.css?v=20261124">
+  <script src="../../arch.js?v=20261124" defer></script>
+  <script src="../../project.js" defer></script>
+  <link rel="stylesheet" href="../../architecture-viewer.css">
+  <script src="../../architecture-viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#raycasting"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>42 / 학습·협업</span><span>2025.03 — 2025.04</span></div>
+      
+      <h1>C 기반 3D 그래픽</h1>
+      <p class="case-headline">2D 맵을 1인칭 화면으로 보여주는 레이캐스팅 프로그램</p>
+      <p class="case-summary">2D 맵을 1인칭 3D 화면으로 보여주는 레이캐스팅 프로그램입니다. 맵 안에서 이동하고 시점을 회전할 수 있습니다.</p>
+      <dl class="case-highlights case-context"><div><dt>진행 형태</dt><dd>42 과제</dd></div><div><dt>직접 구현</dt><dd>맵 파싱·검증부터 렌더링까지 전체</dd></div><div><dt>실행 확인</dt><dd>저장소의 예제 맵 <code>test.cub</code></dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 과제와 역할</a>
+          <a href="#decision"><span>02</span> 렌더링과 이동</a>
+          <a href="#architecture"><span>03</span> 렌더링 구조</a>
+          <a href="#result"><span>04</span> 구현 결과</a>
+          <a href="#evidence"><span>05</span> 확인 자료</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="C 기반 3D 그래픽 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 과제와 역할 <small lang="en">CONTEXT</small></h2>
+          <p><code>.cub</code> 맵 파일을 읽어 1인칭 3D 화면으로 보여 주는 42 과제입니다. 파일에서 벽 텍스처 경로, 바닥·천장 색, 맵 배치를 읽고, 키 입력으로 이동하고 시점을 돌리며 벽에 막히는 것까지 처리해야 했습니다.</p>
+          <p>맵 파싱과 검증, MiniLibX 창과 이미지 버퍼 준비, 키 입력·이동·충돌, 화면 열마다 광선을 쏘아 벽을 그리는 렌더링까지 전체를 구현했습니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 렌더링과 이동 <small lang="en">DECISIONS</small></h2>
+          <div class="decision"><h3>벽 높이는 광선 길이가 아니라 수직 거리로 계산</h3><p>화면 열마다 광선을 하나씩 쏘고, DDA로 격자 칸의 경계만 따라가 벽 칸을 찾습니다. 벽 높이를 광선 길이로 계산하면 화면 가장자리의 벽이 휘어 보이기 때문에, 카메라 평면에 수직인 거리를 썼습니다. 벽 면의 방향에 따라 네 텍스처 중 하나를 고르고, 거리에 맞춰 늘이거나 줄여 그립니다.</p></div>
+          <div class="decision"><h3>벽 0.2 앞에서 이동을 막음</h3><p>새 위치가 벽이거나 맵 밖이면 이동하지 않고, 0.2 안쪽에 상하좌우·대각선 벽이 있어도 막았습니다. 벽에 너무 붙으면 화면이 벽을 뚫고 보이기 때문입니다. 키 이벤트에서는 눌린 상태만 기록하고 이동은 루프에서 처리해, 키를 누르고 있는 동안 계속 움직입니다.</p></div>
+          <div class="decision"><h3>창을 열기 전에 맵이 닫혀 있는지 검사</h3><p>광선이 맵 밖으로 나가지 않도록, 플레이어 칸부터 재귀 탐색으로 갈 수 있는 칸을 표시하며 열린 가장자리가 있는지 확인합니다. 식별자 개수, 플레이어 수, RGB 범위 중 하나라도 맞지 않으면 창을 열지 않고 에러 메시지와 함께 종료합니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>03</span> 렌더링 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>맵 파일은 읽기, 경로·색 읽기, 검증을 모두 통과해야 엔진 준비로 넘어갑니다. 게임 루프는 이동·회전을 적용한 뒤 화면 열마다 광선, DDA, 거리·높이, 텍스처 좌표, 한 열 그리기를 반복합니다. ‘화면 가운데 한 열 그리기’ 예시에서 수직 거리 4.0인 벽이 270픽셀 높이로 그려지는 과정을 볼 수 있습니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"C 레이캐스팅 렌더러 시스템 구성","sub":".cub 맵 파싱·검증 → MiniLibX 준비 → 키 입력·충돌 → 열마다 DDA로 벽을 찾아 텍스처 투영","solo":true,"columns":[{"label":"맵 파일 (.cub)","nodes":[{"id":"main","title":"진입점","sub":"main.c","path":"Cub_3D/main.c · map_validate.c","what":"맵 파일 하나를 인자로 받아 파싱·검증 후 그래픽 엔진을 시작","made":"parse_and_validate_map → start_draw 순서, 실패하면 cleanup_and_exit로 자원 정리 후 종료","why":"맵이 올바를 때만 창을 열려고"},{"id":"mapload","title":"맵 읽기","sub":"init_map","path":"Cub_3D/map_init.c · map_height.c","what":"파일 줄 수를 세고 줄 배열로 읽어 너비와 플레이어 위치·방향을 찾음","made":"find_height → making_map → max_width → finding_xy","why":"검증과 렌더링이 같은 2D 배열을 쓰게"},{"id":"texcolor","title":"텍스처 경로 · 색","sub":"NO SO WE EA · F C","path":"Cub_3D/texture_init.c · floor_ceiling.c · map_init.c","what":"NO·SO·WE·EA 텍스처 경로와 바닥(F)·천장(C) RGB를 읽음","made":"RGB는 정확히 3개, 각 0~255가 아니면 에러 종료. (r<<16)|(g<<8)|b 정수 색으로 저장","why":"픽셀 버퍼에 바로 쓸 수 있는 색 값으로"},{"id":"validate","title":"맵 검증","sub":"is_it_correct_map","path":"Cub_3D/map_parsing_*.c · map_validate.c","what":"확장자, 식별자 개수, 문자, 플레이어 수, 벽으로 닫혔는지 확인","made":".cub 확장자, 6개 식별자 각 1번, 플레이어 정확히 1명, 가장자리·공백 옆 빈칸 금지, 플레이어 칸부터 재귀 탐색(DFS)으로 '0'을 'X'로 표시하며 열린 곳 검사","why":"광선이 맵 밖으로 새지 않게"}]},{"label":"엔진 준비","nodes":[{"id":"mlx","title":"창 · 이미지 버퍼","sub":"start_draw · init_draw","path":"Cub_3D/etc3.c · init_draw.c","what":"MiniLibX로 1980×1080 창과 같은 크기의 이미지 버퍼를 만들고 이벤트를 등록","made":"mlx_get_data_addr로 버퍼를 int 배열로 받아 픽셀을 직접 씀. 키 누름·뗌·창 닫기 hook과 루프 hook 등록 후 mlx_loop","why":"한 프레임을 버퍼에 다 그린 뒤 한 번에 창에 올리려고"},{"id":"textures","title":"텍스처 로드","sub":"load_textures","path":"Cub_3D/dummy_texture.c · etc3.c","what":"네 방향 .xpm 파일을 이미지로 읽어 픽셀 배열을 얻음","made":"경로 끝 공백·개행 제거, .xpm이 아니거나 없으면 에러 종료. xpm 읽기 실패 시 64×64 단색 텍스처로 대체","why":"텍스처 하나 때문에 화면이 안 뜨는 일을 막으려고"},{"id":"player","title":"플레이어 초기화","sub":"init_player","path":"Cub_3D/init_player.c","what":"시작 칸 중앙에 플레이어를 두고 방향 벡터와 카메라 평면을 정함","made":"E면 dir (1, 0)·plane (0, 0.66), W·S·N도 각각 설정. 이동·회전 속도 0.01","why":"plane 길이 0.66으로 시야각을 정하려고"}]},{"label":"입력 · 이동","nodes":[{"id":"keys","title":"키 상태","sub":"key_press · key_release","path":"Cub_3D/etc.c","what":"W·A·S·D·←·→ 누름/뗌을 keys[0..5] 플래그로 기록, ESC면 종료","made":"키 이벤트에서는 플래그만 바꾸고 실제 이동은 루프에서 처리","why":"누르고 있는 동안 계속 움직이게"},{"id":"move","title":"이동 · 충돌","sub":"move_* · can_move_to","path":"Cub_3D/raycast.c · move_strafe.c · move_forward.c","what":"W·S는 방향 벡터로, A·D는 카메라 평면 방향으로 0.01씩 이동","made":"새 칸이 벽('1')이거나 맵 밖이면 거부, 0.2 안쪽에 상하좌우·대각선 벽이 있어도 거부","why":"벽에 딱 붙어 벽을 뚫어 보이는 일을 막으려고"},{"id":"rotate","title":"회전","sub":"rotate_left · rotate_right","path":"Cub_3D/rotate_left.c · rotate_right.c","what":"←·→로 방향 벡터와 카메라 평면을 같은 각도만큼 회전","made":"회전 행렬(cos·sin)로 dir과 plane을 함께 돌림","why":"시야각이 회전 중에도 유지되게"}]},{"label":"렌더링","nodes":[{"id":"loop","title":"게임 루프","sub":"game_loop · render_frame","path":"Cub_3D/etc2.c · etc.c","what":"루프마다 이동을 적용하고 버퍼를 비운 뒤 전체 화면을 다시 그림","made":"move_player → 버퍼 0으로 초기화 → cast_rays → mlx_put_image_to_window","why":"입력과 화면이 한 루프 안에서 같이 갱신되게"},{"id":"cast","title":"광선 쏘기","sub":"cast_rays","path":"Cub_3D/raycast.c","what":"화면 열(x)마다 광선 하나를 만들어 벽 찾기·거리·그리기를 차례로 돌림","made":"camera_x = 2x/폭 − 1, ray_dir = dir + plane × camera_x","why":"열 하나 = 광선 하나로 3D 화면을 만들려고"},{"id":"dda","title":"DDA 벽 탐색","sub":"setup_dda · perform_dda","path":"Cub_3D/raycast_dda.c","what":"광선이 지나는 격자 칸을 한 칸씩 따라가 벽('1') 칸을 찾음","made":"delta_dist = |1/ray_dir|, side_dist가 작은 축으로 한 칸 이동, 맵 밖이어도 멈춤. 마지막에 넘은 축을 side(0=x, 1=y)로 기록","why":"칸 경계만 검사해 교차점을 빠르게 찾으려고"},{"id":"dist","title":"거리 · 벽 높이","sub":"wall_dis · wall_height","path":"Cub_3D/wall_dis.c · wall_height.c","what":"카메라 평면에 수직인 거리로 벽까지 거리를 구하고 화면에 그릴 높이를 정함","made":"perp_wall_dist(최소 0.1) → line_height = 화면높이 / 거리, 화면 가운데 기준 draw_start·draw_end를 화면 안으로 자름","why":"광선 길이 대신 수직 거리를 써서 어안 왜곡을 없애려고"},{"id":"texpos","title":"텍스처 좌표","sub":"set_texture_info","path":"Cub_3D/texture_pos.c","what":"벽 면 방향으로 텍스처를 고르고 벽에 맞은 위치로 텍스처의 x열을 정함","made":"side와 광선 부호로 tex_num 0~3, wall_x 소수부 × 텍스처 폭 = tex_x, 면에 따라 좌우 반전","why":"면마다 다른 텍스처가 뒤집히지 않고 붙게"},{"id":"draw","title":"한 열 그리기","sub":"draw_wall_line","path":"Cub_3D/draw_wall_line.c","what":"벽 구간은 텍스처 색, 위는 천장색, 아래는 바닥색으로 버퍼의 한 열을 채움","made":"step = 텍스처 높이 / line_height만큼 텍스처 y를 내려가며 색을 복사","why":"거리에 따라 텍스처가 늘어나고 줄어 보이게"}]}],"edges":[{"from":"main","to":"mapload","label":"parse_and_validate_map"},{"from":"mapload","to":"texcolor","label":"같은 파일 다시 읽기"},{"from":"texcolor","to":"validate","label":"is_it_correct_map"},{"from":"main","to":"mlx","label":"start_draw"},{"from":"mlx","to":"textures","label":"load_textures"},{"from":"mlx","to":"player","label":"init_player"},{"from":"mlx","to":"keys","label":"mlx_hook"},{"from":"mlx","to":"loop","label":"mlx_loop_hook"},{"from":"keys","to":"move","label":"keys[0..3]","dashed":true},{"from":"keys","to":"rotate","label":"keys[4..5]","dashed":true},{"from":"loop","to":"move","label":"move_player"},{"from":"loop","to":"rotate","label":"move_player"},{"from":"loop","to":"cast","label":"render_frame"},{"from":"cast","to":"dda","label":"열마다"},{"from":"dda","to":"dist","label":"hit · side"},{"from":"dist","to":"texpos","label":"set_texture_info"},{"from":"cast","to":"draw","label":"draw_wall_line(x)"},{"from":"textures","to":"draw","label":"픽셀 배열","dashed":true}],"scenarios":[{"name":"예시: 맵 열고 첫 화면까지","input":"./cub3D test.cub (저장소에 들어 있는 예제 맵)","steps":[{"node":"main","title":"인자 확인","in":"argc 2, test.cub","out":"game 구조체 0으로 초기화 → parse_and_validate_map"},{"node":"mapload","title":"맵 읽기","in":"test.cub","out":"줄 배열, 너비, 플레이어 칸과 방향 E"},{"node":"texcolor","title":"경로·색 읽기","in":"NO ./test/images/EA.xpm … / F 220,100,0 / C 225,30,0","out":"텍스처 경로 4개, 바닥 0xDC6400, 천장 0xE11E00"},{"node":"validate","title":"맵 검증","in":"줄 배열","out":".cub 확장자 · 식별자 6개 각 1번 · 플레이어 1명 · 벽으로 닫힘 검사, 하나라도 어긋나면 에러 메시지 후 종료"},{"node":"mlx","title":"창 만들기","in":"검증된 맵","out":"1980×1080 \"cub3D\" 창과 이미지 버퍼"},{"node":"textures","title":"텍스처 로드","in":".xpm 경로 4개","out":"mlx_xpm_file_to_image → 픽셀 배열 4개"},{"node":"player","title":"플레이어 배치","in":"E, 시작 칸","out":"칸 중앙(+0.5), dir (1, 0), plane (0, 0.66)"},{"node":"loop","title":"루프 시작","in":"hook 등록","out":"mlx_loop → 매 루프 game_loop가 화면을 그림"}]},{"name":"예시: 화면 가운데 한 열 그리기","input":"x = 990열, 플레이어가 동쪽(E)을 봄, 벽까지 수직 거리 4.0 (예시 값)","steps":[{"node":"cast","title":"광선 방향","in":"x = 990, 폭 1980","out":"camera_x = 2·990/1980 − 1 = 0 → ray_dir = dir = (1, 0)"},{"node":"dda","title":"벽 칸 찾기","in":"ray_dir (1, 0)","out":"step_x = +1로 x축만 한 칸씩 전진, '1' 칸에서 hit, side = 0"},{"node":"dist","title":"높이 계산","in":"perp_wall_dist 4.0, 화면 높이 1080","out":"line_height 270, draw_start 405, draw_end 675"},{"node":"texpos","title":"텍스처 고르기","in":"side 0, ray_dir_x > 0","out":"tex_num 0, tex_x = wall_x × 폭 후 좌우 반전"},{"node":"draw","title":"열 채우기","in":"405~674 벽 구간","out":"벽은 텍스처 색, 0~404 천장 0xE11E00, 675~1079 바닥 0xDC6400"},{"node":"loop","title":"화면 올리기","in":"1980열 모두 완료","out":"mlx_put_image_to_window로 한 번에 표시"}]},{"name":"예시: W 키로 앞으로","input":"W 키 누름 (keycode 119)","steps":[{"node":"keys","title":"키 플래그","in":"KEY_W","out":"keys[0] = 1"},{"node":"loop","title":"다음 루프","in":"keys[0] = 1","out":"move_player → move_forward"},{"node":"move","title":"충돌 검사","in":"새 위치 = 위치 + dir × 0.01","out":"벽·맵 밖·0.2 이내 벽이면 그대로, 아니면 위치 갱신"},{"node":"cast","title":"다시 그리기","in":"바뀐 위치","out":"버퍼를 비우고 1980열 광선을 다시 계산"},{"node":"keys","title":"키 뗌","in":"W 뗌","out":"keys[0] = 0, 이동 멈춤"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>04</span> 구현 결과 <small lang="en">RESULT</small></h2>
+          <p>예제 맵 <code>test.cub</code>로 실행하면 1980×1080 창에 네 방향 벽 텍스처와 바닥·천장 색이 적용된 화면이 열립니다. W·A·S·D로 이동하고 ←·→로 시점을 돌리며, 벽 앞에서는 이동이 멈춥니다. 맵이 잘못되면 창을 열기 전에 에러 메시지를 출력하고 종료합니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>05</span> 확인 자료 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>렌더링 위치</dt><dd><code>raycast.c</code> · <code>raycast_dda.c</code> · <code>wall_dis.c</code> · <code>draw_wall_line.c</code></dd></div>
+            <div><dt>맵 검증 위치</dt><dd><code>map_validate.c</code> · <code>map_parsing_*.c</code></dd></div>
+            <div><dt>기술</dt><dd>C · MiniLibX · DDA · Raycasting</dd></div>
+          </dl>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#raycasting">← 전체 프로젝트</a>
+      <a class="next-link" href="../minishell/"><span>다음 프로젝트</span><strong>Minishell <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

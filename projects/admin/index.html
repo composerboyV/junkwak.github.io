@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="한국과 미국 서비스의 사용자 기록, 구독 현황, 문의를 한곳에서 관리하는 웹입니다. 필요한 기록과 사진을 엑셀·ZIP 파일로 내려받을 수 있습니다.">
+  <meta property="og:title" content="한국·미국 통합 관리자 웹 | 곽준기 포트폴리오">
+  <meta property="og:description" content="한국과 미국 서비스의 사용자 기록, 구독 현황, 문의를 한곳에서 관리하는 웹입니다. 필요한 기록과 사진을 엑셀·ZIP 파일로 내려받을 수 있습니다.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>한국·미국 통합 관리자 웹 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css?v=20261124">
+  <script src="../../project.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#admin"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>WORK / 실무</span><span>2026.10</span></div>
+      
+      <h1>한국·미국 통합 관리자 웹</h1>
+      <p class="case-headline">한국과 미국 서비스를 한곳에서 관리하는 운영 웹</p>
+      <p class="case-summary">한국과 미국 서비스의 사용자 기록, 구독 현황, 문의를 한곳에서 관리하는 웹입니다. 필요한 기록과 사진을 엑셀·ZIP 파일로 내려받을 수 있습니다.</p>
+      <dl class="case-highlights case-context"><div><dt>담당 범위</dt><dd>관리자 웹 화면 전체와, 화면이 쓰는 국가별 NestJS API 모듈(조회·로그인 확인·문의·AI 사용량)을 만들었습니다.</dd></div><div><dt>대상 서비스</dt><dd>한국·미국 서버를 따로 운영하는 스툴케어</dd></div><div><dt>진행 형태</dt><dd>신규 구축 · 2026.10 배포</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 배경과 목표</a>
+          <a href="#decision"><span>02</span> 해결 과정</a>
+          <a href="#result"><span>03</span> 결과</a>
+          <a href="#evidence"><span>04</span> 확인 자료</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="한국·미국 통합 관리자 웹 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 배경과 목표 <small lang="en">CONTEXT</small></h2>
+          <p>스툴케어는 한국과 미국 서버를 따로 운영하고, 관리자 도구도 나라별로 나뉘어 있었습니다. 사용자 한 명의 기록이나 문의를 확인하려면 두 도구를 번갈아 열어야 했습니다.</p>
+          <p>목표는 두 나라 데이터를 한 화면에서 찾되, 국가별 데이터가 섞이거나 한쪽 조회 실패가 가려지지 않게 하는 것이었습니다. 관리자 웹 화면은 제가 만들었고, 화면에 필요한 조회·로그인 확인·문의·AI 사용량 기능은 국가별 NestJS API에 모듈로 추가했습니다. 관리자 웹은 데이터베이스에 직접 연결하지 않고 API를 거쳐서만 데이터를 다룹니다.</p>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 해결 과정 <small lang="en">DECISIONS</small></h2>
+          <div class="decision"><h3>로그인은 한국 서버 한 곳에서 확인</h3><p>관리자는 한국 서버에 한 번 로그인합니다. 미국 API는 받은 세션이 유효한지 요청마다 한국 서버에 확인한 뒤에만 응답합니다. 확인이 제때 끝나지 않거나 연결이 끊기면 통과시키지 않습니다. 비밀번호는 한국 서버에만 전달되고, 로그아웃은 두 나라에 함께 적용됩니다.</p></div>
+          <div class="decision"><h3>기록 조회는 읽기 전용 모듈로 분리</h3><p>국가별 API에 조회만 하는 모듈을 따로 두었습니다. 한 번에 돌려주는 건수를 제한하고, 누가 무엇을 조회했는지 기록으로 남깁니다. 기존 수정·삭제 API 권한은 건드리지 않았습니다. 기록·구독 화면은 조회만 하고, 문의 화면에서만 처리 상태와 내부 메모를 바꿀 수 있습니다.</p></div>
+          <div class="decision"><h3>합친 목록과 숫자는 확인된 것만 표시</h3><p>통합 범위에서는 두 나라 서버에 함께 조회한 뒤 ID 앞에 국가를 붙여 합칩니다. 한쪽 조회가 실패하거나 조회 중 전체 수가 바뀌면, 일부만 합친 목록 대신 오류를 보여 줍니다. 구독·매출 화면은 결제 금액 기록이 없으면 쿠폰이나 상품 가격으로 채우지 않고 ‘금액 기록 없음’으로 표시합니다. AI 비용은 측정된 토큰 수로만 계산한 예상치이고, 프롬프트·사진·답변은 저장하지 않습니다.</p></div>
+          <div class="decision"><h3>내보내기는 나눠서 이어 받기</h3><p>엑셀과 사진 ZIP에는 건수와 용량 상한을 두고, 사진은 묶음으로 나눠 이어 받습니다. 브라우저 메모리를 넘기지 않기 위해서입니다. 묶음마다 성공·실패 목록을 남겨 빠진 파일을 확인할 수 있습니다.</p></div>
+        </section>
+
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>03</span> 결과 <small lang="en">RESULT</small></h2>
+          <p><strong>가능해진 것</strong> 한국·미국 사용자 기록, 구독·쿠폰, 문의를 한 웹에서 조회하고, 기록은 엑셀로, 사진은 ZIP으로 내려받을 수 있습니다.</p>
+          <p><strong>확인한 것</strong> 2026.10.11 배포 뒤 상태·접근 확인 17개 항목이 통과했습니다. 배포를 확인하는 점검이며, 사용자 시나리오 전체를 시험한 수치는 아닙니다.</p>
+          <p><strong>배포 방식</strong> 관리자 웹 이미지만 따로 교체해 앱·API 배포와 엮이지 않고, 배포마다 이전 이미지를 남겨 되돌릴 수 있습니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>04</span> 확인 자료 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>기술</dt><dd>React · TypeScript · Vite · MUI · NestJS</dd></div>
+            <div><dt>화면·구성도</dt><dd>회사 내부 운영 도구라 스크린샷과 시스템 구성도는 싣지 않았습니다.</dd></div>
+            <div><dt>점검 기록</dt><dd>2026.10.11 배포 점검 기록. 소스는 사내 저장소에서 관리합니다.</dd></div>
+          </dl>
+          
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#admin">← 전체 프로젝트</a>
+      <a class="next-link" href="../band/"><span>다음 프로젝트</span><strong>42 BAND · 악사모 <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="theme-color" content="#faf9f6">
+  <meta name="description" content="밴드 멤버들이 곡을 제안하고, 악보와 영상을 나누며, 합주 일정을 확인하는 웹사이트입니다. 42 BAND와 악사모가 각자의 공간에서 활동하고 공동 홈에서 소식을 나눕니다.">
+  <meta property="og:title" content="WE ARE BAND · 42 BAND · 악사모 | 곽준기 포트폴리오">
+  <meta property="og:description" content="밴드 멤버들이 곡을 제안하고, 악보와 영상을 나누며, 합주 일정을 확인하는 웹사이트입니다. 42 BAND와 악사모가 각자의 공간에서 활동하고 공동 홈에서 소식을 나눕니다.">
+  <meta property="og:type" content="article">
+  <meta property="og:locale" content="ko_KR">
+  <title>WE ARE BAND · 42 BAND · 악사모 | 곽준기 포트폴리오</title>
+  <link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="../../project.css?v=20261124">
+  <link rel="stylesheet" href="../../arch.css?v=20261124">
+  <script src="../../arch.js?v=20261124" defer></script>
+  <script src="../../project.js" defer></script>
+  <link rel="stylesheet" href="../../architecture-viewer.css">
+  <script src="../../architecture-viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">본문으로 이동</a>
+  <header class="site-header" id="top">
+    <a class="case-brand" href="../../" aria-label="곽준기 포트폴리오 처음으로">jk<span>.</span><span class="brand-name">곽준기 <small>JUNKI KWAK</small></span></a>
+    <nav aria-label="주요 메뉴"><a href="../../#projects" aria-current="page">프로젝트</a><a href="../../#about">소개</a><a href="../../#contact">연락</a></nav>
+  </header>
+  <main id="main">
+    <div class="case-hero">
+      <a class="back-link" href="../../#band"><span aria-hidden="true">←</span> 프로젝트 목록</a>
+      <div class="case-kicker"><span>PERSONAL / 개인</span><span>2026.07 — 2026.11</span></div>
+
+      <h1>WE ARE BAND <span class="case-h1-sub">42 BAND · 악사모</span></h1>
+      <p class="case-headline">곡 선정부터 악보 공유, 합주 일정까지 함께 보는 밴드 공간</p>
+      <p class="case-summary">밴드 멤버들이 곡을 제안하고, 악보와 영상을 나누며, 합주 일정을 확인하는 웹사이트입니다. 42 BAND와 악사모가 각자의 공간에서 활동하고 공동 홈에서 소식을 나눕니다.</p>
+      <dl class="case-highlights case-context"><div><dt>담당 범위</dt><dd>웹 개발·배포·운영을 맡았습니다. PM·기획은 밴드 멤버가 맡았습니다.</dd></div><div><dt>협업</dt><dd>곡 관리·보관 기능과 로컬 Supabase·E2E 환경은 다른 멤버가 PR로 보냈고, 저는 합친 뒤 곡 삭제 오류를 고치고 밴드 분리 시험을 더했습니다.</dd></div><div><dt>현재 상태</dt><dd>2026.11 두 밴드를 한 사이트로 합쳤습니다. 2026.11.18 기준 승인된 멤버십은 12개입니다.</dd></div></dl>
+    </div>
+    <div class="case-layout">
+      <aside class="case-contents">
+        <nav aria-label="프로젝트 목차">
+          <p class="contents-label">목차 <span>CONTENTS</span></p>
+          <a href="#problem" aria-current="location"><span>01</span> 문제</a>
+          <a href="#decision"><span>02</span> 기능</a>
+          <a href="#access"><span>03</span> 권한과 보안</a>
+          <a href="#merge"><span>04</span> 두 밴드 통합</a>
+          <a href="#architecture"><span>05</span> 구조</a>
+          <a href="#timeline"><span>06</span> 쓰면서 바꾼 것</a>
+          <a href="#result"><span>07</span> 결과</a>
+          <a href="#evidence"><span>08</span> 확인 자료</a>
+        </nav>
+      </aside>
+      <article class="case-article" aria-label="WE ARE BAND 개발 이야기">
+        <section id="problem" class="case-section" aria-labelledby="problem-title">
+          <h2 id="problem-title"><span>01</span> 문제 <small lang="en">PROBLEM</small></h2>
+          <p>밴드 소통이 카카오톡 단톡방으로만 이뤄졌습니다. 악보 파일, 연습할 곡 링크, 다음에 할 곡 이야기, 합주 일정이 모두 같은 대화에 섞여 금방 위로 밀려났습니다.</p>
+          <p>밴드에서는 악보와 곡을 나누고, 곡을 함께 고르고, 채팅과 게시판으로 이야기를 남기는 일을 사이트 한곳에서 하길 원했습니다. 카톡을 대신하기보다, 음악 이야기를 더 나눌 공간을 만드는 것이 목표였습니다.</p>
+          <figure class="case-photo"><img src="../../assets/personal/drum-session.jpg" width="1365" height="2064" alt="드럼을 연주하는 모습이 담긴 폴라로이드 사진" loading="lazy" decoding="async"><figcaption>밴드에서 드럼을 맡고 있습니다</figcaption></figure>
+        </section>
+        <section id="decision" class="case-section" aria-labelledby="decision-title">
+          <h2 id="decision-title"><span>02</span> 기능 <small lang="en">FEATURES</small></h2>
+          <div class="decision"><h3>밴드 활동 순서대로: 곡 선정 → 악보 → 영상 → 일정</h3><p>곡 선정에서는 누구나 곡을 제안하고 '하고 싶어요'로 참여 의사를 남깁니다. 게시판에는 파트별 악보(PDF·이미지)를 올리고 파트로 걸러 보게 했고, 연습·공연 영상은 추천곡·공연·연습·연습곡으로 나눴습니다. 일정은 구글 캘린더처럼 보고 참석을 체크하며, 공휴일도 달력에 표시합니다.</p></div>
+          <div class="device-showcase">
+            <h3>공개 화면</h3>
+            <p>로그인 없이 보이는 화면입니다. 두 밴드가 같은 디자인을 쓰고, 휴대폰에서도 같은 구성으로 보입니다. 공동 홈·일정·휴대폰 화면은 통합 후(2026.11.18–24), 영상 화면은 통합 전 42 BAND(2026.11.17)에서 캡처했습니다. 곡 선정·악보게시판·사진첩은 멤버 전용이라 담지 않았고, 연락처가 있는 하단은 잘라냈습니다.</p>
+            <div class="device-grid">
+              <div class="device-stack">
+                <figure class="device-browser"><div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>weareband.vercel.app</span></div><a href="../../assets/band/hub.jpg" target="_blank" rel="noopener noreferrer" aria-label="공동 홈 화면 크게 보기"><img src="../../assets/band/hub.jpg" width="1200" height="750" alt="보라색 배너와 밴드 바로가기, 42 BAND·악사모 소개 카드가 보이는 WE ARE BAND 공동 홈" loading="lazy" decoding="async"></a><figcaption>공동 홈 · 두 밴드 소개와 바로가기</figcaption></figure>
+                <div class="device-pair">
+                  <figure class="device-browser"><div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>/42band/schedule</span></div><a href="../../assets/band/now-schedule.jpg" target="_blank" rel="noopener noreferrer" aria-label="42 BAND 일정 화면 크게 보기"><img src="../../assets/band/now-schedule.jpg" width="1200" height="683" alt="작은 달력과 공연·연습·기타 필터, 월간 달력이 있는 42 BAND 일정 화면" loading="lazy" decoding="async"></a><figcaption>일정 · 종류 필터와 월간 달력</figcaption></figure>
+                  <figure class="device-browser"><div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>/videos</span></div><a href="../../assets/band/videos.jpg" target="_blank" rel="noopener noreferrer" aria-label="영상 모음 화면 크게 보기"><img src="../../assets/band/videos.jpg" width="1200" height="683" alt="연습곡·공연영상 등으로 나뉜 42 BAND 영상 모음 화면" loading="lazy" decoding="async"></a><figcaption>영상 · 추천곡·공연·연습·연습곡 분류</figcaption></figure>
+                </div>
+              </div>
+              <figure class="device-phone"><div class="device-notch" aria-hidden="true"></div><a href="../../assets/band/now-mobile.jpg" target="_blank" rel="noopener noreferrer" aria-label="휴대폰 공동 홈 화면 크게 보기"><img src="../../assets/band/now-mobile.jpg" width="500" height="960" alt="휴대폰 폭에서 보이는 WE ARE BAND 공동 홈. 배너, 밴드 바로가기, 밴드 소개 카드가 세로로 쌓여 있음" loading="lazy" decoding="async"></a><figcaption>휴대폰 · 공동 홈</figcaption></figure>
+            </div>
+          </div>
+          <div class="decision"><h3>밴드에 맞춘 로그인과 실시간 기능</h3><p>42 BAND는 구글 로그인으로, 악사모는 멤버들이 이메일 없이 가입하도록 전화번호·닉네임·비밀번호 방식으로 바꿨습니다. 접속 현황은 Supabase Realtime으로, 악보·사진 파일은 Supabase Storage로 처리하고 Vercel에 배포했습니다. 처음 넣은 채팅은 쓰임이 적어 8월에 정리했습니다.</p></div>
+        </section>
+        <section id="access" class="case-section" aria-labelledby="access-title">
+          <h2 id="access-title"><span>03</span> 권한과 보안 <small lang="en">ACCESS</small></h2>
+          <div class="decision"><h3>멤버만 쓰도록, 권한은 DB에서 확인</h3><p>가입하면 관리자 승인을 기다리고, 승인된 멤버만 글·사진·곡 선정을 쓸 수 있습니다. 화면에서만 막지 않고 Supabase(PostgreSQL)의 행 단위 보안(RLS) 정책으로 테이블마다 읽기·쓰기 권한을 걸었습니다. 일정과 영상은 누구나 볼 수 있게 열어 두었습니다.</p></div>
+          <div class="decision"><h3>2026.11 정리하며 실제로 막은 것</h3><ul class="check-list">
+            <li><strong>연락처 노출</strong> <span>공개로 읽히던 테이블에 전화번호가 든 로그인용 이메일이 남아 있어 컬럼을 지우고, 프로필 원본은 본인·관리자만 읽게 했습니다.</span></li>
+            <li><strong>초대 코드 가입</strong> <span>아무나 가입 신청하던 구조를 관리자 초대 코드로 바꿨습니다. 코드는 약 49비트 무작위 값이고 7일 뒤 만료되며, DB에는 원문 대신 SHA-256 해시만 저장합니다. 실패 이유는 하나의 문구로만 알려 코드·번호를 떠보지 못하게 했습니다.</span></li>
+            <li><strong>업로드 제한</strong> <span>승인된 멤버만 파일을 올리고, 저장소마다 형식(이미지·영상)과 크기 상한을 걸었습니다. 글·사진을 지우면 파일도 함께 지웁니다.</span></li>
+            <li><strong>밴드 간 격리</strong> <span>한 밴드 멤버가 API로 다른 밴드의 일정·영상·글을 쓰려 하면 RLS가 거절하는지 E2E로 확인합니다. 소식판은 작성자·밴드를 바꿔 쓰는 수정을 트리거로 막았습니다.</span></li>
+            <li><strong>키와 의존성</strong> <span>서비스 키는 서버 전용 모듈에서만 읽고, Next.js 등 운영 의존성을 올려 <code>npm audit</code>의 critical 1·high 5개를 0으로 만들었습니다.</span></li>
+            <li><strong>개인정보처리방침</strong> <span>실제로 받는 값과 보관 위치(Supabase, AWS 서울)·기간을 적은 페이지를 만들고 가입 때 동의를 받습니다.</span></li>
+          </ul></div>
+          <div class="device-single"><figure class="device-browser"><div class="device-bar" aria-hidden="true"><i></i><i></i><i></i><span>/signup</span></div><a href="../../assets/band/now-signup.jpg" target="_blank" rel="noopener noreferrer" aria-label="회원가입 화면 크게 보기"><img src="../../assets/band/now-signup.jpg" width="1200" height="683" alt="초대 코드, 전화번호, 닉네임, 비밀번호와 개인정보 동의를 받는 회원가입 화면" loading="lazy" decoding="async"></a><figcaption>초대 코드 가입 화면 · 코드·전화번호·닉네임·비밀번호와 개인정보 동의</figcaption></figure></div>
+        </section>
+        <section id="merge" class="case-section" aria-labelledby="merge-title">
+          <h2 id="merge-title"><span>04</span> 두 밴드 통합 <small lang="en">MERGE</small></h2>
+          <div class="decision"><h3>두 밴드를 한 사이트로: WE ARE BAND</h3><p>같은 코드를 두 저장소에서 따로 고치던 구조를 하나로 합쳤습니다. 한 배포에서 <code>/akssamo</code>·<code>/42band</code>처럼 밴드별 경로를 쓰고, 멤버 승인·관리자 권한은 밴드마다 따로 둡니다. 다른 밴드의 일정·글에 쓰지 못하도록 DB 함수(<code>is_band_member</code> 등)로 RLS를 다시 짰습니다. 첫 화면은 두 밴드의 소개·다가오는 일정·최근 영상·함께 보는 소식판을 모은 공동 홈으로 만들었습니다.</p></div>
+          <div class="plan-docs">
+            <h3>통합 설계 문서</h3>
+            <p>기능마다 결정한 내용을 저장소의 설계 문서로 남기고, 같은 이름의 E2E 테스트로 그 결정을 확인했습니다.</p>
+            <div class="plan-doc-grid">
+              <article class="plan-doc">
+                <header><code>docs/multi-band.md</code><span>2026.11.17</span></header>
+                <h4>여러 밴드 운영</h4>
+                <ul>
+                  <li>한 배포에서 <code>/akssamo</code>·<code>/42band</code> 경로로 나누고, 없는 밴드 이름은 404로 처리</li>
+                  <li>계정·닉네임·프로필 사진은 전역으로 공유하고, 승인·관리자·파트는 밴드별로 관리</li>
+                  <li>한 계정으로 여러 밴드에 가입할 수 있도록 초대 코드 페이지 <code>/join</code>을 공통으로 사용</li>
+                  <li>기존 데이터는 악사모로 귀속하고, 42 BAND 옛 데이터는 가져오지 않음</li>
+                </ul>
+                <p class="plan-doc-check">검증 · <code>multi-band.spec.ts</code> 두 밴드 로컬 데이터로 권한·가입 확인</p>
+              </article>
+              <article class="plan-doc">
+                <header><code>docs/hub-home.md</code><span>2026.11.18</span></header>
+                <h4>공동 홈</h4>
+                <ul>
+                  <li>로그인 여부와 관계없이 모든 밴드 카드를 보여 주고, 내 가입 상태만 덧붙임</li>
+                  <li>다가오는 일정 6개는 서울 날짜 기준, 최근 영상 6개는 등록 시각 순</li>
+                  <li>소식판은 승인된 멤버만 읽고 쓰며, 작성 뒤에는 밴드·작성자를 바꿀 수 없음</li>
+                  <li>새 컬럼·테이블·정책만 추가하는 마이그레이션 1개로 기존 정책은 건드리지 않음</li>
+                </ul>
+                <p class="plan-doc-check">검증 · <code>hub-home.spec.ts</code> 375px 밝은·어두운 화면, 소식판 권한, 사칭 차단</p>
+              </article>
+            </div>
+          </div>
+          <div class="decision"><h3>AI 에이전트와 나눠 작업하고 직접 검증</h3><p>통합 작업은 Claude Code와 Codex에 단계별로 나눠 맡겼습니다. 결과는 그대로 믿지 않고 타입 검사·빌드·로컬 Supabase에서 도는 Playwright E2E 24개로 다시 확인한 뒤 합쳤습니다. DB 변경은 main에 합치면 운영에 바로 적용되므로, 지우거나 바꾸지 않고 추가만 하는 마이그레이션으로 나눴습니다.</p></div>
+        </section>
+
+        <section id="architecture" class="case-section" aria-labelledby="architecture-title">
+          <h2 id="architecture-title"><span>05</span> 구조 <small lang="en">ARCHITECTURE</small></h2>
+          <p>밴드 화면은 URL의 밴드 이름(<code>/akssamo</code>, <code>/42band</code>)을 먼저 확인합니다. 글·일정·곡을 쓰는 요청은 Next.js 서버가 승인 멤버인지 확인한 뒤 사용자 세션으로 Supabase에 쓰고, 그다음 RLS가 같은 밴드의 행인지 한 번 더 검사합니다.</p>
+          <div class="ax">
+            <script type="application/json" class="ax-data">{"title":"WE ARE BAND 시스템 구성","sub":"한 Next.js 배포에서 /akssamo와 /42band 두 밴드를 띄우고, 쓰기 권한은 Supabase RLS가 밴드별로 확인합니다","solo":true,"columns":[{"label":"화면","nodes":[{"id":"global","title":"전역 화면","sub":"/ 공동 홈 · /login · /signup · /join · /me","path":"src/app/(global)/","what":"밴드 선택, 로그인, 초대 코드 가입, 계정·밴드별 프로필 관리를 맡는 공통 화면","made":"구글 로그인과 전화번호·비밀번호 로그인을 한 화면에 두고, 로그인한 사람에게는 가입한 밴드만 보여 줌","why":"한 계정으로 여러 밴드에 가입할 수 있게 하려고"},{"id":"band","title":"밴드 화면","sub":"/[band]/home · songs · board · schedule · videos · gallery","path":"src/app/[band]/","what":"곡 선정, 악보게시판, 일정·참석, 영상, 사진첩을 밴드 주소 아래에서 보여 줌","made":"밴드 레이아웃이 URL의 밴드 이름을 먼저 확인하고, 모든 서버 액션에 밴드 이름을 함께 넘김","why":"두 밴드의 글과 곡이 섞이지 않게 하려고"},{"id":"panel","title":"접속 현황 패널","sub":"Supabase Realtime Presence","path":"src/components/SidePanel.tsx · src/components/PresenceTracker.tsx","what":"지금 이 밴드 페이지에 들어와 있는 멤버와 손님을 옆 패널에 표시","made":"presence:online:<밴드 id> 채널에 접속을 알려 밴드별로 접속자를 나누고, 손님은 임의의 동물 이름으로 표시. 로그인 사용자는 45초마다 마지막 접속 시각을 갱신","why":"다른 밴드 접속자가 섞이지 않게, 누가 와 있는지 바로 보이게 하려고"}]},{"label":"Next.js 서버","nodes":[{"id":"proxy","title":"세션 갱신 Proxy","sub":"Next.js 16 proxy.ts","path":"src/proxy.ts · src/lib/supabase/middleware.ts","what":"정적 파일을 뺀 모든 요청에서 Supabase 로그인 쿠키를 새로 고침","made":"Next.js 16의 Proxy 파일 규약으로 옮기고, Supabase 키가 없으면 그냥 통과시켜 공개 페이지는 열리게 함","why":"서버 컴포넌트와 액션이 늘 최신 로그인 상태를 보도록"},{"id":"guard","title":"밴드 확인 · 멤버 확인","sub":"resolveBand · requireApprovedMember","path":"src/lib/band.ts · src/lib/auth.ts","what":"URL의 밴드 이름을 DB에서 찾고, 그 밴드의 승인된 멤버·관리자인지 확인","made":"모르는 밴드 이름은 404, 미승인은 '승인된 멤버만 가능해요.' 오류. 댓글·첨부 같은 하위 행도 부모의 밴드가 URL과 같은지 다시 확인","why":"화면에서만 막지 않고 서버에서도 밴드를 한 번 더 검사하려고"},{"id":"signup","title":"초대 코드 가입","sub":"requestSignup · joinBand","path":"src/app/(global)/signup/actions.ts · src/app/(global)/join/actions.ts · src/lib/invites.ts","what":"관리자가 준 일회용 초대 코드로 전화번호 계정을 만들거나, 기존 계정을 다른 밴드에 가입 신청","made":"코드는 SHA-256 해시로만 비교하고, 안 쓰였고 만료 전인 코드만 '사용 중'으로 잡아 동시에 가입해도 한 사람만 통과. 실패하면 코드를 되돌림","why":"문자 인증 없이도 초대받은 사람만 가입하게 하려고"},{"id":"songs","title":"곡 선정","sub":"후보 → 예정 → 완료 · 기각","path":"src/app/[band]/songs/actions.ts · src/lib/song-management.ts","what":"곡을 후보로 제안하고 '하고 싶어요'를 받은 뒤, 관리자가 공연 일정에 연결","made":"제목 200자·링크 20개(http/https)·마감일 형식 검사, 허용된 상태 변경만 통과, 공연별 최대 곡 수를 넘으면 경고. 곡 관리·보관 기능은 밴드 멤버가 PR로 보낸 것을 합침","why":"다음에 할 곡 이야기가 단톡방에 묻히지 않게 하려고"},{"id":"content","title":"게시판 · 일정 · 영상","sub":"board · schedule · videos 서버 액션","path":"src/app/[band]/board/actions.ts · src/app/[band]/schedule/actions.ts · src/app/[band]/videos/actions.ts","what":"파트별 악보 글, 합주·공연 일정과 참석 체크, 유튜브 영상 모음을 저장","made":"공지는 관리자만, 글 삭제 시 첨부 파일도 Storage에서 정리, 유튜브 주소에서 11자리 영상 ID만 뽑아 저장","why":"악보·일정·영상을 밴드 활동 순서대로 한곳에 모으려고"},{"id":"admin","title":"관리자 화면","sub":"/[band]/admin","path":"src/app/[band]/admin/actions.ts","what":"초대 코드 발급, 가입 승인, 활동 여부, 관리자 임명, 직함, 홈 추천 영상 지정","made":"초대 코드 원문은 발급 응답에서 한 번만 보여 주고 DB에는 해시와 7일 만료만 저장. 관리자 임명·직함은 DB 함수가 대빵인지 확인","why":"멤버 관리를 밴드마다 따로 하게 하려고"}]},{"label":"Supabase","nodes":[{"id":"auth","title":"Supabase Auth","sub":"Google OAuth · 전화번호 로그인","path":"src/app/(global)/auth/callback/route.ts · src/lib/phoneAuth.ts","what":"구글 로그인 코드를 세션으로 바꾸고, 전화번호는 내부용 이메일로 바꿔 비밀번호 로그인","made":"구글 로그인 뒤 프로필과 로그인 기록을 남기고, 가입한 밴드가 없으면 /join으로 보냄","why":"멤버들이 이메일 없이도 가입할 수 있게 하려고"},{"id":"rls","title":"행 단위 보안(RLS)","sub":"is_band_member · is_band_admin","path":"supabase/migrations/20261117090400_multi_band.sql","what":"테이블마다 읽기는 공개, 쓰기는 그 밴드의 승인된 멤버(공지·설정은 관리자)만 허용","made":"하위 테이블에는 band_id를 따로 두지 않고 부모 행의 밴드로 검사. 연락처는 본인과 같은 밴드 관리자만 조회","why":"앱 코드를 우회해 API로 직접 써도 다른 밴드에는 못 쓰게 하려고"},{"id":"rpc","title":"DB 함수 · 트리거","sub":"join_band · set_member_admin · 가드 트리거","path":"supabase/migrations/20261117090400_multi_band.sql","what":"가입·권한 변경처럼 여러 행을 함께 바꾸는 일을 DB 안에서 처리","made":"join_band는 코드 잠금·멤버십 생성·사용 처리를 한 트랜잭션으로, 트리거는 대빵 권한 변경·콘텐츠 밴드 이동·다른 밴드 공연 연결을 거부","why":"관리자라도 권한 규칙을 깨지 못하게 하려고"},{"id":"db","title":"PostgreSQL","sub":"bands · band_members · events · posts · song_selections …","path":"supabase/migrations/","what":"밴드, 밴드별 멤버십, 일정·영상·글·사진·곡과 그 댓글·링크·투표를 저장","made":"계정·닉네임은 전역, 승인·관리자·파트·활동 여부는 band_members에 밴드별로 저장. 기존 데이터는 악사모로 옮김","why":"한 계정이 두 밴드에서 다른 역할을 가질 수 있게 하려고"},{"id":"storage","title":"Storage","sub":"files · photos · avatars 버킷","path":"src/app/[band]/board/PostForm.tsx · supabase/migrations/20261117090400_multi_band.sql","what":"악보 PDF·이미지, 사진첩, 프로필 사진 파일을 보관","made":"파일은 '<내 uid>/…' 경로에만 올릴 수 있고, 어느 밴드에서든 승인된 멤버여야 업로드 가능","why":"남의 폴더에 파일을 덮어쓰지 못하게 하려고"}]},{"label":"배포 · 검증","nodes":[{"id":"vercel","title":"Vercel","sub":"서울 리전(icn1)","path":"vercel.json · DEPLOY.md","what":"Next.js 앱을 서버 기능과 함께 실행","made":"서울 리전으로 고정하고, RLS를 우회하는 서비스 역할 키는 server-only 파일에서만 읽도록 배포 문서에 정리","why":"멤버들이 국내에서 쓰는 사이트라서"},{"id":"e2e","title":"E2E 테스트","sub":"GitHub Actions · 로컬 Supabase · Playwright","path":".github/workflows/e2e.yml · scripts/e2e.mjs · tests/e2e/","what":"main 푸시·PR마다 로컬 Supabase를 띄워 가입·권한·밴드 분리를 브라우저와 API로 확인","made":"로컬 Supabase·E2E 환경은 밴드 멤버가 PR로 추가했고, 그 위에 두 밴드 분리·초대 코드 1회 사용·다른 밴드 쓰기 차단 시험을 더함","why":"권한 규칙이 바뀌어도 실제 DB에서 다시 확인하려고"}]}],"edges":[{"from":"global","to":"proxy","label":"요청"},{"from":"band","to":"proxy","label":"요청"},{"from":"proxy","to":"auth","label":"쿠키 세션 갱신"},{"from":"global","to":"auth","label":"Google OAuth · 비밀번호 로그인"},{"from":"global","to":"signup","label":"서버 액션"},{"from":"band","to":"guard","label":"밴드 이름(slug)"},{"from":"guard","to":"songs","label":"승인 멤버 확인 후"},{"from":"guard","to":"content","label":"승인 멤버 확인 후"},{"from":"guard","to":"admin","label":"관리자 확인 후"},{"from":"signup","to":"db","label":"서비스 역할(전화번호 가입)"},{"from":"signup","to":"rpc","label":"join_band (기존 계정)"},{"from":"songs","to":"rls","label":"사용자 세션으로 쓰기"},{"from":"content","to":"rls","label":"사용자 세션으로 쓰기"},{"from":"admin","to":"rpc","label":"set_member_admin · set_member_title"},{"from":"rls","to":"db","label":"허용된 행만"},{"from":"rpc","to":"db","label":"트랜잭션 · 트리거"},{"from":"band","to":"storage","label":"악보·사진 업로드","dashed":true},{"from":"vercel","to":"proxy","label":"배포","dashed":true},{"from":"e2e","to":"rls","label":"로컬 DB로 권한 검증","dashed":true},{"from":"panel","to":"rpc","label":"touch_last_seen (45초마다)"}],"scenarios":[{"name":"예시: 초대 코드로 전화번호 가입","input":"전화번호 010-0000-0000 · 닉네임 '예시드럼' · 비밀번호 8자 이상 · 초대 코드 K7PQM-2XRDA (모두 예시)","steps":[{"node":"admin","title":"관리자가 초대 코드 발급","in":"createInvite('akssamo', 메모)","out":"코드 원문은 화면에 한 번만, DB에는 SHA-256 해시 + 7일 뒤 만료"},{"node":"global","title":"/signup 폼 제출","in":"전화번호 · 닉네임 · 비밀번호 · 초대 코드 · 개인정보 동의","out":"requestSignup 호출"},{"node":"signup","title":"입력 검사","in":"전화번호 숫자 9자리 이상, 비밀번호 8자 이상, 동의 true","out":"통과 (하나라도 빠지면 '모든 항목을 입력해주세요.')"},{"node":"signup","title":"코드 선점","in":"대문자·영숫자로 정리한 코드의 해시","out":"안 쓰였고 만료 전인 행만 used_at 기록 → 대상 band_id. 틀린 코드·가입된 번호는 같은 문구로 거절"},{"node":"auth","title":"계정 생성","in":"전화번호 → 'p01000000000@…' 내부용 이메일 + 비밀번호","out":"email_confirm: true 인 Auth 사용자"},{"node":"db","title":"프로필 · 멤버십 저장","in":"profiles(전화번호, 닉네임), band_members(band_id, user_id)","out":"status 'pending'. 중간에 실패하면 계정 삭제 + 코드 되돌림"},{"node":"guard","title":"승인 전 글쓰기 시도","in":"requireApprovedMember('akssamo')","out":"'승인된 멤버만 가능해요.' — 관리자가 approveMember로 status를 'approved'로 바꾸면 쓰기 가능"}]},{"name":"예시: 곡 후보 제안 → 투표 → 공연에 올리기","input":"/akssamo/songs 에서 '예시곡 A' · 참고 링크 https://www.youtube.com/watch?v=aaaaaaaaaaa · 투표 마감 2026-12-01","steps":[{"node":"band","title":"곡 제안 폼","in":"제목 · 링크 1개 · 마감일","out":"proposeSong('akssamo', input)"},{"node":"guard","title":"밴드·멤버 확인","in":"slug 'akssamo'","out":"bands 행 확인(모르는 slug면 404) + 승인된 멤버"},{"node":"songs","title":"입력 정리","in":"제목 200자 이내, 링크 20개 이하 http/https, 날짜 YYYY-MM-DD","out":"song_selections + song_links 저장 요청"},{"node":"rls","title":"쓰기 정책 확인","in":"created_by = 내 uid, is_band_member(악사모)","out":"허용 → song_lifecycle_entries status 'candidate'"},{"node":"songs","title":"'하고 싶어요' 누르기","in":"toggleSongVote(entryId)","out":"후보이고 마감 전이면 song_signups(part 'WANT') 추가, 다시 누르면 취소"},{"node":"songs","title":"관리자가 공연에 연결","in":"transitionSongEntry(entryId, 'scheduled', 공연 일정 id)","out":"candidate → scheduled 허용. 연습 일정이면 '예정 곡은 공연 일정에만 연결할 수 있어요.'"},{"node":"rpc","title":"같은 밴드 공연인지 확인","in":"check_song_event_band 트리거","out":"다른 밴드 공연이면 '같은 밴드의 공연만 연결할 수 있어요.'"},{"node":"songs","title":"곡 수 경고","in":"공연의 scheduled·completed 곡 수, max_song_count","out":"capacityWarning { current, maximum, overLimit }"}]},{"name":"예시: 파트별 악보 PDF 올리기","input":"/akssamo/board 에서 파트 '드럼' · 제목 '예시곡 A 드럼 악보' · example.pdf 1개","steps":[{"node":"band","title":"파일 선택","in":"accept: PDF·이미지","out":"kind 'pdf' 로 분류"},{"node":"storage","title":"Storage 업로드","in":"files 버킷, 경로 '<내 uid>/<시각>-0.pdf'","out":"첫 폴더가 내 uid이고 승인된 멤버면 허용 → 공개 URL"},{"node":"content","title":"글 저장 요청","in":"addPost('akssamo', { part, title, content, files })","out":"내용과 파일이 모두 없으면 '내용이나 파일을 넣어주세요.' / 공지는 관리자만"},{"node":"rls","title":"쓰기 정책 확인","in":"posts: user_id = 내 uid, is_band_member / post_files: 부모 글의 밴드 확인","out":"허용"},{"node":"db","title":"저장","in":"posts(band_id, part '드럼', title) + post_files(url, name, kind)","out":"/akssamo/board 다시 그림 → 파트 필터로 보기"}]}]}</script>
+            <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
+          </div>
+        </section>
+        <section id="timeline" class="case-section" aria-labelledby="timeline-title">
+          <h2 id="timeline-title"><span>06</span> 쓰면서 바꾼 것 <small lang="en">TIMELINE</small></h2>
+          <p>42 BAND를 5일 동안 만들어 배포한 뒤, 같은 구조를 두 번째 밴드인 악사모에 옮겨 8월 초까지 고쳐 나갔습니다. 악사모에서는 멤버들이 이메일 없이 가입할 수 있게 전화번호 가입을 만들었고, 쓰임이 적던 채팅은 메뉴에서 내린 뒤 코드까지 정리했습니다. 11월에는 두 사이트를 하나로 합쳤습니다. 표는 두 저장소의 커밋 기록으로 정리했습니다.</p>
+          <div class="incident-table-wrap">
+            <table class="incident-table">
+              <thead><tr><th scope="col">날짜</th><th scope="col">한 일</th><th scope="col">사이트</th></tr></thead>
+              <tbody>
+                <tr><td>07.06 – 10</td><td>첫 버전: 구글 로그인·멤버 승인, 일정·참석 체크, 영상 모음·분류, 파트별 악보 첨부, 곡 선정('하고 싶어요'), 실시간 채팅</td><td>42 BAND</td></tr>
+                <tr><td>07.10</td><td>두 번째 밴드용으로 옮겨 배포, 이메일 없는 전화번호 가입</td><td>악사모</td></tr>
+                <tr><td>07.13 – 20</td><td>곡 선정 투표순·마감 임박순 정렬, '악보게시판'과 악보 바로 보기, 채팅 메뉴 내림</td><td>악사모</td></tr>
+                <tr><td>07.31</td><td>밴드 멤버가 PR로 보낸 곡 관리·보관 기능을 합치고 곡 삭제 오류 수정</td><td>악사모</td></tr>
+                <tr><td>08.04</td><td>채팅·알림 코드와 테이블 정리</td><td>악사모</td></tr>
+                <tr><td>11.17</td><td>밀린 PR·이슈 정리: 연락처 노출 제거, 승인 멤버만 업로드, 초대 코드 가입, 로컬 Supabase E2E와 CI, 개인정보처리방침</td><td>악사모</td></tr>
+                <tr><td>11.17 – 18</td><td>두 밴드를 한 사이트로 합치고 주소를 weareband.vercel.app으로 변경, 공동 홈 적용, 42 BAND 옛 주소는 새 사이트로 이동</td><td>WE ARE BAND</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+        <section id="result" class="case-section" aria-labelledby="result-title">
+          <h2 id="result-title"><span>07</span> 결과 <small lang="en">RESULT</small></h2>
+          <p>2026.11.17–18에 두 사이트를 WE ARE BAND(weareband.vercel.app) 하나로 합쳐, 이제 저장소 하나만 고치면 두 밴드에 함께 반영됩니다. 가입은 관리자가 만든 초대 코드로만 신청할 수 있고, 멤버 승인과 관리자 권한은 밴드마다 따로 관리합니다.</p>
+          <p>GitHub Actions에서 로컬 Supabase로 E2E를 돌려, 권한 규칙이 바뀌어도 다른 밴드 쓰기 차단과 초대 코드 1회 사용을 다시 확인합니다. 2026.11.18 기준 밴드 2개에 승인된 멤버십은 12개입니다.</p>
+        </section>
+        <section id="evidence" class="case-section" aria-labelledby="evidence-title">
+          <h2 id="evidence-title"><span>08</span> 확인 자료 <small lang="en">EVIDENCE</small></h2>
+          <dl class="evidence-details">
+            <div><dt>기술</dt><dd>Next.js 16 · React 19 · TypeScript · Supabase(PostgreSQL · Auth · Storage · Realtime) · Vercel · Playwright E2E · GitHub Actions</dd></div>
+            <div><dt>기록</dt><dd>두 저장소 커밋 기록(42 BAND 57개, 악사모·WE ARE BAND 55개 중 11월 통합 작업 25개), PR #11–#17, 2026.11.17–18 공개 화면. 저장소는 비공개입니다.</dd></div>
+          </dl>
+          <div class="evidence-links" aria-label="프로젝트 관련 자료"><a href="https://weareband.vercel.app" target="_blank" rel="noopener noreferrer">WE ARE BAND 사이트 <span aria-hidden="true">↗</span></a></div>
+        </section>
+      </article>
+    </div>
+    <div class="case-next">
+      <a class="back-link" href="../../#band">← 전체 프로젝트</a>
+      <a class="next-link" href="../coupang/"><span>다음 프로젝트</span><strong>Coupang Order Viewer <span aria-hidden="true">↗</span></strong></a>
+    </div>
+  </main>
+  <footer class="site-footer"><span>© 2026 JUNKI KWAK</span><span>PROJECT NOTES</span><a href="#top">맨 위로 ↑</a></footer>
+</body>
+</html>
