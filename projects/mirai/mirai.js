@@ -14,7 +14,7 @@
     gate: { title: '승인 게이트', owner: MINE, path: 'server/api/admin.mjs', what: '에이전트가 만든 제안요청서는 직원이 승인해야만 발송', made: '직원이 본 문안 해시가 있어야 승인, 승인 후 고치면 초안으로(409), 편집·승인·발송을 한 트랜잭션으로', why: '코드 리뷰에서 고친 문안이 승인 없이 나갈 수 있는 경쟁 상태를 찾아서' },
     docs: { title: '자료실', owner: MINE, path: 'server/agents/documents.mjs', what: '직원이 올린 PDF·DOCX를 요약·일정 등록·회원 메일·A1 지식으로 바꿈', made: '브라우저에서 pdf.js 추출, 스캔본은 Tesseract OCR, SHA-256 중복 검사, 공개한 자료만 A1 검색에 포함', why: 'CCIFJ 자료를 A1이 쪽 번호까지 출처로 쓰게 하려고' },
     insight: { title: '인사이트 에이전트 v1', owner: MINE, path: 'server/insights/workflow.mjs', what: '기업 기록에서 후속 지원할 기업을 골라 제안 보고서를 씀 (이후 A4 직원 채팅으로 확장)', made: 'plan(최대 3곳) → 업종 뉴스 검색 → report. ID를 enum으로 묶은 strict JSON Schema를 서버에서 재검증', why: '모델이 없는 기업이나 출처를 지어내지 못하게' },
-    a1: { title: 'A1 · Multilingual Concierge', owner: TEAM, path: 'services/agents/', what: '방문자 질문에 출처 번호를 붙여 답하고, 근거가 없으면 추측하지 않고 담당자 연결로 안내', madeLabel: '연결 지점', made: '내가 정한 answer·reply 계약 자리에 연결. AI 개요·채팅·WhatsApp·Prisme.ai가 같은 A1을 씀', why: '근거 없는 답이 회원에게 나가지 않도록' },
+    a1: { title: 'A1 · Multilingual Concierge', owner: TEAM, path: 'services/agents/', what: '방문자 질문에 출처 번호를 붙여 답하고, 근거가 없으면 추측하지 않고 담당자 연결로 안내', madeLabel: '연결 지점', made: 'answer·reply 계약 자리에 연결. AI 개요·채팅·WhatsApp·Prisme.ai가 같은 A1을 씀', why: '근거 없는 답이 회원에게 나가지 않도록' },
     a2: { title: 'A2 · Personal Membership Manager', owner: TEAM, path: 'services/agents/', what: '새 회원의 목표·관심사로 행사·서비스를 고르고, 왜 맞는지 설명', madeLabel: '연결 지점', made: 'recommend·journey 계약을 통해 My Page 대시보드에 표시', why: '회원이 할 일을 먼저 보여주려고' },
     a3: { title: 'A3 · Evidence-based B2B Matching', owner: MINE, path: 'services/agents/', what: '소개 요청을 후보 기업과 조건별 근거(충족·미충족·미확인)로 정리', made: 'match·draftProposal 계약 → 직원 검토 → 승인 게이트', why: 'AI는 결정하지 않고 직원이 결정하도록' },
     a4: { title: 'A4 · Demand Insight', owner: MINE, path: 'services/agents/', what: '앞의 에이전트에서 모인 데이터로 회원 수요와 필요한 연결을 직원에게 보여줌', made: '인사이트 에이전트 v1의 자리를 이어받아 직원 채팅으로 확장', why: '숫자는 코드가, 해석 문장만 모델이 쓰도록' },
@@ -23,7 +23,7 @@
     d3: { title: 'Odoo · GetResponse', owner: MINE, path: 'server/integrations/', what: '상담·매칭·제안 발송을 CRM 리드·활동·메일로 넘김', made: '실제 API 형식의 요청을 outbox에 쌓고 demo/live 모드로 전환. API 키는 보낼 때만 붙임', why: '실제 계정 없이도 연동 구조를 그대로 보여주려고' },
     d4: { title: '프랑스 공공 기업 API', owner: MINE, path: 'server/company-research/', what: 'recherche-entreprises·BODACC로 기업 등록 정보와 공고 조회', made: '출처가 남는 기업 리서치를 회원 등록과 연결하고, 등록되지 않은 재무 정보는 비워 둠', why: '기업 정보를 공개 출처로만 채우려고' },
     d5: { title: 'Mistral · Claude · OpenAI', owner: BOTH, path: 'services/agents/policies/', what: '에이전트의 모델 호출과 mistral-embed 임베딩', madeLabel: '나눈 방식', made: '팀원 에이전트는 Mistral·Claude, 내 인사이트 에이전트 v1은 OpenAI Responses API를 직접 호출', why: '출력은 모두 JSON Schema로 받아 검증하려고' },
-    d6: { title: 'SQLite', owner: TEAM, path: 'services/agents/', what: '에이전트 상태와 지식 인덱스(임베딩)', madeLabel: '내가 손댄 것', made: 'Azure 공유 저장소에서 에이전트 준비 상태 확인이 느려지지 않게 조회를 바꿈', why: '앱 시작과 상태 확인이 빨라야 해서' }
+    d6: { title: 'SQLite', owner: TEAM, path: 'services/agents/', what: '에이전트 상태와 지식 인덱스(임베딩)', madeLabel: '손댄 것', made: 'Azure 공유 저장소에서 에이전트 준비 상태 확인이 느려지지 않게 조회를 바꿈', why: '앱 시작과 상태 확인이 빨라야 해서' }
   };
   const CH = ['l_c1', 'l_c2', 'l_c3', 'l_c4', 'bus1', 'in_core'];
   const R = {
@@ -77,7 +77,7 @@
     if (d) { panel.owner.textContent = d.owner; panel.owner.dataset.kind = KIND[d.owner]; }
     panel.path.textContent = d ? d.path : '';
     panel.what.textContent = d ? d.what : hint.what;
-    panel.madeK.textContent = d ? (d.madeLabel || '내가 만든 것') : hint.madeK;
+    panel.madeK.textContent = d ? (d.madeLabel || '만든 것') : hint.madeK;
     panel.made.textContent = d ? d.made : hint.made;
     panel.why.textContent = d ? d.why : hint.why;
   }

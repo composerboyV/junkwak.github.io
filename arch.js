@@ -367,7 +367,7 @@
       if (!pOwner.hidden) { pOwner.textContent = OWNER[n.owner]; pOwner.dataset.kind = n.owner; }
       pPath.textContent = n.path || '';
       show(slots[0], '하는 일', n.what);
-      show(slots[1], n.madeLabel || (data.solo ? '구현' : '내가 만든 것'), n.made);
+      show(slots[1], n.madeLabel || (data.solo ? '구현' : '만든 것'), n.made);
       show(slots[2], '이유', n.why);
     }
 
