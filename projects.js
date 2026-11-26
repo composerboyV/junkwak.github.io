@@ -96,17 +96,17 @@ const projects = [
     "id": "admin",
     "category": "work",
     "icon": "🖥️",
-    "title": "한국·미국 통합 관리자 웹",
-    "subtitle": "다국가 운영 도구",
-    "period": "2026.10",
-    "description": "한국과 미국 서비스의 사용자 기록, 구독 현황, 문의를 한곳에서 관리하는 웹입니다. 필요한 기록과 사진을 엑셀·ZIP 파일로 내려받을 수 있습니다.",
+    "title": "서비스별 관리자 웹",
+    "subtitle": "스툴케어 · 피칼스캐너 · 피칼스캐너-M",
+    "period": "2026.03 — 2026.11",
+    "description": "세 서비스의 운영자와 의료진이 사용자 기록과 검사 사진을 다루는 관리자 웹입니다. 관리자 확인과 조회 범위를 서버에서 통제하는 데 중점을 뒀습니다.",
     "tags": [
       "React",
-      "TypeScript",
-      "Vite",
-      "MUI"
+      "Next.js",
+      "NestJS",
+      "Firebase"
     ],
-    "role": "관리자 웹 / 배포",
+    "role": "관리자 웹 / 접근 통제",
     "url": "./projects/admin/"
   },
   {

@@ -41,7 +41,7 @@ GitHub Pages는 `main` 브랜치의 루트에서 배포합니다. `.nojekyll`을
 | 피칼스캐너 | [projects/fecal-qa/index.html](projects/fecal-qa/index.html) |
 | 피칼스캐너-M | [projects/fecal-m/index.html](projects/fecal-m/index.html) |
 | BidScope · 나라장터 입찰 검토 에이전트 | [projects/hackathon/index.html](projects/hackathon/index.html) |
-| 한국·미국 통합 관리자 웹 | [projects/admin/index.html](projects/admin/index.html) |
+| 서비스별 관리자 웹 | [projects/admin/index.html](projects/admin/index.html) |
 | 42 BAND · 악사모 | [projects/band/index.html](projects/band/index.html) |
 | Coupang Order Viewer | [projects/coupang/index.html](projects/coupang/index.html) |
 | C++ HTTP/1.1 서버 | [projects/webserver/index.html](projects/webserver/index.html) |
