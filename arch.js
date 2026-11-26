@@ -23,6 +23,8 @@
     const colOf = {};
     data.columns.forEach((col, ci) => col.nodes.forEach(n => { byId[n.id] = n; colOf[n.id] = ci; }));
     const scenarios = data.scenarios || [];
+    // A page can rename the ownership labels, e.g. when the boxes mean "maintained by me".
+    const owner = Object.assign({}, OWNER, data.owners);
     root.querySelectorAll(':scope > :not(.ax-data)').forEach(child => child.remove());
 
     const head = el('div', 'ax-head');
@@ -32,8 +34,8 @@
     if (!data.solo) {
       const legend = el('p', 'ax-legend');
       const mine = el('span', 'mine');
-      mine.append(el('b', '', '●'), ' 내 담당');
-      legend.append(mine, el('span', '', '팀원'));
+      mine.append(el('b', '', '●'), ` ${owner.mine}`);
+      legend.append(mine, el('span', '', owner.team));
       head.append(legend);
     }
     root.append(head);
@@ -364,7 +366,7 @@
       }
       pTitle.textContent = n.title;
       pOwner.hidden = data.solo || !n.owner;
-      if (!pOwner.hidden) { pOwner.textContent = OWNER[n.owner]; pOwner.dataset.kind = n.owner; }
+      if (!pOwner.hidden) { pOwner.textContent = owner[n.owner]; pOwner.dataset.kind = n.owner; }
       pPath.textContent = n.path || '';
       show(slots[0], '하는 일', n.what);
       show(slots[1], n.madeLabel || (data.solo ? '구현' : '만든 것'), n.made);
