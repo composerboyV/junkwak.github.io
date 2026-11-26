@@ -44,7 +44,7 @@
           <p class="contents-label">목차 <span>CONTENTS</span></p>
           <a href="#problem" aria-current="location"><span>01</span> 맡은 운영 범위</a>
           <a href="#architecture"><span>02</span> 구조</a>
-          <a href="#incident"><span>03</span> 장애 추적</a>
+          <a href="#screens"><span>03</span> 앱 화면</a>
           <a href="#result"><span>04</span> 결과</a>
           <a href="#evidence"><span>05</span> 확인 자료</a>
         </nav>
@@ -65,90 +65,25 @@
             <noscript><p>구성도는 자바스크립트를 켜야 보입니다.</p></noscript>
           </div>
         </section>
-        <section id="incident" class="case-section" aria-labelledby="incident-title">
-          <h2 id="incident-title"><span>03</span> 장애 추적 <small lang="en">INCIDENT · 2025.12</small></h2>
-          <p>사용자가 분석 결과를 조회하면 무한 로딩이 이어지다가 앱이 꺼졌습니다. 에러가 화면에 드러나지 않아, 앱과 분석 서버 사이의 통신을 직접 보이게 만들어 원인을 찾았습니다.</p>
-
-          <h3 class="incident-h">어디서 멈췄나</h3>
-          <ol class="incident-flow">
+        <section id="screens" class="case-section" aria-labelledby="screens-title">
+          <h2 id="screens-title"><span>03</span> 앱 화면 <small lang="en">SCREENS</small></h2>
+          <p>촬영부터 AI 분석 요청, 결과 확인까지 이어지는 앱의 기본 흐름입니다.</p>
+          <ol class="incident-flow" style="margin-top:22px">
             <li><figure><img src="../../assets/fecal/flow-capture.png" width="144" height="289" alt="앱의 대변 촬영 화면" loading="lazy"><figcaption><b>1</b> 촬영</figcaption></figure></li>
             <li><figure><img src="../../assets/fecal/flow-ai.png" width="145" height="290" alt="AI 분석 버튼이 있는 촬영 화면" loading="lazy"><figcaption><b>2</b> AI 분석 요청</figcaption></figure></li>
-            <li class="is-broken"><figure><img src="../../assets/fecal/flow-result.png" width="154" height="266" alt="대변 AI 점수를 보여주는 결과 화면" loading="lazy"><figcaption><b>3</b> 결과 화면 <em>여기서 무한 로딩 → 앱 종료</em></figcaption></figure></li>
+            <li><figure><img src="../../assets/fecal/flow-result.png" width="154" height="266" alt="대변 AI 점수를 보여주는 결과 화면" loading="lazy"><figcaption><b>3</b> 결과 화면</figcaption></figure></li>
           </ol>
           <p class="incident-note">앱 안의 사용 안내에 들어 있는 실제 화면입니다.</p>
-
-          <h3 class="incident-h">통신 구조와 어긋난 세 지점</h3>
-          <figure class="incident-arch">
-            <ol class="incident-arch-row" aria-label="결과 화면에서 분석 서버까지의 요청 경로">
-              <li><strong>결과 화면</strong><span>Bloc · 화면 매핑</span><i class="incident-badge" aria-label="어긋난 지점 3">3</i></li>
-              <li><strong>응답 데이터 구조</strong><span>DTO · JSON 파싱</span><i class="incident-badge" aria-label="어긋난 지점 3">3</i></li>
-              <li><strong>API 클라이언트</strong><span>Retrofit · Dio</span><em>+ 로그 인터셉터</em><i class="incident-badge" aria-label="어긋난 지점 2">2</i></li>
-              <li class="is-server"><strong>LLM 분석 서버</strong><span>이미지 분석 API</span><i class="incident-badge" aria-label="어긋난 지점 1">1</i></li>
-            </ol>
-            <p class="incident-arch-legend"><span>요청 →</span><span>← 응답</span></p>
-            <figcaption>
-              <ol class="incident-points">
-                <li><b>1</b><span><strong>서버 주소</strong> 분석 서버 주소가 바뀌었는데 앱 설정에 반영되지 않았습니다.</span></li>
-                <li><b>2</b><span><strong>경로·필드명</strong> 분석 API 경로와 이미지 업로드 필드 이름이 바뀌어 있었습니다.</span></li>
-                <li><b>3</b><span><strong>응답 구조</strong> 서버가 태그 붙은 텍스트 대신 항목별로 나뉜 JSON을 보내, 앱의 파싱이 실패하고 결과 화면이 응답을 기다리기만 했습니다.</span></li>
-              </ol>
-            </figcaption>
-          </figure>
-
-          <h3 class="incident-h">화면으로 본 차이</h3>
-          <div class="incident-compare">
-            <figure><figcaption><span>이전</span> 앱이 기대한 응답</figcaption><pre><code>[질감] …
-[형태] …
-[색깔] …
-[출혈 여부] …
-[기타 의견] …
-[결론] …</code></pre></figure>
-            <figure class="is-after"><figcaption><span>실제</span> 서버가 보낸 응답</figcaption><pre><code>{
-  점수: 0.18,
-  유효성: true,
-  색상 특징: { 색, 채도, 설명 },
-  형태 특징: { 부피, 원형도, 비율, 설명 },
-  임상 지표: { 출혈, 잔류 점액, 설명 }
-}</code></pre></figure>
-          </div>
-          <figure class="incident-log"><figcaption>로그 인터셉터가 남기는 로그 <span>형식 재구성</span></figcaption><pre><code><b>[LLM Request]</b>  POST {분석 서버}/{분석 경로}
-<b>[LLM Response]</b> Status: 200
-<b>[LLM Response]</b> Data: { 점수, 유효성, 색상·형태·임상 지표 … }
-<b class="err">[LLM Error]</b>    Status · Response   <i>실패하면 상태와 본문을 그대로 남김</i></code></pre></figure>
-          <p class="incident-note">회사 API라 실제 주소와 필드 이름은 한국어로 바꿔 적었습니다.</p>
-
-          <h3 class="incident-h">시간대별 기록</h3>
-          <div class="incident-table-wrap">
-            <table class="incident-table">
-              <thead><tr><th scope="col">시각</th><th scope="col">한 일</th><th scope="col">기록</th></tr></thead>
-              <tbody>
-                <tr><td>2025.12</td><td>결과 조회 중 무한 로딩 후 앱이 종료되는 문제 확인</td><td>사례 기록</td></tr>
-                <tr><td>12.23 (화) 17:45</td><td><b class="incident-chip">1</b> 분석 서버 주소 연결 수정, 1.1.6 패치·패키지 업데이트</td><td>커밋</td></tr>
-                <tr><td>12.24 (수)</td><td>실제 응답을 확인해 응답 구조 변경을 문서로 정리하고 데이터 구조(DTO) 재설계</td><td>변경 문서</td></tr>
-                <tr><td>12.25 (목) 12:03</td><td><b class="incident-chip">2</b><b class="incident-chip">3</b> 로그 인터셉터, 경로·필드명, DTO·화면 매핑 재작성, 무응답 안내, iOS 촬영 화질 개선</td><td>커밋</td></tr>
-                <tr><td>12.25 (목)</td><td>iOS·Android 기기 1차 테스트 통과, 추가 테스트 체크리스트 정리</td><td>커밋 메시지 · 체크리스트</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <h3 class="incident-h">고친 것</h3>
-          <ul class="incident-fixes">
-            <li>분석 API 경로와 이미지 필드 이름을 서버에 맞췄습니다.</li>
-            <li>응답 데이터 구조(DTO)를 실제 JSON에 맞게 다시 설계했습니다.</li>
-            <li>값이 비면 “정보 없음”, 응답이 없으면 “분석 결과를 받지 못했습니다. 다시 시도해주세요.”를 보여주게 했습니다.</li>
-            <li>요청·응답·에러를 로그로 남겨, 다음 장애 때 바로 확인할 수 있게 했습니다.</li>
-          </ul>
         </section>
         <section id="result" class="case-section" aria-labelledby="result-title">
           <h2 id="result-title"><span>04</span> 결과 <small lang="en">RESULT</small></h2>
-          <p><strong>확인한 것</strong> 2025년 12월 결과 조회 장애는 세 지점을 고친 1.1.6 패치 뒤, iOS·Android 기기 테스트에서 결과 화면이 정상으로 표시되는 것을 확인했습니다.</p>
           <p><strong>운영 방식</strong> 병원 QA는 앱에서 재현한 뒤 고칩니다. 요청·응답·에러 로그를 남기도록 바꿔, 다음 장애 때는 앱과 서버 사이 통신을 바로 확인할 수 있습니다.</p>
         </section>
         <section id="evidence" class="case-section" aria-labelledby="evidence-title">
           <h2 id="evidence-title"><span>05</span> 확인 자료 <small lang="en">EVIDENCE</small></h2>
           <dl class="evidence-details">
             <div><dt>기술</dt><dd>Flutter · Dart · Go · Firebase</dd></div>
-            <div><dt>장애 기록</dt><dd>2025.12.23 · 12.25 커밋과 변경 문서. 증상을 처음 확인한 날짜와 스토어 배포 시점은 기록으로 확인되지 않아 적지 않았습니다. 회사 소스는 비공개입니다.</dd></div>
+            <div><dt>작업 기록</dt><dd>저장소 커밋과 변경 문서. 회사 소스는 비공개입니다.</dd></div>
             <div><dt>관련 프로젝트</dt><dd>의료기기 소프트웨어 <a href="../fecal-m/">피칼스캐너-M</a>은 별도 프로젝트로 정리했습니다.</dd></div>
           </dl>
           
